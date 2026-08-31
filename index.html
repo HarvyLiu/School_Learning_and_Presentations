@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linux → Community → Open Source → GitHub</title>
+<meta name="description" content="Linux is everywhere — a playful, bilingual presentation about open source, community and why helping others helps yourself. 助人助己">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;700;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCFCF7;
+    --bg2:#F4F3EF;
+    --fg:#0F1115;
+    --muted:#6B7280;
+    --muted2:#9CA3AF;
+    --line:#E5E7EB;
+    --accent:#22C55E;
+    --accent2:#FFE033;
+    --accent3:#7C3AED;
+    --dark:#0B0E14;
+    --dark2:#151A23;
+    --radius:24px;
+    --shadow: 0 20px 60px rgba(15,17,21,.12), 0 8px 24px rgba(15,17,21,.08);
+    --shadow2: 0 16px 40px rgba(15,17,21,.16);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-snap-type:y mandatory; scroll-padding-top:0}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:Inter, Noto Sans TC, system-ui, -apple-system, sans-serif;
+    overflow-x:hidden;
+  }
+  a{color:inherit}
+  ::selection{background:var(--accent2)}
+  /* progress */
+  #progress{position:fixed;top:0;left:0;height:3px;background:var(--fg);width:0;z-index:100;transition:width .15s linear}
+  /* dot nav */
+  #dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:10px}
+  #dots a{width:9px;height:9px;border-radius:50%;background:rgba(15,17,21,.18);display:block;transition:.3s;border:1px solid rgba(255,255,255,.6)}
+  #dots a.active{background:var(--fg);transform:scale(1.5)}
+  @media(max-width:900px){#dots{display:none}}
+  /* header tiny */
+  header{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;pointer-events:none}
+  header .brand{font-family:JetBrains Mono, monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;background:rgba(252,252,247,.84);backdrop-filter:blur(8px);padding:6px 10px;border-radius:999px;border:1px solid rgba(15,17,21,.08)}
+  header .hint{font-size:11px;opacity:.45;background:rgba(252,252,247,.84);backdrop-filter:blur(8px);padding:6px 10px;border-radius:999px;border:1px solid rgba(15,17,21,.08)}
+  /* sections */
+  section{min-height:100vh; scroll-snap-align:start; position:relative; overflow:hidden; display:flex; align-items:center; padding:92px 0 70px}
+  .wrap{width:min(1220px,92vw);margin:0 auto;position:relative;z-index:2}
+  .eyebrow{font-family:JetBrains Mono, monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;gap:10px;align-items:center}
+  .eyebrow:before{content:"";width:22px;height:1px;background:currentColor;opacity:.35}
+  h2{margin:0;line-height:1.02;letter-spacing:-.025em;font-weight:900;word-spacing:.02em}
+  h2 .en{display:block;font-size:clamp(46px, 8.4vw, 92px);line-height:.96;letter-spacing:-.03em;word-spacing:.04em}
+  h2 .zh{display:block;font-family:Noto Sans TC, sans-serif;font-weight:900;font-size:clamp(20px, 2.8vw, 30px);letter-spacing:.01em;margin-top:12px;opacity:.88;line-height:1.35}
+  .detail{margin-top:20px;color:var(--muted);font-size:clamp(15.5px,1.7vw,19px);line-height:1.85;max-width:68ch;letter-spacing:.01em}
+  .detail small{font-size:.88em;line-height:1.75}
+  .detail strong{color:var(--fg);font-weight:700}
+  .detail small{color:var(--muted2)}
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:.8s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d2{transition-delay:.12s}
+  .reveal.d3{transition-delay:.22s}
+  /* HERO */
+  #hero{background:var(--bg);padding-top:92px}
+  #hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+  #hero h2 .en{font-size:clamp(50px,8vw,96px);letter-spacing:-.025em}
+  #hero h2 .zh{font-size:clamp(24px,3.4vw,36px);letter-spacing:.02em}
+  .hero-tux{position:relative;display:flex;justify-content:center;align-items:center}
+  .hero-tux .blob{position:absolute;width:120%;aspect-ratio:1;background:radial-gradient(60% 60% at 50% 40%, #FFE033 0%, #FFD23F 18%, #22C55E18 45%, transparent 70%);filter:blur(6px);border-radius:50%}
+  .hero-tux img{width:min(420px,78vw);height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.18));transform:rotate(-3deg);position:relative}
+  .hero-card{margin-top:22px;display:inline-flex;gap:12px;align-items:center;background:var(--fg);color:#fff;padding:11px 16px;border-radius:999px;font-family:JetBrains Mono, monospace;font-size:13px;box-shadow:var(--shadow2);letter-spacing:.02em}
+  .hero-card b{color:var(--accent2)}
+  .scroll-hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-family:JetBrains Mono, monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.5}
+  .scroll-hint span{width:1px;height:36px;background:linear-gradient(to bottom, var(--fg), transparent);display:block}
+  @media(max-width:900px){#hero .wrap{grid-template-columns:1fr;gap:10px}.hero-tux{order:-1}.hero-tux img{width:300px}}
+  /* EVERYWHERE */
+  #everywhere{background:#0B0E14;color:#F9FAFB;padding:70px 0 40px}
+  #everywhere .eyebrow{color:#9CA3AF}
+  #everywhere h2 .en{color:#fff}
+  #everywhere h2 .zh{color:#E5E7EB}
+  #everywhere .detail{color:#9CA3AF}
+  #everywhere .detail strong{color:#fff}
+  .stats{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:760px}
+  .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(10px);border-radius:20px;padding:18px 18px 16px;position:relative;overflow:hidden}
+  .stat:before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 20% 0%, rgba(34,197,94,.18), transparent 60%);pointer-events:none}
+  .stat .num{font-size:clamp(40px,5.2vw,58px);font-weight:900;letter-spacing:-.03em;line-height:1;display:flex;align-items:baseline;gap:4px;word-spacing:.02em}
+  .stat .num i{font-style:normal;font-size:.55em;opacity:.7;letter-spacing:.02em}
+  .stat .label{font-family:JetBrains Mono, monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.62;margin-top:8px}
+  .stat .sub{font-size:14px;opacity:.68;margin-top:8px;line-height:1.65}
+  /* S2 new layout: left stats, right vertical floating list in blank space */
+  #everywhere .everywhere-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:36px;align-items:start}
+  #everywhere .ew-left{display:flex;flex-direction:column}
+  .orbit{position:relative;height:540px;margin-top:28px}
+  .orbit-center{display:none}
+  .orbit.vertical-orbit{height:auto;display:flex;flex-direction:column;gap:14px;padding:6px 6px 6px 18px;margin-top:8px;justify-content:center;align-items:stretch}
+  .orbit.vertical-orbit .device{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;width:100%;max-width:100%;animation:floatY 5.8s ease-in-out infinite}
+  .orbit.vertical-orbit .device:nth-child(odd){margin-left:10px}
+  .orbit.vertical-orbit .device:nth-child(even){margin-left:-6px}
+  @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .device{position:absolute;display:flex;align-items:center;gap:13px;background:#fff;color:var(--fg);padding:11px 16px 11px 11px;border-radius:999px;box-shadow:0 18px 40px rgba(0,0,0,.35), 0 6px 14px rgba(0,0,0,.25);border:1px solid rgba(0,0,0,.06);width:max-content;max-width:320px;animation:float 6.5s ease-in-out infinite;will-change:transform;overflow:visible}
+  .device img{width:50px;height:50px;object-fit:cover;border-radius:50%;background:#F3F4F6;flex:none}
+  .device .meta{line-height:1.3;padding-right:6px;min-width:0}
+  .device .meta b{display:block;font-size:13.5px;letter-spacing:-.01em;white-space:normal;line-height:1.25;overflow:visible;word-break:keep-all}
+  .device .meta span{font-size:11.5px;color:var(--muted);font-family:JetBrains Mono, monospace;white-space:normal;line-height:1.4;word-break:keep-all}
+  /* free-floating scatter — not on a ring, just playful around */
+  .d-android{left:3%;top:6%;animation-delay:-.2s}
+  .d-steam{right:3%;top:4%;animation-delay:-1.1s}
+  .d-server{left:1%;top:44%;animation-delay:-2s}
+  .d-super{right:1%;top:40%;animation-delay:-.8s}
+  .d-router{left:10%;top:70%;animation-delay:-1.7s}
+  .d-tesla{right:10%;top:68%;animation-delay:-2.4s}
+  .d-tv{left:50%;bottom:2%;transform:translateX(-50%);animation-delay:-.6s}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(.6deg)}}
+  @media(max-width:1100px) and (min-width:901px){
+    .orbit{height:500px}
+    .device{scale:.92}
+  }
+  @media(max-width:900px){
+    #everywhere .everywhere-grid{grid-template-columns:1fr;gap:18px}
+    #everywhere .ew-left{order:1}
+    #everywhere .orbit.vertical-orbit{order:2;margin-top:4px;padding:0;gap:10px}
+    #everywhere .orbit.vertical-orbit .device{margin-left:0!important;animation:floatY 5.8s ease-in-out infinite}
+    .stats{grid-template-columns:1fr;gap:10px}
+    .orbit:not(.vertical-orbit){height:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+    .orbit-center{display:none}
+    .device{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;animation:none;width:auto;scale:1}
+    .orbit.vertical-orbit .device{width:100%;transform:none!important;animation:floatY 5.8s ease-in-out infinite}
+    .d-tv{transform:none!important}
+  }
+  /* ORIGIN */
+  #origin{background:var(--bg);overflow:visible}
+  #origin .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:52px;align-items:center;overflow:visible}
+  .tape-wrap{position:relative;display:flex;justify-content:center;overflow:visible;padding-top:14px}
+  .tape{position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(-2.5deg);background:var(--accent2);padding:6px 14px;font-family:JetBrains Mono, monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 6px 16px rgba(0,0,0,.14);z-index:5;white-space:nowrap}
+  .linus-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(-1.2deg);max-width:420px;position:relative;z-index:2}
+  .linus-card img{width:100%;height:380px;object-fit:cover;display:block}
+  .linus-card .cap{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#fff}
+  .linus-card .cap b{font-size:13px}
+  .linus-card .cap span{font-family:JetBrains Mono, monospace;font-size:11px;color:var(--muted)}
+  .terminal{background:var(--dark);color:#E5E7EB;border-radius:20px;overflow:hidden;box-shadow:var(--shadow2);border:1px solid rgba(255,255,255,.08);transform:rotate(.6deg)}
+  .term-bar{height:36px;background:rgba(255,255,255,.06);display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .term-body{padding:22px 20px;font-family:JetBrains Mono, monospace;font-size:13.5px;line-height:1.8;word-spacing:.02em}
+  .term-body .quote-line{min-height:1.8em}
+  .term-body .quote-line .prompt{color:var(--accent)}
+  .term-body .g{color:var(--accent)}
+  .term-body .y{color:var(--accent2)}
+  .term-body .m{color:var(--muted2)}
+  .cursor{display:inline-block;width:8px;height:15px;background:#fff;vertical-align:middle;animation:blink 1s steps(1) infinite;margin-left:2px}
+  @keyframes blink{50%{opacity:0}}
+  @media(max-width:900px){#origin .wrap{grid-template-columns:1fr;gap:28px}.linus-card{max-width:100%;transform:none}.linus-card img{height:360px}.terminal{transform:none}}
+  /* WHY ME */
+  #why-me{background:var(--bg2);position:relative}
+  #why-me:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 80% 20%, rgba(124,58,237,.08), transparent 60%), radial-gradient(500px 500px at 10% 90%, rgba(34,197,94,.08), transparent 60%)}
+  .why-grid{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .why-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 20px;box-shadow:0 10px 30px rgba(0,0,0,.06);position:relative;transform:rotate(var(--r));transition:.3s}
+  .why-card:hover{transform:rotate(0) translateY(-4px);box-shadow:var(--shadow)}
+  .why-card .icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--fg);color:#fff;margin-bottom:14px}
+  .why-card:nth-child(2) .icon{background:var(--accent)}
+  .why-card:nth-child(3) .icon{background:var(--accent3)}
+  .why-card h3{margin:0;font-size:20px;letter-spacing:-.02em;line-height:1.2}
+  .why-card h3 span{font-family:Noto Sans TC;display:block;font-size:14px;color:var(--muted);font-weight:600;margin-top:6px;letter-spacing:.02em;line-height:1.4}
+  .why-card p{margin:12px 0 0;color:var(--muted);font-size:15px;line-height:1.75}
+  .why-foot{margin-top:16px;display:inline-flex;gap:10px;align-items:center;background:var(--fg);color:#fff;padding:10px 16px;border-radius:999px;font-size:13px;line-height:1.4;flex-wrap:wrap}
+  @media(max-width:900px){.why-grid{grid-template-columns:1fr}.why-card{transform:none!important}}
+  /* OPEN VS CLOSED */
+  #openvs{background:var(--bg)}
+  .duels{margin-top:24px;display:grid;gap:18px}
+  .duel{display:grid;grid-template-columns:1fr 76px 1fr;gap:14px;align-items:center}
+  .duel .vs{width:56px;height:56px;border-radius:50%;background:var(--fg);color:#fff;display:grid;place-items:center;font-weight:900;letter-spacing:-.04em;justify-self:center;box-shadow:0 10px 20px rgba(0,0,0,.18)}
+  .vs-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 16px 16px;display:flex;gap:14px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.05);position:relative;overflow:visible}
+  .vs-card.open{border-color:rgba(34,197,94,.35);background:linear-gradient(180deg, #F0FDF4 0%, #fff 65%)}
+  .vs-card.closed{border-color:rgba(239,68,68,.18);background:linear-gradient(180deg, #FEF2F2 0%, #fff 65%)}
+  .vs-card img{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:14px;padding:8px;border:1px solid var(--line);flex:none}
+  .vs-card .t b{display:block;font-size:16px;letter-spacing:-.01em;line-height:1.25}
+  .vs-card .t span{font-size:13.5px;color:var(--muted);line-height:1.6;display:block;margin-top:4px}
+  .badge{position:absolute;top:10px;right:10px;font-family:JetBrains Mono, monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:4px 7px;border-radius:999px}
+  .badge.open{background:var(--accent);color:#0B0E14}
+  .badge.closed{background:var(--fg);color:#fff}
+  @media(max-width:900px){.duel{grid-template-columns:1fr;gap:8px}.duel .vs{order:-1;transform:rotate(12deg)}}
+  /* WHY OPEN */
+  #why-open{background:var(--dark);color:#F9FAFB;overflow:visible}
+  #why-open .eyebrow{color:#9CA3AF}
+  #why-open h2 .en{color:#fff}
+  #why-open h2 .zh{color:#D1D5DB}
+  #why-open .detail{color:#9CA3AF}
+  .oval-stage{position:relative;height:560px;margin-top:34px;display:flex;justify-content:center;align-items:center}
+  .oval{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(920px,94vw);height:420px;border:1px dashed rgba(255,255,255,.14);border-radius:50%;}
+  .oval:before{content:"";position:absolute;inset:-22px;border:1px dashed rgba(255,255,255,.06);border-radius:50%}
+  .oval-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:780px;height:380px;background:radial-gradient(60% 60% at 50% 50%, rgba(124,58,237,.18), transparent 70%);filter:blur(10px)}
+  .chip{position:absolute;background:#fff;color:var(--fg);padding:13px 16px;border-radius:999px;box-shadow:0 14px 30px rgba(0,0,0,.35);border:1px solid rgba(0,0,0,.06);font-size:14px;font-weight:700;letter-spacing:-.01em;display:flex;flex-direction:column;gap:4px;min-width:160px;max-width:210px;animation:chipFloat 5.8s ease-in-out infinite;transform:translate(-50%,-50%);line-height:1.25;text-align:center;align-items:center}
+  .chip span{font-size:12px;color:var(--muted);font-weight:400;font-family:JetBrains Mono, monospace;white-space:normal;line-height:1.4}
+  .chip b{white-space:normal;line-height:1.25}
+  /* positions along oval — inset 3-4% to prevent edge cut-off / squish */
+  .c1{left:50%;top:4%}
+  .c2{left:76%;top:16%}
+  .c3{left:88%;top:50%}
+  .c4{left:76%;top:84%}
+  .c5{left:50%;top:96%}
+  .c6{left:24%;top:84%}
+  .c7{left:12%;top:50%}
+  .c8{left:24%;top:16%}
+  .chip:nth-child(odd){background:var(--accent2)}
+  .chip:nth-child(3n){background:#E0E7FF}
+  .chip:nth-child(4){background:#DCFCE7}
+  @keyframes chipFloat{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-8px)}}
+  @media(max-width:900px){
+    .oval-stage{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0}
+    .oval,.oval-glow{display:none}
+    .chip{position:relative;left:auto!important;top:auto!important;transform:none!important;animation:none;min-width:0}
+  }
+  /* GITHUB */
+  #github{background:var(--bg);text-align:center}
+  .gh-mark{width:130px;height:130px;object-fit:contain;display:block;margin:0 auto;filter:drop-shadow(0 14px 30px rgba(0,0,0,.12))}
+  .gh-title{font-size:clamp(60px,12vw,132px);font-weight:900;letter-spacing:-.03em;line-height:.92;margin:12px 0 8px;word-spacing:.04em}
+  .gh-sub{font-family:JetBrains Mono, monospace;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:var(--muted);line-height:1.6}
+  .gh-detail{max-width:58ch;margin:16px auto 0;color:var(--muted);font-size:16px;line-height:1.8}
+  /* WHY WORKS */
+  #whyworks{background:var(--bg2)}
+  .laws{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+  .law{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;transform:rotate(var(--r))}
+  .law.dark{background:var(--dark);color:#F9FAFB;border-color:rgba(255,255,255,.08)}
+  .law .kicker{font-family:JetBrains Mono, monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+  .law h3{margin:0;font-size:24px;letter-spacing:-.02em;line-height:1.18;word-spacing:.03em}
+  .law h3 i{font-family:Instrument Serif, serif;font-weight:400;font-style:italic;color:var(--accent)}
+  .law.dark h3 i{color:var(--accent2)}
+  .law .quote{margin:12px 0 0;font-size:16px;font-weight:700;letter-spacing:-.01em;background:var(--bg2);padding:12px 14px;border-radius:12px;border:1px solid var(--line);line-height:1.5}
+  .law.dark .quote{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08);color:#fff}
+  .law p{margin:12px 0 0;color:var(--muted);font-size:15px;line-height:1.8}
+  .law.dark p{color:#9CA3AF}
+  .law .example{margin-top:12px;padding:12px 14px;background:rgba(34,197,94,.08);border:1px dashed rgba(34,197,94,.22);border-radius:12px;font-size:14px;line-height:1.7}
+  .law.dark .example{background:rgba(255,224,51,.08);border-color:rgba(255,224,51,.22)}
+  @media(max-width:900px){.laws{grid-template-columns:1fr}.law{transform:none!important}}
+  /* SUMMARY */
+  #summary{background:var(--fg);color:#fff;text-align:center;position:relative}
+  #summary:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 500px at 50% 30%, rgba(255,224,51,.14), transparent 60%), radial-gradient(600px 600px at 80% 80%, rgba(34,197,94,.12), transparent 60%)}
+  .big-ji{font-family:Noto Sans TC, sans-serif;font-weight:900;font-size:clamp(60px,11vw,136px);letter-spacing:-.03em;line-height:.92;background:linear-gradient(180deg, #fff 20%, #FFE033 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;word-spacing:.06em}
+  .big-en{margin-top:12px;font-size:clamp(30px,5.2vw,58px);font-weight:900;letter-spacing:-.03em;line-height:1.05;word-spacing:.04em}
+  .loop{margin:24px auto 0;width:min(560px,92vw);display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center}
+  .loop .node{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);padding:14px 12px;border-radius:16px;font-size:14px;font-weight:700;line-height:1.35}
+  .loop .node span{font-family:JetBrains Mono, monospace;font-size:11px;opacity:.6;display:block;font-weight:400;margin-top:4px;line-height:1.4}
+  .loop .arrow{opacity:.6;font-size:18px}
+  .summary-detail{max-width:64ch;margin:20px auto 0;color:#9CA3AF;font-size:16px;line-height:1.85}
+  .cta{margin-top:18px;display:inline-flex;gap:10px}
+  .cta a{background:#fff;color:var(--fg);padding:10px 14px;border-radius:999px;font-weight:700;font-size:13px;text-decoration:none}
+  .cta a.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.18)}
+  /* REFERENCES */
+  #refs{background:var(--bg);padding:70px 0}
+  .ref-grid{margin-top:18px;display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+  .ref-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+  .ref-card h4{margin:0 0 8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-family:JetBrains Mono, monospace;line-height:1.4}
+  .ref-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.85}
+  .ref-card ul a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;word-break:break-all}
+  .tiny{margin-top:14px;font-size:11px;color:var(--muted2);font-family:JetBrains Mono, monospace}
+  @media(max-width:900px){.ref-grid{grid-template-columns:1fr}}
+  /* squish fix: prevent CJK + Latin crowding and allow wrapping */
+  p, .detail, .stat .sub, .vs-card .t span, .why-card p, .law p, .law .example{overflow-wrap:break-word;word-break:normal;hyphens:auto}
+  .detail strong{word-spacing:.04em}
+  /* utilities */
+  .mono{font-family:JetBrains Mono, monospace}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav id="dots" aria-label="Slide navigation">
+  <a href="#hero" title="Intro"></a>
+  <a href="#everywhere" title="Everywhere"></a>
+  <a href="#origin" title="Origin"></a>
+  <a href="#why-me" title="Why I use"></a>
+  <a href="#openvs" title="Open vs Closed"></a>
+  <a href="#why-open" title="Why Open"></a>
+  <a href="#github" title="GitHub"></a>
+  <a href="#whyworks" title="Why it works"></a>
+  <a href="#summary" title="Summary"></a>
+  <a href="#refs" title="References"></a>
+</nav>
+<header>
+  <div class="brand">Linux → Community → Open Source → GitHub</div>
+  <div class="hint mono">15 min • bilingual • scroll or press ↓</div>
+</header>
+
+<!-- S1 HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Slide 01 / 開場提問</div>
+      <h2>
+        <span class="en">What do you think<br>Linux is?</span>
+        <span class="zh">你知道 Linux 是什麼嗎？</span>
+      </h2>
+      <p class="detail">
+        大多數人第一反應是：<strong>小眾的桌面系統，工程師才在用</strong>。<br>
+        Most people picture a niche desktop OS for engineers.<br><br>
+        <strong>今天我們把這個印象整個翻過來。</strong> 15 分鐘，從你口袋到雲端，看看它到底在哪裡。<br>
+        <small>Today we flip that idea — from your pocket to the cloud. Key point on top, details in small text like this, so you can listen instead of reading.</small>
+      </p>
+      <div class="hero-card">按住下滑開始 <b>→ SCROLL TO START</b></div>
+    </div>
+    <div class="hero-tux reveal d2">
+      <div class="blob"></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux the Linux penguin" loading="eager" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'">
+    </div>
+  </div>
+  <div class="scroll-hint"><span></span>scroll</div>
+</section>
+
+<!-- S2 EVERYWHERE -->
+<section id="everywhere">
+  <div class="wrap everywhere-grid">
+    <div class="ew-left">
+      <div class="eyebrow">Slide 02 / 無所不在的 Linux</div>
+      <h2 class="reveal">
+        <span class="en">Linux is actually<br>everywhere.</span>
+        <span class="zh">其實，你早就被 Linux 包圍了</span>
+      </h2>
+      <p class="detail reveal d2">
+        不是在某個角落，而是<strong>在每個角落</strong>。你最熟悉的裝置，背後很可能就是它。<br>
+        Not in a corner — in <strong>every corner</strong>. The devices you love most run on it.
+      </p>
+      <div class="stats reveal d2">
+        <div class="stat">
+          <div class="num" data-target="90">0<i>%</i></div>
+          <div class="label">Servers & Cloud 伺服器與雲端</div>
+          <div class="sub">全世界伺服器、雲端基礎設施約 90% 由 Linux 驅動<br><small>~90% of world servers & cloud run Linux</small></div>
+        </div>
+        <div class="stat">
+          <div class="num" data-target="100">0<i>%</i></div>
+          <div class="label">Supercomputers 超級電腦</div>
+          <div class="sub">TOP500 超級電腦 100% 使用 Linux<br><small>100% of TOP500 supercomputers</small></div>
+        </div>
+        <div class="stat">
+          <div class="num" data-target="4">0<i>%</i></div>
+          <div class="label">Desktop 桌面</div>
+          <div class="sub">卻只有約 3–4% 的桌面市佔 — 最強卻最安靜<br><small>but only ~3–4% desktop share — powerful yet quiet</small></div>
+        </div>
+      </div>
+      <p class="detail reveal" style="margin-top:12px;opacity:.65;font-size:14px">
+        * 數字為業界常用估算，精確比例每年浮動，但數量級穩定領先。 / * Figures are widely cited estimates; exact share fluctuates but dominance is stable. 參考見最後一頁。
+      </p>
+    </div>
+
+    <div class="orbit vertical-orbit reveal d3">
+      <div class="device d-android">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android" loading="lazy">
+        <div class="meta"><b>Android 📱</b><span>以 Linux 核心為底 • 30 億裝置</span></div>
+      </div>
+      <div class="device d-steam">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/steam/steam-original.svg" alt="Steam Deck" loading="lazy" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg'">
+        <div class="meta"><b>Steam Deck 🎮</b><span>SteamOS = Arch Linux</span></div>
+      </div>
+      <div class="device d-server">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=200&q=80&auto=format&fit=crop" alt="Servers" loading="lazy">
+        <div class="meta"><b>Web Servers 🌐</b><span>Google / AWS / 網站都靠它</span></div>
+      </div>
+      <div class="device d-super">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Frontier_supercomputer.jpg/320px-Frontier_supercomputer.jpg" alt="Supercomputer" loading="lazy">
+        <div class="meta"><b>Supercomputers 🧮</b><span>Frontier • Fugaku 全是 Linux</span></div>
+      </div>
+      <div class="device d-router">
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&q=80&auto=format&fit=crop" alt="Router" loading="lazy">
+        <div class="meta"><b>Routers / Embedded</b><span>路由器 • 嵌入式裝置</span></div>
+      </div>
+      <div class="device d-tesla">
+        <img src="https://images.unsplash.com/photo-1617704548623-340376564e68?w=200&q=80&auto=format&fit=crop" alt="Tesla" loading="lazy">
+        <div class="meta"><b>Tesla 🚗</b><span>車載系統基於 Linux</span></div>
+      </div>
+      <div class="device d-tv">
+        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=200&q=80&auto=format&fit=crop" alt="Smart TV" loading="lazy">
+        <div class="meta"><b>Smart TV 📺</b><span>三星 / LG 電視皆為 Linux 系</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3 ORIGIN -->
+<section id="origin">
+  <div class="wrap">
+    <div class="tape-wrap reveal">
+      <div class="tape">1991 — Helsinki, Finland</div>
+      <div class="linus-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinuxCon_Europe_Linus_Torvalds_03_%28cropped%29.jpg" alt="Linus Torvalds" loading="lazy">
+        <div class="cap"><b>Linus Torvalds</b><span>21 歲 • Just a hobby</span></div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="eyebrow">Slide 03 / 它從哪裡來？</div>
+      <h2>
+        <span class="en" style="font-size:clamp(40px,6.8vw,72px)">Where did Linux<br>come from?</span>
+        <span class="zh">一個 21 歲學生的業餘專案</span>
+      </h2>
+      <div class="terminal" style="margin-top:18px">
+        <div class="term-bar"><span class="dot" style="background:#FF5F57"></span><span class="dot" style="background:#FFBD2E"></span><span class="dot" style="background:#28CA42"></span><span class="mono" style="margin-left:8px;font-size:11px;opacity:.6">linus@helsinki: ~</span></div>
+        <div class="term-body">
+          <div class="m">comp.os.minix — 25 Aug 1991</div>
+          <div><span class="g">linus</span>: Hello everybody out there...<br>
+          I'm doing a <span class="y">(free) operating system</span> (just a hobby,<br>
+          won't be big and professional like gnu)...<br>
+          <span class="m">— This message started everything.</span></div>
+          <div style="margin-top:14px;opacity:.72">> 因為想更了解自己的電腦，他從零寫了一個核心。<br>> Because he wanted to understand his own PC, he wrote a kernel from scratch.</div>
+          <div style="margin-top:14px;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px" class="quote-line"><span class="prompt">$</span> <span id="quote-typed" class="y"></span><span class="cursor"></span><div style="margin-top:6px;font-size:11px;opacity:.45;letter-spacing:.06em;text-transform:uppercase" class="mono">— Linus Torvalds</div></div>
+        </div>
+      </div>
+      <p class="detail">
+        他打造 Linux，是因為當時商業 Unix 對學生而言<strong>太昂貴</strong> — 買不起也無法自由修改，乾脆自己從零寫一個核心，並把程式碼丟上網路邀請全世界一起改。<br>
+        He built Linux because commercial Unix systems were prohibitively <strong>expensive</strong> for a student — so he wrote a kernel from scratch and invited the world to hack on it together.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- S4 WHY ME -->
+<section id="why-me">
+  <div class="wrap">
+    <div class="eyebrow">Slide 04 / 為什麼我用 Linux</div>
+    <h2 class="reveal">
+      <span class="en">Why I use Linux</span>
+      <span class="zh">不只是寫程式 — 是拿回主導權</span>
+    </h2>
+    <p class="detail reveal d2">
+      對我來說不是信仰之爭，而是<strong>用起來更順手、更輕、更自由</strong>。現場直接示範比投影片更有感，所以這頁保持乾淨。<br>
+      Not a belief — it's just <strong>lighter, smoother, and mine to shape</strong>. I'll demo live, so this slide stays clean.
+    </p>
+    <div class="why-grid">
+      <div class="why-card reveal" style="--r:-1deg">
+        <div class="icon">&lt;/&gt;</div>
+        <h3>Coding & Tools<span>寫程式更直接</span></h3>
+        <p>終端機、套件管理、編譯環境原生就位。不用繞路，<strong>寫程式就是回家</strong>。<br><small>Terminal, package managers, compilers — native, not patched on.</small></p>
+      </div>
+      <div class="why-card reveal d2" style="--r:.7deg">
+        <div class="icon">◈</div>
+        <h3>Lightweight<span>輕盈、省資源</span></h3>
+        <p>同樣硬體跑得更順，老電腦也能重生。開機快、待機省電，<strong>資源留給真正想做的事</strong>。<br><small>Runs fast on old hardware. Resources for your work, not the OS.</small></p>
+      </div>
+      <div class="why-card reveal d3" style="--r:-.6deg">
+        <div class="icon">⊕</div>
+        <h3>Customization<span>完全可自訂</span></h3>
+        <p>從桌面到核心，想怎麼改就怎麼改。鍵位、視窗、動畫，<strong>電腦配合你</strong>，不是你配合電腦。<br><small>From desktop to kernel — your machine, your rules.</small></p>
+      </div>
+    </div>
+    <div class="reveal d3" style="margin-top:18px">
+      <span class="why-foot">Bonus: 不會被 Windows 更新突襲、病毒與玄學錯誤少很多 <span style="opacity:.6">— no more “update and restart” sabotage</span></span>
+      <p class="detail" style="margin-top:12px;font-size:15px">小字補充：當然 Linux 也有學習成本，但學會後的掌控感，是回不去的。 / Small print: there is a learning curve — but the control is worth it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- S5 OPEN VS CLOSED -->
+<section id="openvs">
+  <div class="wrap">
+    <div class="eyebrow">Slide 05 / 開源是什麼？</div>
+    <h2 class="reveal">
+      <span class="en">Open vs Closed</span>
+      <span class="zh">黑盒子 vs 透明盒子</span>
+    </h2>
+    <p class="detail reveal d2">
+      差別只有一個：<strong>你看不看得到食譜</strong>。<br>
+      One difference: <strong>can you see the recipe?</strong> Open means you can read, modify, and share the source.
+    </p>
+    <div class="duels">
+      <div class="duel reveal">
+        <div class="vs-card open">
+          <span class="badge open">Open • 開源</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg" alt="Firefox" loading="lazy">
+          <div class="t"><b>Firefox</b><span>原始碼完全開放，全球共同開發。錯了大家一起修。<br><small>Fully open — built in public, fixed in public.</small></span></div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="vs-card closed">
+          <span class="badge closed">Closed • 封閉</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" alt="Chrome" loading="lazy">
+          <div class="t"><b>Chrome</b><span>基於開源 Chromium，但成品封閉，更新由單一公司決定。<br><small>Built on open Chromium, shipped as a closed product.</small></span></div>
+        </div>
+      </div>
+      <div class="duel reveal d2">
+        <div class="vs-card open">
+          <span class="badge open">Open • 開源</span>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" loading="lazy">
+          <div class="t"><b>Linux</b><span>誰都能看、改、發佈。你的電腦你作主。<br><small>Anyone can read, fork, and ship it.</small></span></div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="vs-card closed">
+          <span class="badge closed">Closed • 封閉</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" alt="Windows" style="padding:10px" loading="lazy">
+          <div class="t"><b>Windows / macOS</b><span>黑盒子。好用但規則由別人寫。<br><small>Black box. Polished, but someone else sets the rules.</small></span></div>
+        </div>
+      </div>
+    </div>
+    <p class="detail reveal d3" style="font-size:15px">
+      小字：開源 ≠ 免費。重點是<strong>自由與可驗證性</strong>，授權如 GPL / MIT 保障這些權利。<br>
+      <small>Small print: open ≠ free of charge. It's about freedom and verifiability. Licenses like GPL/MIT protect it.</small>
+    </p>
+  </div>
+</section>
+
+<!-- S6 WHY OPEN -->
+<section id="why-open">
+  <div class="wrap">
+    <div class="eyebrow">Slide 06 / 為什麼要開源？</div>
+    <h2 class="reveal">
+      <span class="en">Why do people<br>open source?</span>
+      <span class="zh">八個理由，繞成一個圈</span>
+    </h2>
+    <p class="detail reveal d2">
+      不是只有理想。開源混合了<strong>熱情、務實與合作</strong>。<br>
+      Not just idealism — a mix of <strong>joy, pragmatism, and collaboration</strong>.
+    </p>
+    <div class="oval-stage reveal d3">
+      <div class="oval-glow"></div>
+      <div class="oval"></div>
+      <div class="chip c1"><b>They enjoy building</b><span>享受創造的快樂</span></div>
+      <div class="chip c2"><b>They like to share</b><span>喜歡分享</span></div>
+      <div class="chip c3"><b>They want to learn</b><span>想學得更快</span></div>
+      <div class="chip c4"><b>Solve a problem</b><span>解決自己的問題</span></div>
+      <div class="chip c5"><b>Others can improve it</b><span>讓別人一起變更好</span></div>
+      <div class="chip c6"><b>Useful for career</b><span>對職涯有幫助</span></div>
+      <div class="chip c7"><b>Build businesses</b><span>公司也能以此創業</span></div>
+      <div class="chip c8"><b>Bigger than one person</b><span>一起做出更大的東西</span></div>
+    </div>
+    <p class="detail reveal" style="text-align:center;margin:18px auto 0;font-size:15px;opacity:.7">
+      這些動機像行星一樣互相牽引 — 沒有單一中心，卻繞出同一個生態系。<br>
+      <small>Like planets orbiting a shared gravity — no single center, one ecosystem.</small>
+    </p>
+  </div>
+</section>
+
+<!-- S7 GITHUB -->
+<section id="github">
+  <div class="wrap reveal">
+    <img class="gh-mark" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub Octocat" loading="lazy">
+    <div class="gh-title">GitHub</div>
+    <div class="gh-sub">程式碼的家 • Home for code • 1 億開發者的廣場</div>
+    <p class="gh-detail">
+      開源需要一個廣場。GitHub 就是那個<strong>放程式碼、提問題、一起改</strong>的地方。<br>
+      Open source needs a square. GitHub is where we <strong>host, fork, pull, and review together</strong>.<br>
+      <small style="color:var(--muted)">接下來我直接打開 github.com 給你看 — 比任何投影片都真實。<br>Next, I'll open github.com live — more real than any slide.</small>
+    </p>
+    <div style="margin-top:16px;display:inline-flex;gap:8px;align-items:center;background:var(--fg);color:#fff;padding:8px 12px;border-radius:999px;font-family:JetBrains Mono, monospace;font-size:11px">
+      <span style="width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block"></span> github.com — we'll go there together
+    </div>
+  </div>
+</section>
+
+<!-- S8 WHY WORKS -->
+<section id="whyworks">
+  <div class="wrap">
+    <div class="eyebrow">Slide 08 / 為什麼這個模式可行？</div>
+    <h2 class="reveal">
+      <span class="en">Why this model<br><i>actually</i> works</span>
+      <span class="zh">不是情懷，是工程學</span>
+    </h2>
+    <div class="laws">
+      <div class="law reveal" style="--r:-.7deg">
+        <div class="kicker"><span>01</span> Linus's Law</div>
+        <h3>Given enough <i>eyeballs</i>,<br>all bugs are shallow.</h3>
+        <div class="quote">「人夠多，蟲就淺。」<br><small style="font-weight:400;color:var(--muted)">夠多眼睛一起看，沒有藏得住的錯誤。</small></div>
+        <p>開源把除錯從「少數人加班」變成「眾人一起看」。問題曝露越早，修得越快。</p>
+        <div class="example"><b>例子：</b> Heartbleed（2014）影響全網路，但因 OpenSSL 開源，全球在數日內定位、修補並發佈更新。封閉系統的同級漏洞，往往數月後才被爆出。</div>
+      </div>
+      <div class="law dark reveal d2" style="--r:.8deg">
+        <div class="kicker">02 — Kerckhoffs's Principle</div>
+        <h3>Security through<br><i>obscurity</i> is not security.</h3>
+        <div class="quote">隱晦不是安全。<br><small style="font-weight:400;opacity:.65">源自密碼學 — 真正的安全經得起公開檢驗。</small></div>
+        <p>把程式碼藏起來 ≠ 安全。把設計攤開來讓全世界檢驗，才是安全。</p>
+        <div class="example"><b>例子：</b> 加密演算法公開競賽（AES 遴選）反而更可信；靠「沒人看得到」的系統，常在被公開的那天就崩潰。</div>
+      </div>
+    </div>
+    <p class="detail reveal d3">
+      這兩條原則正好解釋了開頭的數字：<strong>為什麼 90% 的伺服器敢把命交給 Linux</strong> — 因為它被看得最多，也最經得起看。<br>
+      <small>Both principles explain the opening numbers: why 90% of servers trust Linux — it's the most watched, and the most watchable.</small>
+    </p>
+  </div>
+</section>
+
+<!-- S9 SUMMARY -->
+<section id="summary">
+  <div class="wrap reveal">
+    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 09 / 總結</div>
+    <div class="big-ji">助人助己</div>
+    <div class="big-en">Help Others,<br>Help Yourself</div>
+    <div class="loop">
+      <div class="node">Share 分享<span>丟出你的程式碼</span></div>
+      <div class="arrow">→</div>
+      <div class="node">Improve 共同改進<span>別人讓它更好</span></div>
+      <div class="arrow">→</div>
+      <div class="node">Return 回到你身上<span>你也變得更強</span></div>
+    </div>
+    <p class="summary-detail">
+      Linux → 社群 → 開源 → GitHub → 為什麼可行，繞了一圈回到同一句話：<strong style="color:var(--accent2)">你幫別人，別人也幫你。</strong><br>
+      這個循環比任何單一技術都強大。下一次看到 Tux，想起的不只是企鵝，而是背後一群願意分享的人。<br>
+      <small style="opacity:.6">Linux → Community → Open Source → GitHub → Why it works — all in one loop. Next time you see Tux, think of the people behind it.</small>
+    </p>
+    <div class="cta">
+      <a href="#refs">查看資料來源 ↓</a>
+      <a class="ghost" href="#hero">回到開頭 ↑</a>
+    </div>
+  </div>
+</section>
+
+<!-- S10 REFERENCES -->
+<section id="refs">
+  <div class="wrap">
+    <div class="eyebrow">Slide 10 / 參考資料 • References</div>
+    <h2 class="reveal">
+      <span class="en" style="font-size:clamp(36px,6vw,64px)">Sources & Credits</span>
+      <span class="zh">圖片與資料來源 — 教學使用，已標示出處</span>
+    </h2>
+    <p class="detail reveal d2">
+      本簡報為學生教學用途，圖片與標誌之商標權歸原權利人所有。引用採合理使用並標示來源。<br>
+      <small>Student educational use — trademarks belong to their owners. Sources cited below.</small>
+    </p>
+    <div class="ref-grid reveal d3">
+      <div class="ref-card">
+        <h4>Images & Logos 圖片與標誌</h4>
+        <ul>
+          <li>Tux — Larry Ewing, via Wikimedia Commons (CC)</li>
+          <li>Linus Torvalds photo — Wikimedia Commons (CC BY-SA)</li>
+          <li>Android robot — Google, via Wikimedia</li>
+          <li>Steam Deck logo — Valve, via Wikimedia</li>
+          <li>Firefox logo — Mozilla, via Wikimedia</li>
+          <li>Chrome logo — Google, via Wikimedia</li>
+          <li>Windows logo — Microsoft, via Wikimedia</li>
+          <li>Apple logo — Apple, via Wikimedia</li>
+          <li>GitHub Mark / Octocat — GitHub, Inc.</li>
+          <li>Tesla / Server / TV photos — Unsplash (Pexels) — free to use</li>
+          <li>Frontier supercomputer — Oak Ridge National Lab, via Wikimedia</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Data & Principles 數據與原則</h4>
+        <ul>
+          <li>Servers ~90%, TOP500 100%, Desktop ~3–4% — widely cited (W3Techs, TOP500.org, StatCounter). See live stats at <a href="https://www.top500.org" target="_blank">top500.org</a> & <a href="https://gs.statcounter.com/os-market-share/desktop/worldwide" target="_blank">StatCounter</a></li>
+          <li>Linus's Law — Eric S. Raymond, <em>The Cathedral and the Bazaar</em> (1999)</li>
+          <li>Kerckhoffs's principle — Auguste Kerckhoffs, <em>La Cryptographie militaire</em> (1883)</li>
+          <li>Linus's 1991 post — comp.os.minix, 25 Aug 1991 (archived)</li>
+        </ul>
+        <p class="tiny">若有來源需要補正，請告知 — 會立即更新。/ If any credit needs correction, let me know.</p>
+      </div>
+    </div>
+    <div class="ref-card reveal" style="margin-top:18px;text-align:center">
+      <div style="font-weight:900;letter-spacing:-.03em;font-size:18px">Linux → Community → Open Source → GitHub</div>
+      <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px">Built for class • Hosted on GitHub Pages • Bilingual • 15 min</div>
+      <div class="tiny">Tip: 按 <span style="background:var(--fg);color:#fff;padding:2px 6px;border-radius:6px">↑ ↓</span> 或滑動切換投影片 • Use arrow keys or scroll • <a href="#hero">Back to top ↑</a></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // progress + dots
+  const progress = document.getElementById('progress');
+  const dots = [...document.querySelectorAll('#dots a')];
+  const sections = [...document.querySelectorAll('section')];
+  const ids = sections.map(s=>s.id);
+
+  function onScroll(){
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max>0 ? scrollY / max : 0;
+    progress.style.width = (p*100)+'%';
+    // active dot
+    let idx = 0;
+    let mid = scrollY + innerHeight*0.45;
+    sections.forEach((s,i)=>{
+      if(mid >= s.offsetTop) idx = i;
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
+  }
+  addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveal
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('in');
+    });
+  },{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+  // Linus quotes type • delete • type loop
+  const quotes = [
+    "Talk is cheap. Show me the code.",
+    "Software is like sex: it's better when it's free.",
+    "Most good programmers do programming not because they expect to get paid, but because it is fun to program.",
+    "I'm doing a (free) operating system (just a hobby, won't be big and professional like gnu)..."
+  ];
+  const qEl = document.getElementById('quote-typed');
+  let qIdx = 0, charIdx = 0, deleting = false;
+  function tickQuote(){
+    if(!qEl) return;
+    const full = quotes[qIdx];
+    if(!deleting){
+      charIdx++;
+      qEl.textContent = full.slice(0, charIdx);
+      if(charIdx >= full.length){
+        deleting = true;
+        setTimeout(tickQuote, 1800);
+        return;
+      }
+      setTimeout(tickQuote, 38 + Math.random()*22);
+    } else {
+      charIdx--;
+      qEl.textContent = full.slice(0, charIdx);
+      if(charIdx <= 0){
+        deleting = false;
+        qIdx = (qIdx + 1) % quotes.length;
+        setTimeout(tickQuote, 420);
+        return;
+      }
+      setTimeout(tickQuote, 22);
+    }
+  }
+  const qIO = new IntersectionObserver(es=>{
+    if(es[0].isIntersecting){ setTimeout(tickQuote, 600); qIO.disconnect(); }
+  },{threshold:.35});
+  if(qEl) qIO.observe(qEl);
+
+  // count up
+  const nums = document.querySelectorAll('.num');
+  const nIO = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const box = e.target;
+      const target = parseInt(box.dataset.target,10);
+      let cur=0;
+      const isSmall = target < 10;
+      const step = isSmall ? 0.2 : 2;
+      const tick = ()=>{
+        cur += step;
+        if(cur >= target) cur = target;
+        box.firstChild.textContent = isSmall ? cur.toFixed(1) : Math.round(cur);
+        if(cur < target) requestAnimationFrame(tick);
+        else box.firstChild.textContent = target + (isSmall ? '' : '');
+      };
+      tick();
+      nIO.unobserve(box);
+    });
+  },{threshold:.6});
+  nums.forEach(n=> nIO.observe(n));
+
+  // keyboard nav
+  addEventListener('keydown', e=>{
+    if(e.key==='ArrowDown' || e.key==='PageDown' || e.key===' '){
+      e.preventDefault();
+      const idx = sections.findIndex(s=> scrollY < s.offsetTop + s.offsetHeight - innerHeight*0.5 - 2);
+      const next = sections[Math.min(sections.length-1, idx+1)];
+      if(next) next.scrollIntoView({behavior:'smooth'});
+    }
+    if(e.key==='ArrowUp' || e.key==='PageUp'){
+      e.preventDefault();
+      const idx = sections.findIndex(s=> scrollY <= s.offsetTop + 40);
+      const prev = sections[Math.max(0, (idx===-1?sections.length-1:idx)-1)];
+      if(prev) prev.scrollIntoView({behavior:'smooth'});
+    }
+  });
+  // parallax tiny for hero
+  let ticking=false;
+  addEventListener('scroll', ()=>{
+    if(ticking) return;
+    ticking=true;
+    requestAnimationFrame(()=>{
+      const y = scrollY;
+      const tux = document.querySelector('.hero-tux img');
+      if(tux) tux.style.transform = `rotate(-3deg) translateY(${Math.min(20, y*0.04)}px)`;
+      ticking=false;
+    });
+  }, {passive:true});
+</script>
+</body>
+</html>
