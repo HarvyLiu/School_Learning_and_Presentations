@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>116學測社會科完全學習站｜歷史・地理・公民 1-2冊精華</title>
+<meta name="description" content="以116學測(108課綱)為準的社會科教學網：歷史地理公民 1-2冊重點整理、記憶圖表、跨科整合與常錯觀念45+，單頁完整學會。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;700;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCFCF7;
+    --bg2:#F4F3EF;
+    --fg:#0F1115;
+    --muted:#6B7280;
+    --muted2:#9CA3AF;
+    --line:#E5E7EB;
+    --hist:#B45309;
+    --hist2:#FFFBEB;
+    --geo:#059669;
+    --geo2:#ECFDF5;
+    --civic:#4F46E5;
+    --civic2:#EEF2FF;
+    --myth:#DC2626;
+    --myth2:#FEF2F2;
+    --dark:#0B0E14;
+    --dark2:#151A23;
+    --accent:#22C55E;
+    --accent2:#FFE033;
+    --radius:24px;
+    --shadow: 0 20px 60px rgba(15,17,21,.12), 0 8px 24px rgba(15,17,21,.08);
+    --shadow2: 0 16px 40px rgba(15,17,21,.16);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:64px}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter, Noto Sans TC, system-ui, sans-serif;overflow-x:hidden}
+  a{color:inherit}
+  ::selection{background:var(--accent2)}
+  #progress{position:fixed;top:0;left:0;height:3px;background:var(--fg);width:0;z-index:100}
+  #dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:10px}
+  #dots a{width:9px;height:9px;border-radius:50%;background:rgba(15,17,21,.18);display:block;transition:.3s;border:1px solid rgba(255,255,255,.6)}
+  #dots a.active{background:var(--fg);transform:scale(1.45)}
+  @media(max-width:1100px){#dots{display:none}}
+  header{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;pointer-events:none}
+  header .brand, header .hint{pointer-events:auto;background:rgba(252,252,247,.9);backdrop-filter:blur(10px);border:1px solid rgba(15,17,21,.08);padding:7px 12px;border-radius:999px}
+  header .brand{font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:flex;gap:8px;align-items:center}
+  header .brand i{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  header .hint{font-family:JetBrains Mono,monospace;font-size:11px;opacity:.7}
+  @media(max-width:700px){header .hint{display:none}}
+  section{position:relative;padding:78px 0 48px;overflow:hidden}
+  .wrap{width:min(1200px,92vw);margin:0 auto;position:relative;z-index:2}
+  .eyebrow{font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;gap:10px;align-items:center}
+  .eyebrow:before{content:"";width:22px;height:1px;background:currentColor;opacity:.35}
+  .eyebrow.hist{color:var(--hist)}.eyebrow.geo{color:var(--geo)}.eyebrow.civic{color:var(--civic)}.eyebrow.myth{color:var(--myth)}
+  h2{margin:0;line-height:1.02;letter-spacing:-.03em;font-weight:900}
+  h2 .en{display:block;font-size:clamp(36px,7vw,72px);line-height:.96}
+  h2 .zh{display:block;font-family:Noto Sans TC,sans-serif;font-weight:900;font-size:clamp(18px,2.6vw,26px);margin-top:10px;opacity:.88;line-height:1.35}
+  .detail{margin-top:16px;color:var(--muted);font-size:clamp(15px,1.6vw,17px);line-height:1.85;max-width:70ch}
+  .detail strong{color:var(--fg)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px;font-size:12px;font-family:JetBrains Mono,monospace}
+  .reveal{opacity:0;transform:translateY(18px);transition:.7s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d2{transition-delay:.1s}.reveal.d3{transition-delay:.2s}
+  /* HERO */
+  #hero{padding-top:92px;background:var(--bg);min-height:92vh;display:flex;align-items:center}
+  #hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+  .hero-card{background:var(--fg);color:#fff;padding:14px 18px;border-radius:999px;font-family:JetBrains Mono,monospace;font-size:13px;display:inline-flex;gap:12px;align-items:center;margin-top:18px;box-shadow:var(--shadow2)}
+  .hero-card b{color:var(--accent2)}
+  .hero-visual{position:relative;display:flex;justify-content:center}
+  .hero-visual .blob{position:absolute;width:120%;aspect-ratio:1;background:radial-gradient(60% 60% at 50% 40%, #FFE033 0%, #FFD23F 18%, rgba(34,197,94,.18) 45%, transparent 70%);filter:blur(6px);border-radius:50%}
+  .hero-stack{display:grid;gap:12px;position:relative;width:100%;max-width:420px}
+  .mini-stat{display:flex;gap:14px}
+  .mini-stat div{flex:1;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+  .mini-stat b{font-size:28px;letter-spacing:-.03em;display:block}
+  .mini-stat span{font-family:JetBrains Mono,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .cover-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transform:rotate(-.8deg)}
+  .cover-card img{width:100%;height:220px;object-fit:cover;display:block}
+  .cover-card .cap{padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+  .cover-card .cap b{font-size:13px}.cover-card .cap small{font-family:JetBrains Mono,monospace;color:var(--muted)}
+  @media(max-width:900px){#hero .grid{grid-template-columns:1fr}.hero-visual{order:-1}}
+  /* exam info */
+  #exam{background:var(--dark);color:#F9FAFB}
+  #exam .eyebrow{color:#9CA3AF}#exam h2 .en{color:#fff}#exam h2 .zh{color:#E5E7EB}#exam .detail{color:#9CA3AF}#exam .detail strong{color:#fff}
+  .exam-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:22px}
+  .exam-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:18px;backdrop-filter:blur(8px)}
+  .exam-card h3{margin:0;font-size:16px;display:flex;gap:8px;align-items:center}
+  .exam-card h3 i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--accent);color:#0B0E14;font-style:normal;font-size:14px}
+  .exam-card ul{margin:10px 0 0;padding-left:18px;color:#9CA3AF;font-size:14px;line-height:1.8}
+  .exam-card ul b{color:#fff}
+  .tag-row{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.06em;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06)}
+  @media(max-width:900px){.exam-grid{grid-template-columns:1fr}}
+  /* tabs */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .tab{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;font-family:JetBrains Mono,monospace}
+  .tab.active{color:#fff;border-color:transparent;box-shadow:0 8px 18px rgba(0,0,0,.12)}
+  .tab.hist.active{background:var(--hist)}.tab.geo.active{background:var(--geo)}.tab.civic.active{background:var(--civic)}.tab.myth.active{background:var(--myth)}
+  .panel{display:none;margin-top:18px}
+  .panel.active{display:block;animation:fade .35s}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  /* chapter cards */
+  .chapters{display:grid;gap:14px}
+  .ch{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.05)}
+  .ch-head{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;gap:12px}
+  .ch-head:hover{background:rgba(0,0,0,.02)}
+  .ch-head h3{margin:0;font-size:16px;letter-spacing:-.01em;display:flex;gap:10px;align-items:center;line-height:1.3}
+  .ch-head h3 em{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;color:#fff;font-style:normal;font-size:13px;flex:none}
+  .ch-head h3 em.hist{background:var(--hist)}.ch-head h3 em.geo{background:var(--geo)}.ch-head h3 em.civic{background:var(--civic)}.ch-head h3 em.myth{background:var(--myth)}
+  .ch-head small{font-family:JetBrains Mono,monospace;font-size:11px;color:var(--muted);white-space:nowrap}
+  .ch-body{display:none;padding:0 18px 18px}
+  .ch.open .ch-body{display:block}
+  .ch.open .ch-head{border-bottom:1px solid var(--line);background:var(--bg2)}
+  .arrow{transition:.3s;font-size:12px;opacity:.5}
+  .ch.open .arrow{transform:rotate(180deg)}
+  .kv{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+  @media(max-width:800px){.kv{grid-template-columns:1fr}}
+  .box{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.7;color:var(--muted)}
+  .box b{color:var(--fg);display:block;margin-bottom:4px;font-size:13px}
+  .box.hist{background:var(--hist2);border-color:#FDE68A}
+  .box.geo{background:var(--geo2);border-color:#A7F3D0}
+  .box.civic{background:var(--civic2);border-color:#C7D2FE}
+  .box.myth{background:var(--myth2);border-color:#FECACA}
+  .compare{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;line-height:1.6}
+  .compare th{font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--fg);color:#fff;padding:8px 10px;text-align:left}
+  .compare td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .compare tr:nth-child(even) td{background:var(--bg2)}
+  .mem{margin-top:10px;background:linear-gradient(135deg, #FFE033 0%, #FFFBEB 100%);border:1px dashed #F59E0B;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.65}
+  .mem b{color:#92400E}
+  .timeline{position:relative;margin-top:12px;padding-left:18px;border-left:2px dashed var(--line)}
+  .tl-item{position:relative;margin-bottom:12px;padding-left:16px}
+  .tl-item:before{content:"";position:absolute;left:-9px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--hist);border:2px solid #fff;box-shadow:0 0 0 2px var(--hist)}
+  .tl-item geo:before{background:var(--geo)}
+  /* GEOGRAPHY visuals */
+  .geo-diagram{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .geo-diagram div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+  .geo-diagram b{font-size:12px;letter-spacing:.04em}
+  .geo-diagram span{font-size:12px;color:var(--muted);display:block;margin-top:4px;line-height:1.5}
+  @media(max-width:600px){.geo-diagram{grid-template-columns:1fr}}
+  /* CIVIC */
+  .civic-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+  @media(max-width:700px){.civic-grid{grid-template-columns:1fr}}
+  /* MYTHS */
+  #myths{background:var(--bg2)}
+  .search{margin-top:14px;display:flex;gap:10px}
+  .search input{flex:1;padding:12px 14px;border-radius:999px;border:1px solid var(--line);font-size:14px;background:#fff}
+  .search button{padding:12px 16px;border-radius:999px;border:none;background:var(--fg);color:#fff;font-weight:700;cursor:pointer}
+  .myth-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+  @media(max-width:900px){.myth-grid{grid-template-columns:1fr}}
+  .myth-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 8px 20px rgba(0,0,0,.05);position:relative}
+  .myth-card .label{font-family:JetBrains Mono,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:999px;display:inline-flex;margin-bottom:8px}
+  .label-hist{background:var(--hist2);color:var(--hist);border:1px solid #FDE68A}.label-geo{background:var(--geo2);color:var(--geo);border:1px solid #A7F3D0}.label-civic{background:var(--civic2);color:var(--civic);border:1px solid #C7D2FE}.label-cross{background:#F3F4F6;color:var(--fg);border:1px solid var(--line)}
+  .myth-card h4{margin:0;font-size:14px;line-height:1.45}
+  .myth-card .wrong{margin-top:8px;background:var(--myth2);border:1px solid #FECACA;border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.6}
+  .myth-card .right{margin-top:8px;background:var(--geo2);border:1px solid #A7F3D0;border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.6}
+  .myth-card .why{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.6}
+  .hidden{display:none!important}
+  /* INTEGRATION */
+  #integration{background:var(--dark);color:#F9FAFB}
+  #integration .eyebrow{color:#9CA3AF}#integration h2 .en{color:#fff}#integration h2 .zh{color:#D1D5DB}#integration .detail{color:#9CA3AF}
+  .integ-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:18px}
+  @media(max-width:900px){.integ-grid{grid-template-columns:1fr}}
+  .integ-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:16px}
+  .integ-card h3{margin:0;font-size:15px}
+  .integ-card p{margin:8px 0 0;color:#9CA3AF;font-size:13px;line-height:1.7}
+  .integ-card .ex{margin-top:10px;background:rgba(255,255,255,.06);border-radius:12px;padding:8px 10px;font-size:12px;line-height:1.6}
+  /* QUIZ */
+  #quiz{background:var(--bg)}
+  .quiz-wrap{margin-top:16px;display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+  @media(max-width:900px){.quiz-wrap{grid-template-columns:1fr}}
+  .q-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 10px 24px rgba(0,0,0,.06)}
+  .q-card h4{margin:0;font-size:14px}
+  .opts{margin-top:10px;display:grid;gap:8px}
+  .opt{padding:10px 12px;border-radius:12px;border:1px solid var(--line);cursor:pointer;font-size:13px;line-height:1.5;background:var(--bg2);transition:.2s}
+  .opt:hover{border-color:var(--fg)}
+  .opt.correct{background:#DCFCE7;border-color:#86EFAC}
+  .opt.wrong{background:#FEE2E2;border-color:#FCA5A5}
+  .quiz-score{background:var(--fg);color:#fff;border-radius:20px;padding:18px;position:sticky;top:80px}
+  .quiz-score b{font-size:28px}
+  /* REFS */
+  #refs{background:var(--bg2);padding:48px 0}
+  .ref-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:14px}
+  @media(max-width:900px){.ref-grid{grid-template-columns:1fr}}
+  .ref-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+  .ref-card h4{margin:0;font-family:JetBrains Mono,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .ref-card ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.8}
+  .ref-card ul a{text-decoration:underline;text-underline-offset:3px}
+  footer{padding:18px 0 30px;text-align:center;font-family:JetBrains Mono,monospace;font-size:11px;color:var(--muted2)}
+  .cta{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+  .cta a{padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:700;font-size:13px}
+  .cta a.primary{background:var(--fg);color:#fff}
+  .cta a.ghost{background:#fff;border:1px solid var(--line)}
+  .mono{font-family:JetBrains Mono,monospace}
+  /* === 手機與大字優化覆蓋 (eye-friendly) === */
+  :root{ --muted:#374151; }
+  .detail{font-size:clamp(17px,1.9vw,20px) !important; line-height:1.95 !important; color:#374151 !important; font-weight:500 !important; max-width:72ch !important}
+  .detail small{font-size:16px !important; line-height:1.85 !important; color:#4B5563 !important; display:inline-block; margin-top:8px}
+  .eyebrow{font-size:14px !important; letter-spacing:.12em !important}
+  header .brand{font-size:14px !important}
+  header .hint{font-size:13px !important; opacity:.85 !important}
+  .pill{font-size:14.5px !important; padding:7px 13px !important}
+  .tag{font-size:13px !important; padding:6px 10px !important}
+  .tab{font-size:15px !important; padding:11px 16px !important; min-height:44px}
+  .ch-head h3{font-size:18px !important}
+  .ch-head h3 em{width:36px !important; height:36px !important; font-size:14px !important}
+  .ch-head small{font-size:13px !important}
+  .box{font-size:16px !important; line-height:1.85 !important; padding:15px 16px !important; color:#374151 !important}
+  .box b{font-size:15.5px !important}
+  .mem{font-size:16px !important; line-height:1.85 !important; padding:14px 16px !important}
+  .compare{font-size:15.5px !important; line-height:1.75 !important; display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:12px}
+  .compare table{min-width:620px; width:100%}
+  .compare th{font-size:13px !important; padding:11px 12px !important}
+  .compare td{font-size:15px !important; padding:11px 12px !important; line-height:1.7 !important}
+  .myth-card{padding:16px !important}
+  .myth-card h4{font-size:16.5px !important; line-height:1.5 !important}
+  .myth-card .wrong, .myth-card .right{font-size:15px !important; padding:10px 12px !important; line-height:1.75 !important}
+  .myth-card .why{font-size:14px !important; line-height:1.75 !important; color:#4B5563 !important}
+  .myth-card .label{font-size:12.5px !important; padding:5px 10px !important}
+  .integ-card h3{font-size:16px !important}
+  .integ-card p{font-size:15px !important; line-height:1.8 !important}
+  .integ-card .ex{font-size:14px !important; line-height:1.7 !important}
+  .q-card h4{font-size:16px !important; line-height:1.5 !important}
+  .opt{font-size:15px !important; padding:13px 14px !important; line-height:1.65 !important; min-height:46px}
+  .exam-card h3{font-size:17px !important}
+  .exam-card ul{font-size:16px !important; line-height:1.95 !important; color:#D1D5DB !important}
+  .exam-card ul b{color:#fff !important}
+  #exam .exam-card ul{color:#D1D5DB !important}
+  .ref-card h4{font-size:13px !important}
+  .ref-card ul{font-size:15px !important; line-height:1.85 !important}
+  footer{font-size:13px !important; line-height:1.8 !important}
+  .search input{font-size:16px !important; padding:14px 16px !important; min-height:48px}
+  .search button{font-size:15px !important; padding:14px 18px !important; min-height:48px}
+  .cta a{font-size:15px !important; min-height:44px; padding:12px 16px !important}
+  .hero-card{font-size:15px !important; padding:14px 18px !important; flex-wrap:wrap; line-height:1.6}
+  .cover-card .cap b{font-size:15px !important}
+  .cover-card .cap small{font-size:13px !important}
+  .mini-stat span{font-size:12px !important}
+  /* 手機專屬 */
+  @media(max-width:900px){
+    section{padding:64px 0 40px}
+    .wrap{width:min(1180px,94vw)}
+    #hero{min-height:auto; padding-top:84px}
+    #hero .grid{gap:20px}
+    h2 .en{font-size:clamp(28px, 9vw, 46px) !important}
+    h2 .zh{font-size:clamp(17px, 4.8vw, 23px) !important}
+    .kv{grid-template-columns:1fr !important; gap:12px}
+    .exam-grid{grid-template-columns:1fr !important}
+    .integ-grid{grid-template-columns:1fr !important}
+    .myth-grid{grid-template-columns:1fr !important}
+    .tabs{gap:6px}
+    .tab{flex:1 1 auto; text-align:center; justify-content:center}
+    .compare{margin-left:-2px; margin-right:-2px}
+  }
+  @media(max-width:600px){
+    .hero-stack{max-width:100%}
+    .mini-stat{flex-direction:column; gap:8px}
+    .mini-stat div{padding:12px}
+    header{padding:10px 10px}
+    header .brand{font-size:12px !important; padding:6px 10px}
+    .ch-head{padding:16px 14px}
+    .ch-body{padding:0 14px 16px}
+    .search{flex-direction:column}
+  }
+  /* 無障礙：更大行距與點擊區域 */
+  .ch-head, .tab, .opt, .search button, .cta a{transition:.2s}
+  .ch-head:active, .tab:active, .opt:active{transform:scale(.98)}
+  /* 回頂與字級按鈕 */
+  #toTop{position:fixed; right:14px; bottom:14px; z-index:85; width:52px; height:52px; border-radius:50%; background:var(--fg); color:#fff; border:1px solid rgba(255,255,255,.14); display:grid; place-items:center; box-shadow:0 12px 28px rgba(0,0,0,.22); cursor:pointer; opacity:0; transform:translateY(10px); pointer-events:none; transition:.3s; font-size:20px}
+  #toTop.show{opacity:1; transform:none; pointer-events:auto}
+  #fontControls{position:fixed; right:14px; bottom:74px; z-index:85; display:flex; flex-direction:column; gap:8px}
+  #fontControls button{width:44px; height:44px; border-radius:50%; background:#fff; color:var(--fg); border:1px solid var(--line); box-shadow:0 8px 18px rgba(0,0,0,.12); cursor:pointer; font-weight:800; font-family:JetBrains Mono,monospace; display:grid; place-items:center; transition:.2s}
+  #fontControls button:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.16)}
+  #fontControls button:active{transform:scale(.96)}
+  @media(max-width:600px){
+    #toTop{width:48px; height:48px; right:12px; bottom:12px}
+    #fontControls{right:12px; bottom:68px}
+    #fontControls button{width:42px; height:42px}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav id="dots" aria-label=".Anchor">
+  <a href="#hero" title="首頁"></a>
+  <a href="#exam" title="學測資訊"></a>
+  <a href="#history" title="歷史"></a>
+  <a href="#geography" title="地理"></a>
+  <a href="#civics" title="公民"></a>
+  <a href="#integration" title="跨科"></a>
+  <a href="#myths" title="常錯"></a>
+  <a href="#quiz" title="測驗"></a>
+  <a href="#refs" title="資料"></a>
+</nav>
+<header>
+  <div class="brand"><i></i> 116學測社會科・108課綱核定版 <span style="opacity:.5">｜歷史・地理・公民 1-2冊精華</span></div>
+  <div class="hint mono">單頁完整學習 • 可搜尋 • 可列印</div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap grid">
+    <div class="reveal">
+      <div class="eyebrow">116學測 / 2027.01 / 社會科</div>
+      <h2>
+        <span class="en" style="letter-spacing:-.04em">學測社會科，<br>一頁讀到會。</span>
+        <span class="zh">歷史・地理・公民 1-2冊重點整理 — 已對照108課綱與大考中心考試說明，好看、好記、好學習</span>
+      </h2>
+      <p class="detail">
+        這不是大綱複製貼上，而是<strong>把課本拆解成「因果→比較→圖表→口訣」</strong>，讓你用原本滑社群的時間，把第一、二冊真正讀懂。依你的要求：<strong>精緻但不複雜，清楚為第一目標</strong>。
+        <br><small style="color:var(--muted2)">已核對：社會科考試範圍為高一至高二必修 (歷史/地理/公民)。本頁聚焦你指定的 1-2 冊 (高一+B1)，並標示延伸到第3冊的銜接，避免誤以為只讀1-2冊就能完整應考。</small>
+      </p>
+      <div class="tag-row">
+        <span class="pill">✓ 對照108課綱</span>
+        <span class="pill">✓ 對照大考中心 考試說明</span>
+        <span class="pill">110分鐘・144分・混合題32%</span>
+      </div>
+      <div class="hero-card">往下滑開始學習 <b>→ SCROLL</b> <span style="opacity:.6">歷史 ▶ 地理 ▶ 公民 ▶ 常錯45+</span></div>
+      <div class="cta">
+        <a class="primary" href="#history">直接進入歷史</a>
+        <a class="ghost" href="#myths">先看常錯觀念 →</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal d2">
+      <div class="blob"></div>
+      <div class="hero-stack">
+        <div class="cover-card">
+          <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80&auto=format&fit=crop" alt="學習" loading="eager">
+          <div class="cap"><b>高一1-2冊 = 學測基本分</b><small>讀懂就拿 60%</small></div>
+        </div>
+        <div class="mini-stat">
+          <div><b style="color:var(--hist)">歷史</b><span>台灣史 + 東亞史</span></div>
+          <div><b style="color:var(--geo)">地理</b><span>自然 + 人文</span></div>
+          <div><b style="color:var(--civic)">公民</b><span>社會・政治・法律・經濟</span></div>
+        </div>
+        <div class="box" style="background:#fff">💡 <b>怎麼用這頁最有效？</b>先讀「考試資訊」抓配分 → 依序點開章節卡 (每章5分鐘) → 每科做3題快測 → 最後刷「常錯觀念」並用搜尋找關鍵字。手機也可，全部折疊不吃流量。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRASH 20MIN -->
+<section id="crash" style="background:#FFFBEB; border-top:4px solid #F59E0B; border-bottom:4px solid #F59E0B">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#B45309">⚡ CRAM 20MIN / 完全沒讀也能救 — 模擬考前急救包</div>
+    <h2 class="reveal"><span class="en" style="color:#92400E">20分鐘只讀這些，<br>先保 60 分。</span><span class="zh" style="color:#B45309">照順序讀，讀完直接去考 — 每一項都是模擬考最愛考</span></h2>
+    <p class="detail reveal d2" style="color:#78350F">你現在0基礎、剩20分鐘，<strong style="color:#92400E">不要從第一頁背到最後一頁</strong>。照下面 <b>8分鐘地理→7分鐘歷史→5分鐘公民</b> 的順序，專攻「一定會出、最好拿分」的題。每項後面都有「白話一句話 + 學測考法」，不懂也能選對。</p>
+    <div class="kv reveal d3" style="margin-top:14px">
+      <div class="box" style="background:#fff; border-color:#FDBA74; border-left:6px solid #F59E0B">
+        <b style="color:#92400E">⏱ 0-8分：地理先救（最好拿分）</b>
+        <ul style="margin:8px 0 0; padding-left:18px; color:#78350F; font-size:15px; line-height:1.8">
+          <li><b>等高線2句：</b>密集=陡，凸高=谷（河谷）。看到圖先看這兩個就對一半。</li>
+          <li><b>GIS是什麼：</b>把地圖變成「圖層」疊起來分析。往下滑看 <a href="#geography" style="text-decoration:underline; font-weight:800">地理詳細白話區→</a> 有完整圖解。</li>
+          <li><b>季風/焚風/洋流各1題：</b>迎風雨、背風焚風、暖流增濕但需抬升才下雨。</li>
+          <li><b>柯本A熱B乾C溫D冷E冰：</b>台灣平地C，山上垂直變化必考。</li>
+        </ul>
+        <div class="mem" style="margin-top:10px"><b>急救口訣：</b>「密陡疏緩、凸高是谷、暖流不一定雨」— 這3句就能解3題地圖題。</div>
+      </div>
+      <div class="box" style="background:#fff; border-color:#FDBA74; border-left:6px solid var(--hist)">
+        <b style="color:#92400E">⏱ 8-15分：歷史抓因果（不要背年代）</b>
+        <ul style="margin:8px 0 0; padding-left:18px; color:#78350F; font-size:15px; line-height:1.8">
+          <li><b>台灣史1句：</b>清前期不管→1885建省→日治糖鐵戶口→1920s請願→二二八→解嚴。每段問「誰統治用什麼技術」。</li>
+          <li><b>東亞1句：</b>中國「考」日本「打」韓國「兩班」，自強中體西用失敗、明治全改成功。</li>
+          <li><b>二戰到冷戰：</b>台灣是冷戰前線（韓戰、美援）。</li>
+        </ul>
+        <div class="mem"><b>急救心法：</b>年代記不住沒關係，看到「日記/戶口/報紙」題，問「能證明什麼」— 選最保守的選項。</div>
+      </div>
+    </div>
+    <div class="kv reveal" style="margin-top:12px">
+      <div class="box" style="background:#fff; border-color:#BFDBFE; border-left:6px solid var(--civic)">
+        <b style="color:#1E40AF">⏱ 15-20分：公民背定義（定義對就對）</b>
+        <ul style="margin:8px 0 0; padding-left:18px; color:#1E3A8A; font-size:15px; line-height:1.8">
+          <li><b>比例原則4階：</b>目的正當→適當→必要(最小侵害)→均衡。題目給政策逐階問。</li>
+          <li><b>內閣/總統/雙首長：</b>記「融合/分立/半套」對照表，台灣是雙首長。</li>
+          <li><b>民法≠刑法：</b>私權賠償是民法，國家罰是刑法；搜索一定要令狀。</li>
+        </ul>
+      </div>
+      <div class="box" style="background:#92400E; color:#FFFBEB; border-color:#78350F">
+        <b style="color:#FFFBEB">🚀 最後2分鐘：怎麼猜也對</b>
+        <ul style="margin:8px 0 0; padding-left:18px; font-size:15px; line-height:1.8">
+          <li>看不懂題幹→先看題目問什麼，再回頭找關鍵字。</li>
+          <li>選項有「一定、完全、永遠」通常錯；有「可能、部分、需視」通常對。</li>
+          <li>跨科題：歷史定時代，地理定空間，公民定規則。</li>
+        </ul>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap"><a href="#geography" style="background:#fff; color:#92400E; padding:8px 14px; border-radius:999px; font-weight:800; text-decoration:none">先補GIS →</a><a href="#myths" style="background:var(--accent2); color:#92400E; padding:8px 14px; border-radius:999px; font-weight:800; text-decoration:none">直接看常錯 →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXAM -->
+<section id="exam">
+  <div class="wrap">
+    <div class="eyebrow">學測資訊 / 已核對大考中心</div>
+    <h2 class="reveal"><span class="en">先搞懂遊戲規則，<br>再開始讀。</span><span class="zh">116學測社會科：範圍、題型、素養趨勢與5階段計畫</span></h2>
+    <p class="detail reveal d2">社會科不是背多分，是<strong>閱讀理解＋圖表判讀＋跨科整合</strong>。108課綱後「名詞解釋」是骨架，跨科題組是趨勢 (114學測起多數題組以歷史為題幹，延伸地理與公民)。</p>
+    <div class="exam-grid reveal d3">
+      <div class="exam-card">
+        <h3><i>◉</i> 測驗範圍與配分</h3>
+        <ul>
+          <li><b>範圍：</b>必修歷史、必修地理、必修公民與社會 (高一~高二)；本頁詳盡整理 <b>1-2冊 (高一)</b>，第3冊重點以「銜接卡」標示</li>
+          <li><b>時間：</b>110分鐘，建議選擇題50分 + 混合題50分 + 預留10分檢查</li>
+          <li><b>題型：</b>單選、多選、混合題 (選擇+非選)，社會科混合題約32%</li>
+          <li><b>計分：</b>滿分144，歷史/地理/公民占比相當，容錯約28分仍可滿級</li>
+          <li><b>核心能力：</b>從文本摘重點、從圖表找關係、用因果推論，而非死背年代</li>
+        </ul>
+        <div class="tag-row"><span class="tag">略古詳今</span><span class="tag">主題軸非時間軸</span><span class="tag">答案在題幹裡</span><span class="tag">刪去法</span></div>
+      </div>
+      <div class="exam-card">
+        <h3><i>◎</i> 5階段讀法 (給1-2冊)</h3>
+        <ul>
+          <li><b>暑假：</b>把高一1-2冊讀到精熟，能用自己的話講因果</li>
+          <li><b>9-10月：</b>做章節題，整理「對比表」與「錯題原因」</li>
+          <li><b>11-12月：</b>刷歷屆學測，練習「先看題目再讀題幹」</li>
+          <li><b>12月後：</b>計時寫回＋重複常錯觀念</li>
+          <li><b>考前一週：</b>只看本頁的「記憶口訣 + 常錯卡」</li>
+        </ul>
+        <div class="tag-row"><span class="tag">理解 > 死背</span><span class="tag">圖表筆記</span><span class="tag">口訣記憶</span></div>
+      </div>
+    </div>
+    <div class="exam-card reveal" style="margin-top:12px">
+      <h3><i>⚑</i> 三科準備心法 (幫你好記憶)</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:10px">
+        <div><b style="color:var(--hist)">歷史：抓「結構」</b><br><span style="color:#9CA3AF;font-size:13px;line-height:1.7">不用背全部年代，抓「為何變→如何變→影響誰」。每章用一句話講完：誰為了什麼，用什麼制度，結果造成什麼人群移動。</span></div>
+        <div><b style="color:var(--geo)">地理：抓「因果」</b><br><span style="color:#9CA3AF;font-size:13px;line-height:1.7">地形/氣候/產業都有公式：成因→分布→影響→解方。把相似名詞做對比表 (如 侵蝕vs風化、季風vs信風)</span></div>
+        <div><b style="color:var(--civic)">公民：抓「定義」</b><br><span style="color:#9CA3AF;font-size:13px;line-height:1.7">名詞解釋是得分鑰匙：先精準定義 (如 比例原則=目的正當+必要+均衡)，再套情境。時事多留到考前整理。</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="wrap">
+    <div class="eyebrow hist">HISTORY / 歷史 1-2冊</div>
+    <h2 class="reveal"><span class="en">歷史不是年代，<br>是選擇的後果。</span><span class="zh">用「人群移動 × 國家形塑」讀懂台灣與東亞</span></h2>
+    <p class="detail reveal d2">108課綱把歷史從「編年」改為「主題」。記憶技巧：<strong>每段歷史都問——誰移動？誰統治？誰獲利？誰反抗？</strong> 本區 1-2冊共11章，每章皆可獨立學習，內含因果圖、對比表與一句話口訣。</p>
+    <div class="tabs reveal d2">
+      <button class="tab hist active" data-target="h1">歷史1｜台灣史 (高一上)</button>
+      <button class="tab hist" data-target="h2">歷史2｜東亞史 (高一下)</button>
+      <button class="tab hist" data-target="h3">銜接｜歷史3 世界史 要點</button>
+    </div>
+
+    <!-- H1 -->
+    <div id="panel-h1" class="panel active">
+      <div class="chapters">
+        <div class="ch open">
+          <div class="ch-head"><h3><em class="hist">1</em> 導論：如何認識過去</h3><small>素養起點</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="kv">
+              <div class="box hist"><b>一定要懂的2件事</b> • 史料分「一手/二手」：一手是當時留下的 (戶口簿、日記、總督府檔案)，二手是後人整理。• 歷史解釋會變：新證據、新觀點會改寫結論，所以學測考「判讀」不是「背答案」。</div>
+              <div class="box"><b>學測怎麼考</b> 給你一段日記或戶籍資料，問「這能證明什麼、不能證明什麼」。關鍵：不要過度推論。<div class="mem"><b>口訣：</b>「一手當時留、二手後人整；有幾分證據，說幾分話。」</div></div>
+            </div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--hist); margin-top:10px">
+              <b>📖 白話詳解：什麼是一手/二手？舉例馬上懂</b>
+              假設 1935年台北州的戶口調查表寫「某戶有5人，職業：農業」→ 這是<b>一手</b>（當時官員親手記的）。<br>
+              如果 2020年課本寫「1930年代台灣農村以大家庭為主」→ 這是<b>二手</b>（後人整理多張戶口表歸納的）。<br>
+              <b>陷阱：</b>一手不一定對（官員可能寫錯、立場偏頗），二手不一定錯。學測會問「這份史料能直接證明全台灣都這樣嗎？」→ 通常<b>不能</b>，因為單一資料不能推論全體。
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">2</em> 多元族群社會的形成：原住民與移民</h3><small>1-1 ~ 2-3</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="kv">
+              <div class="box hist"><b>1-1 台灣的原住民族</b> • 南島語族：台灣是南島語族起源假說的重要據點，語言/文化多元。• 部落社會：再細分平埔/高山是後來分類，原住民族內部差異極大。• <b>關鍵：</b>「原住民」不是單一群體。</div>
+              <div class="box"><b>1-2 從部落到原住民族</b> • 國家分類如何形塑認同：清「熟/生番」→日「蕃人/高砂」→戰後「山地同胞」→正名運動。• 學測愛考：分類背後的統治目的。</div>
+            </div>
+            <table class="compare"><tr><th>時期</th><th>移民主力</th><th>推力/拉力</th><th>影響</th></tr>
+              <tr><td><b>17世紀</b><br><small>荷西/明鄭</small></td><td>漢人墾民、荷人、日人</td><td>糖、鹿皮貿易；中國戰亂</td><td>原漢接觸增加、土地商品化</td></tr>
+              <tr><td><b>清代</b></td><td>閩粵移民 (漳泉客)</td><td>渡台禁令鬆綁 + 拓墾</td><td>分類械鬥、郊商、隘墾制</td></tr>
+              <tr><td><b>日治後</b></td><td>內地人、日資<br>戰後外省、東南亞新住民</td><td>殖民/戰後政策、經濟機會</td><td>都市化、族群結構再重組</td></tr>
+            </table>
+            <div class="mem"><b>一句話記移民：</b>「荷糖、鄭墾、清械鬥、日糖米、戰後新住民」— 每波移民都跟「缺工/缺地/政策」有關。</div>
+            <div class="box" style="margin-top:10px"><b>好記圖：推拉模型</b> 推：原鄉戰亂/稅重/分類壓力；拉：台灣土地/糖米/工作；中間有「渡海風險 + 國家管制 (渡台禁令/保甲)」。</div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">3</em> 現代國家的形塑：從傳統帝國到現代國家</h3><small>3-1 ~ 3-3</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th></th><th>傳統帝國 (明鄭/清)</th><th>現代國家 (日本/戰後中華民國)</th></tr>
+              <tr><td><b>統治正當性</b></td><td>天命、儒家、朝貢</td><td>憲法、國民、主權</td></tr>
+              <tr><td><b>技術</b></td><td>冊封、科舉、理番</td><td>戶口/警察/學校/鐵路/法律</td></tr>
+              <tr><td><b>人民角色</b></td><td>臣民</td><td>國民 (納稅/服役/受教育)</td></tr>
+            </table>
+            <div class="kv">
+              <div class="box hist"><b>3-1 傳統帝國在台</b> 鄭氏東寧王國 (反清復明)、清領 (設省前：消極；1885建省後：劉銘傳現代化)。重點：清代治台不是一成不變。</div>
+              <div class="box"><b>3-2 西方體制的引進</b> 日治：總督專制 + 殖產興業 (糖業、縱貫鐵路、戶口調查、保甲/警察)、六三法。戰後：憲政體制來台 + 威權化。<div class="mem"><b>口訣：</b>「日治三大術：糖、鐵、戶口」</div></div>
+            </div>
+            <div class="box" style="margin-top:10px"><b>3-3 台灣自覺意識</b> • 1920s 文化、政治、社會運動 (議會設置請願、新文化協會、農民組合)。• 關鍵：從「臣民→國民」過程中，人民開始要求「自治」與「權益」。</div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">4</em> 威權到民主：臺澎金馬一體化</h3><small>4-1 ~ 4-2</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="timeline">
+              <div class="tl-item"><b>1945-1949 接收與二二八</b><br><span style="color:var(--muted);font-size:13px">長官公署體制、米荒/通膨、省籍衝突 → 二二八及其後清鄉</span></div>
+              <div class="tl-item"><b>1949-1987 威權體制</b><br><span style="color:var(--muted);font-size:13px">戒嚴、動員戡亂、白色恐怖、黨國體制；同時土地改革、加工出口區、十大建設創造經濟奇蹟</span></div>
+              <div class="tl-item"><b>1987-2000 民主化</b><br><span style="color:var(--muted);font-size:13px">解嚴、組黨、國會全面改選、總統直選；關鍵：社會力 (黨外、學運、工運、婦運) 推動</span></div>
+            </div>
+            <div class="kv">
+              <div class="box hist"><b>一定要會的對比</b> 威權：控制動員 (報禁/黨禁/戒嚴)；民主化：鬆綁與制度化 (解除戒嚴不是民主完成，而是起點)。</div>
+              <div class="box"><b>常考陷阱</b> 「經濟發展自動帶來民主」是錯的；是「經濟+教育+社會運動+國際壓力」共同作用。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">5</em> 經濟與文化的多樣性 (20世紀)</h3><small>精華濃縮</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th>時期</th><th>主軸</th><th>特色</th></tr>
+              <tr><td>日治</td><td>殖民地經濟</td><td>糖→米糖相剋、工業化起點，但為日本母國服務</td></tr>
+              <tr><td>1950s</td><td>美援+土改</td><td>三七五減租/耕者有其田，釋放農業剩餘→工業</td></tr>
+              <tr><td>1960s-80s</td><td>出口導向</td><td>加工出口區、新竹科學園區，中小企業靈活</td></tr>
+            </table>
+            <div class="box"><b>文化與信仰</b> 從漢人廟宇 (媽祖/王爺)、日治現代教育與文學、到戰後多元 (原民文化復振、新住民文化)。重點：文化是「混血」不是「單一傳承」。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H2 -->
+    <div id="panel-h2" class="panel">
+      <div class="chapters">
+        <div class="ch open">
+          <div class="ch-head"><h3><em class="hist">1</em> 傳統政治權威的形塑</h3><small>1-1 ~ 1-3</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th>類型</th><th>正當性來源</th><th>例子</th><th>統治技術</th></tr>
+              <tr><td>君主/天子</td><td>天命、儒家</td><td>中國皇帝</td><td>科舉、冊封、朝貢</td></tr>
+              <tr><td>幕府/將軍</td><td>武力、主從</td><td>日本幕府</td><td>封建、參勤交代</td></tr>
+              <tr><td>兩班/士</td><td>儒學、世族</td><td>朝鮮</td><td>科舉、戶籍</td></tr>
+            </table>
+            <div class="mem"><b>好記：</b>中「考」日「打」韓「兩班」— 中國靠考、日靠武、朝鮮靠世族。</div>
+            <div class="box" style="margin-top:10px"><b>統治技術比較</b> 中國：郡縣+科舉打破世族；日本：封建分權但用「鎖國」控外；越南：長期在中國與本土間擺盪，模仿科舉但本地化。</div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--hist); margin-top:10px">
+              <b>🏯 白話：為什麼要這樣統治？</b>
+              中國皇帝要管超大領土→用「考試選人才」打破世族壟斷；日本將軍管不住各地大名→用「封建+參勤交代（叫大名定期來東京住）」互相監視；朝鮮兩班世族力強→用儒學考試維持世族優勢。學測問「哪個制度增加流動」→ 選科舉。
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">2</em> 社會的組織：宗教與民間社會</h3><small>2-1 ~ 2-2</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="kv">
+              <div class="box hist"><b>宗教組織</b> 佛教、道教、儒教在國家與民間的雙重角色：國家用來統治，民間用來互助 (會社、宗族)。</div>
+              <div class="box"><b>社會組織</b> 行會、宗族、村落、同鄉會——學測會給一段族譜或會館碑文，問它反映的社會功能 (互助/壟斷/身份)。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">3</em> 人群移動：近代以前</h3><small>3-1 ~ 3-2</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="box hist"><b>變動中的中國社會</b> 人口增長→土地壓力→向邊疆/海外移動。重點：移動不是偶然，是結構推力。</div>
+            <div class="box"><b>海上貿易圈</b> 10世紀後：宋元市舶司→明中葉海禁與走私→16世紀後歐洲人加入 (葡萄牙/荷蘭)，形成東亞海域網絡。台灣正好在節點上。</div>
+            <div class="mem"><b>口訣：</b>「宋開港、明海禁、歐人來、台入網」</div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">4</em> 近代以後的東亞人群移動</h3><small>4-1 ~ 4-2</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th></th><th>華人移動</th><th>日/韓移動</th></tr>
+              <tr><td>19中後</td><td>苦力、華僑下南洋</td><td>日本向北海道、朝鮮半島、台灣移民</td></tr>
+              <tr><td>動機</td><td>戰亂+生計+殖民招工</td><td>國家政策 (殖民、同化)</td></tr>
+              <tr><td>影響</td><td>東南亞華人社會、僑匯</td><td>邊疆開發、族群衝突</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">5</em> 邁向現代化的東亞：中國·日本·朝鮮越南</h3><small>5-1 ~ 5-3 重點</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="kv">
+              <div class="box hist"><b>中國的危機與轉變</b> 鴉片戰爭→自強運動(中體西用)→戊戌維新→辛亥革命。關鍵：每一次改革規模越深，但也越急。</div>
+              <div class="box"><b>日本的蛻變</b> 明治維新：廢藩置縣、徵兵、義務教育、殖產興業。成功關鍵：中央集權+全盤西化+保留天皇象徵。</div>
+            </div>
+            <div class="box" style="margin-top:10px"><b>朝鮮與越南</b> 兩者皆面對中日壓力的夾縫：朝鮮「東學黨→甲午→被併」；越南「法國殖民→民族主義興起」。對比日本：為何同樣受西方衝擊，結果不同？(領導層、社會基礎、國際時機)</div>
+            <div class="mem"><b>一句話對比：</b>中「亂中學」日「快轉」韓越「被捲入」。</div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="hist">6</em> 近代東亞局勢：戰爭、冷戰、區域統合</h3><small>6-1 ~ 6-3</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="timeline">
+              <div class="tl-item"><b>二戰前後</b> 滿洲國→中日戰爭→太平洋戰爭→戰後分治 (38度線、台灣光復、越法戰爭)</div>
+              <div class="tl-item"><b>冷戰東亞</b> 共產主義：中國1949、韓戰1950、越戰；資本主義陣營：美日安保、台灣與韓國威權下的經濟發展</div>
+              <div class="tl-item"><b>區域統合</b> 從對抗到合作：ASEAN、APEC、近年供應鏈重組。重點：東亞不是單一文化圈，是衝突後再整合。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- H3 -->
+    <div id="panel-h3" class="panel">
+      <div class="box hist"><b>如果你要完整應考116學測，請另讀歷史3 (世界史)</b> 本頁依你指示聚焦1-2冊，世界史僅給銜接要點，避免內容過載。完整學測含：古典文明→中古→近代早期大航海→工業革命→帝國主義→兩次大戰→冷戰與去殖民。建議銜接時抓住「世界與東亞如何連動 (如 哥倫布大交換影響明清物價、工業革命刺激日本改革) 」。學測常以此做跨冊題。</div>
+      <table class="compare" style="margin-top:12px"><tr><th>世界史對應1-2冊的連結</th><th>例子</th></tr>
+        <tr><td>大航海 → 東亞海域</td><td>荷蘭來台是世界貿易網的一部分</td></tr>
+        <tr><td>工業革命 → 明治維新</td><td>英國工業力成為日本學習對象</td></tr>
+        <tr><td>民族主義 → 台灣議會請願</td><td>全球民族自決浪潮的東亞回響</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- GEOGRAPHY -->
+<section id="geography" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="eyebrow geo">GEOGRAPHY / 地理 1-2冊</div>
+    <h2 class="reveal"><span class="en">地理考因果，<br>不是背地名。</span><span class="zh">技術×自然×人文，用系統思考一次搞懂</span></h2>
+    <p class="detail reveal d2">高中地理和國中最大差別：<strong>每個現象都要能解釋「為什麼在這裡」</strong>。記不住沒關係，記「公式」：成因→分布→影響→對策。</p>
+    <div class="tabs reveal d2">
+      <button class="tab geo active" data-target="g1">地理1｜技術+自然地理</button>
+      <button class="tab geo" data-target="g2">地理2｜人文地理</button>
+      <button class="tab geo" data-target="g3">銜接｜區域地理 要點</button>
+    </div>
+
+    <div id="panel-g1" class="panel active">
+      <div class="chapters">
+        <div class="ch open">
+          <div class="ch-head"><h3><em class="geo">技</em> 技術地理：地圖、GIS與地理技能 — 抱佛腳先看這個</h3><small>必考·白話詳解</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="box geo" style="border-left:6px solid var(--geo); background:#fff">
+              <b>🚨 GIS 是什麼？（如果你完全沒讀過，只看這段）</b>
+              想像 <b>Photoshop 的圖層</b>：最底下放「地形圖層」（山在哪、河在哪），上面疊「土壤圖層」（哪裡是黏土、砂土），再疊「人口圖層」（哪裡人多），最後疊「交通圖層」（路在哪）。
+              <b>GIS = 地理資訊系統，就是把這些圖層用電腦疊起來，一起分析</b>，幫你回答「哪裡最適合做什麼」。<br>
+              跟它常搞混的：<b>GPS 是定位（你在哪裡）</b>，<b>遙測 RS 是拍照（衛星/空拍機拍的照片）</b>，<b>GIS 是分析（把照片和地圖疊起來算）</b>。
+              <div class="mem" style="margin-top:10px"><b>一句話秒記：</b>GPS定位、RS拍照、GIS疊圖分析。學測看到「圖層疊合、環域分析」→ 選 GIS。</div>
+            </div>
+            <div class="kv">
+              <div class="box"><b>📚 向量 vs 網格（GIS 兩種資料）</b>
+                • <b>向量：</b>用點線面畫的，像 Google 地圖的道路（線）、行政區（面）、店家（點）。精準、檔案小。<br>
+                • <b>網格（遙測影像）：</b>像照片切成一格一格（像素），每格有顏色/溫度/高度。適合衛星雲圖、空拍。<br>
+                <small style="color:#4B5563">學測考法：問「衛星影像屬於哪種」→ 答網格。</small>
+              </div>
+              <div class="box"><b>🔧 GIS 3大常用分析（模擬考最愛）</b>
+                • <b>疊圖分析：</b>把「淹水範圍」疊「人口密度」→ 找出需撤離的人。<br>
+                • <b>環域分析：</b>以某點為圓心畫半徑，例如「學校周邊500公尺有多少便利商店」。<br>
+                • <b>最適區位：</b>同時滿足多條件，例如「要找地蓋醫院：離斷層遠+人口多+交通方便」→ 把三個圖層都符合的地方找出來。
+                <div class="mem" style="margin-top:8px"><b>考題長這樣：</b>給你三張圖層（水源、坡度、交通），問工廠最適合蓋在哪一格？把三個條件同時符合的格子找出來就是答案。</div>
+              </div>
+            </div>
+            <div class="kv">
+              <div class="box geo"><b>核心技能補充</b> • 比例尺/方位/等高線判讀 • 投影變形 (麥卡托保方向、莫爾威保面積) • 空照判釋/衛星影像 • GIS圖層疊合分析</div>
+              <div class="box"><b>學測陷阱</b> 等高線密集=陡、稀疏=緩；等高線向高處凸=河谷（水從高處切出來的）；集水區=分水嶺圍起來的範圍。<div class="mem"><b>口訣：</b>「密陡疏緩、凸高是谷」— 這句先背，馬上能解地圖題。</div></div>
+            </div>
+            <table class="compare"><tr><th>投影</th><th>保什麼（優點）</th><th>代價（缺點）</th><th>適合什麼</th><th>白話</th></tr><tr><td>麥卡托</td><td>方向/角度正確</td><td>高緯度面積超大、變形</td><td>航海、導航</td><td>看方向準，但格陵蘭看起來跟非洲一樣大是錯覺</td></tr><tr><td>莫爾威/正弦</td><td>面積正確</td><td>形狀有點壓扁</td><td>世界分布圖、比較國家大小</td><td>看面積準，適合比較「誰真的比較大」</td></tr><tr><td>方位投影</td><td>離中心點的距離正確</td><td>邊緣變形大</td><td>極地航線、地震波</td><td>看「離某點多遠」準</td></tr></table>
+            <div class="box" style="background:#fff; border-color:var(--geo); margin-top:10px">
+              <b>💡 20分鐘怎麼答 GIS 題（不懂也能對）</b>
+              題目通常給一段情境：如「政府想找地方蓋垃圾掩埋場，需考慮：離水源遠、坡度緩、遠離斷層」。<br>
+              <b>步驟：</b>1. 把每個條件想成一個圖層 2. 每個圖層把「符合」的地方塗起來 3. 三個塗起來重疊的地方就是答案。選項中哪一塊同時滿足最多條件，就選它。即使你沒背過 GIS，這個邏輯也能對。
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="geo">氣</em> 天氣與氣候系統</h3><small>最愛考</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="box geo"><b>氣候成因公式</b> 緯度(太陽) + 高度(每100m降0.6°C) + 距海遠近(海洋調節) + 氣壓風系 + 洋流 + 地形</div>
+            <div class="kv">
+              <div class="box"><b>行星風系</b> 赤道低壓(多雨) / 副熱帶高壓(乾燥) / 西風帶(溫帶多雨) / 極地高壓。用「30-60-90」記緯度。<br><small>台灣：夏季西南季風帶水、冬季東北季風迎風坡多雨</small></div>
+              <div class="box"><b>颱風與鋒面</b> 梅雨=滯留鋒；颱風=熱帶低壓+柯氏力+海溫>26.5°C；侵台路徑與地形雨是常考圖。</div>
+            </div>
+            <table class="compare"><tr><th>氣候</th><th>成因</th><th>台灣對應</th></tr><tr><td>季風氣候</td><td>海陸比熱+氣壓季節移動</td><td>冬乾夏濕 (台中以南明顯)</td></tr><tr><td>地形雨</td><td>迎風坡抬升</td><td>冬季基隆、宜蘭</td></tr><tr><td>焚風</td><td>背風坡下沉增溫</td><td>台東焚風</td></tr></table>
+            <div class="geo-diagram">
+              <div><b>洋流</b><span>暖流增溫增濕 (黑潮)；寒流降溫減濕 (親潮)。洋流+風系=沙漠/雨林分布關鍵</span></div>
+              <div><b>水循環</b><span>降水=蒸發+逕流+入滲；都市化→入滲少→洪峰高</span></div>
+            </div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--geo); margin-top:10px">
+              <b>🌧 白話詳解：季風/鋒面/颱風 怎麼考？</b>
+              • <b>季風：</b>夏天陸熱吸海風（西南季風帶雨），冬天陸冷吹東北風（在台灣撞上山→基隆宜蘭爆雨）。<br>
+              • <b>鋒面：</b>冷暖空氣打架的線。梅雨=滯留鋒卡住兩週，題目看到「6月連續降雨」→ 選滯留鋒。<br>
+              • <b>颱風：</b>海溫>26.5°C+低壓+地球自轉捲起來。地形雨關鍵：颱風在東邊→東部迎風大雨；颱風過後西南風→換西部大雨。<br>
+              <small style="color:#4B5563">考法：給颱風路徑圖問哪個測站雨最多？找「颱風位置 + 迎風山坡」交集。</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="geo">地</em> 地形與水文系統</h3><small>營力→地形</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th>營力</th><th>地形</th><th>台灣例子</th></tr>
+              <tr><td>河川 (侵蝕/搬運/堆積)</td><td>V谷、沖積扇、三角洲、曲流</td><td>濁水溪沖積扇、關山曲流</td></tr>
+              <tr><td>海岸 (波浪/潮汐)</td><td>海蝕崖、海積地形、沙洲潟湖</td><td>野柳、屏東潟湖</td></tr>
+              <tr><td>火山/板塊</td><td>火山錐、斷層、地震</td><td>大屯火山群、921車籠埔斷層</td></tr>
+              <tr><td>風化/崩壞</td><td>岩屑、土石流</td><td>山區落石、風化殼</td></tr>
+            </table>
+            <div class="box"><b>河流特性</b> 上游侵蝕、中游搬運、下游堆積；與「水系型態 (樹枝/格子/輻射)」一起考。看等高線就能判斷流向：等高線凸向高處是上游。</div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--geo); margin-top:10px">
+              <b>🏔 白話：怎麼秒分地形（考前只看這招）</b>
+              • <b>看到 V 谷、沖積扇、三角洲、曲流 → 一定是河川。</b> V是切出來的，扇在山腳，洲在出海口，曲流是河彎。<br>
+              • <b>看到蕈狀岩、豆腐岩、海蝕洞 → 海浪。</b><br>
+              • <b>看到火山口、溫泉、斷層崖 → 板塊。</b><br>
+              • <b>考試最愛問「位置」：</b>同一條河，上游問侵蝕、下游問堆積。沖積扇「在山前」，三角洲「在海口」— 位置錯就錯。
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="geo">候</em> 氣候分類與植被</h3><small>柯本速記</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th>代號</th><th>氣候</th><th>關鍵</th><th>植被</th></tr>
+              <tr><td>A 熱帶</td><td>雨林/季風/莽原</td><td>月均溫>18°C</td><td>雨林、季風林</td></tr>
+              <tr><td>B 乾燥</td><td>沙漠/草原</td><td>降水<蒸發</td><td>仙人掌、草原</td></tr>
+              <tr><td>C 溫帶</td><td>地中海/溫帶季風/溫帶海洋</td><td>最冷月0-18°C</td><td>闊葉林</td></tr>
+              <tr><td>D 寒帶</td><td>冷溫帶</td><td>最冷<-3°C</td><td>針葉林</td></tr>
+              <tr><td>E 極地/高地</td><td>苔原/冰帽</td><td>最暖<10°C</td><td>苔原</td></tr>
+            </table>
+            <div class="mem"><b>口訣：</b>A熱 B乾 C溫 D冷 E冰；台灣由南到北是「熱帶→副熱帶→溫帶」垂直變化在山上看得見 (榕樟→楠櫧→針葉→箭竹→苔原)</div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--geo); margin-top:10px">
+              <b>🌲 白話：柯本怎麼記才不會混？</b>
+              別背定義，先看<b>最冷月均溫</b>：>18度是A熱帶，0-18度是C溫帶，<0度是D寒帶，<10度是E冰。B乾燥是「雨不夠」。<br>
+              <b>台灣：</b>平地幾乎都是C（溫暖但有冬天），阿里山往上才出現D/E。所以題目給你「某地最冷月5度」→ 直接選C。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-g2" class="panel">
+      <div class="chapters">
+        <div class="ch open">
+          <div class="ch-head"><h3><em class="geo">人</em> 人口與聚落</h3><small>人文核心</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="kv">
+              <div class="box geo"><b>人口金字塔</b> 金字塔(高出生)→鐘形(轉型)→罐形(高齡少子)。台灣已是罐形：扶養比上升、勞動力下降。</div>
+              <div class="box"><b>遷移</b> 推拉理論：推(戰亂/失業/環境) 拉(工作/教育/政策)。台灣：鄉村→都市→郊區化→回流？<br><b>中地理論</b> 六邊形服務範圍，等級越高、距離越遠。</div>
+            </div>
+            <table class="compare"><tr><th></th><th>都市化</th><th>郊區化</th><th>都市更新</th></tr><tr><td>方向</td><td>鄉→城</td><td>城→郊</td><td>舊城再發展</td></tr><tr><td>問題</td><td>擁擠、貧民窟</td><td>通勤、空心化</td><td>紳士化、拆遷</td></tr></table>
+            <div class="box" style="background:#fff; border-left:6px solid var(--geo); margin-top:10px">
+              <b>👥 白話：金字塔/中地 怎麼考？</b>
+              • <b>金字塔形狀：</b>寬底=年輕人多（還在生），罐頭形=老人多（台灣現在）。題目給圖問「哪個國家扶養比高」→ 選罐頭形的。<br>
+              • <b>中地理論：</b>想像便利商店：7-11到處都有（低級、近），百貨公司只有大城市有（高級、遠）。所以「等級越高、距離越遠、家數越少」。
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="geo">產</em> 產業與區位</h3><small>韋伯到全球化</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th>產業</th><th>區位關鍵</th><th>例子</th></tr>
+              <tr><td>農業</td><td>自然(氣候/土壤) + 市場距離</td><td>酪農近都市、稻米在季風區</td></tr>
+              <tr><td>工業 (韋伯)</td><td>原料/勞力/市場/集聚</td><td>高雄石化(原料)、竹科(技術集聚)</td></tr>
+              <tr><td>服務/知識經濟</td><td>人才、網路、群聚</td><td>信義計畫區、軟體園區</td></tr>
+            </table>
+            <div class="box"><b>世界體系</b> 核心(歐美日)→半邊陲(韓台)→邊陲(資源國)。台灣從邊陲→半邊陲的關鍵：加工出口與技術升級。全球化帶來分工，也帶來產業外移與文化衝擊。</div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--geo); margin-top:10px">
+              <b>🏭 白話：韋伯工廠為什麼在那？</b>
+              • <b>重原料（原料比成品重很多，如鋼鐵）：</b>蓋在原料旁，不然運費爆掉 → 高雄石化、台中火力發電（靠港）。<br>
+              • <b>輕原料/市場導向（成品與原料差不多重，如麵包、汽車組裝）：</b>蓋在市場旁 → 汽車組裝在人口多的大城市。<br>
+              • <b>勞力/集聚：</b>竹科不是因為有矽礦，是因為「大家都在那」→ 人才、廠商、知識互相靠近才有效率。<br>
+              <small style="color:#4B5563">學測看到「竹科」→ 永遠選「集聚/群聚」，不要選原料。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-g3" class="panel">
+      <div class="box geo"><b>區域地理銜接 (第3冊精華)</b> 本頁聚焦通論地理，區域地理是「把通論套到地方」。116學測區域必考：東南亞(華人+季風+熱帶產業)、西亞北非(乾燥+石油+伊斯蘭)、歐洲(工業革命與區域整合)、美洲(農業帶)、非洲(殖民與發展)、東亞(中日韓台比較)、台灣(地形/氣候/產業/新住民)。記憶法：每個區域問五題——地形？氣候？人口？產業？議題？</div>
+    </div>
+  </div>
+</section>
+
+<!-- CIVICS -->
+<section id="civics">
+  <div class="wrap">
+    <div class="eyebrow civic">CIVICS / 公民 1-2冊</div>
+    <h2 class="reveal"><span class="en">公民考定義，<br>定義要精準到能套用。</span><span class="zh">108課綱主題式：從個人到社會、從權利到參與</span></h2>
+    <p class="detail reveal d2">公民1-2冊涵蓋最常考的 <strong>社會生活 + 政治 + 法律基礎</strong>，第3冊(經濟/永續)本頁以銜接補充。記法：<strong>先給定義→再看制度→最後判斷情境是否符合原則</strong>。</p>
+    <div class="tabs reveal d2">
+      <button class="tab civic active" data-target="c1">公民1｜個人・社會・文化</button>
+      <button class="tab civic" data-target="c2">公民2｜政治・法律</button>
+      <button class="tab civic" data-target="c3">銜接｜經濟・永續</button>
+    </div>
+
+    <div id="panel-c1" class="panel active">
+      <div class="chapters">
+        <div class="ch open">
+          <div class="ch-head"><h3><em class="civic">個</em> 親密關係、性別與公民身分</h3><small>情感與權利</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="civic-grid">
+              <div class="box civic"><b>親密關係與性別</b> • 性別≠性別氣質≠性傾向 • 性別分工與玻璃天花板/管漏現象 • 婚姻平權、家庭多元：釋字748與同婚專法是必考時事連結</div>
+              <div class="box"><b>公民身分與族群</b> • 公民身分的取得 (血統/出生地/歸化) • 族群：想像的共同體，常考「國家 vs 族群」差異 • 多元文化：熔爐 vs 沙拉碗，台灣強調「多元文化 + 原民正名」</div>
+            </div>
+          </div>
+        </div>
+        <div class="ch">
+          <div class="ch-head"><h3><em class="civic">社</em> 社會生活：社會化、階層與不平等</h3><small>社會學核心</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="kv">
+              <div class="box civic"><b>社會化</b> 初級(家庭)、次級(學校/媒體/同儕)、再社會化。媒體素養：近用、識讀、批判、創造。</div>
+              <div class="box"><b>社會階層化</b> 開放(成就) vs 封閉(血統/種姓)；台灣屬開放但仍有結構限制。常見指標：收入、職業、教育。</div>
+            </div>
+            <table class="compare"><tr><th>不平等類型</th><th>例子</th><th>公民對策</th></tr>
+              <tr><td>所得/財富</td><td>吉尼係數、貧富差距</td><td>社會福利、累進稅</td></tr>
+              <tr><td>性別</td><td>同工不同酬</td><td>性別平等工作法、育嬰假</td></tr>
+              <tr><td>族群/階級</td><td>原民落差、新住民</td><td>保障名額、文化保存</td></tr>
+            </table>
+            <div class="mem"><b>口訣：</b>「社會化學角色、階層化分高低、不平等要正義」</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-c2" class="panel">
+      <div class="chapters">
+        <div class="ch open">
+          <div class="ch-head"><h3><em class="civic">政</em> 民主、政府體制與參與</h3><small>最常考</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th></th><th>內閣制 (英/日)</th><th>總統制 (美)</th><th>雙首長制 (法/台灣)</th></tr>
+              <tr><td>元首</td><td>虛位 (國王/天皇)</td><td>總統=元首+行政首長</td><td>總統 (對外) + 閣揆 (對內)</td></tr>
+              <tr><td>行政立法</td><td>融合 (閣員來自國會)</td><td>分立制衡</td><td>總統任命閣揆，需國會同意？</td></tr>
+              <tr><td>倒閣/解散</td><td>有</td><td>無</td><td>台灣：立院可倒閣，總統可解散立院</td></tr>
+            </table>
+            <div class="kv">
+              <div class="box civic"><b>我國中央政府</b> 總統、行政院、立法院、司法院、考試院、監察院。學測愛考：覆議、不信任案、釋憲。</div>
+              <div class="box"><b>參與</b> 選舉、罷免、創制複決、公投、社會運動、媒體識讀。重點：參與的正當性與責任。</div>
+            </div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--civic); margin-top:10px">
+              <b>🏛 白話：三種體制怎麼分？（模擬考最愛）</b>
+              • <b>內閣制（英國）：</b>國王/女王不管事，首相從國會多數黨出來，所以行政和立法「綁在一起」。國會可以倒閣，首相可以解散國會。<br>
+              • <b>總統制（美國）：</b>總統自己選的，管行政；國會管立法，兩邊分開制衡，互不倒閣。<br>
+              • <b>台灣雙首長制：</b>總統管外交國防，行政院長管內政，但總統任命院長、立院可以倒閣。學測常問「行政院被提不信任案，總統可以解散立院」→ 這就是雙首長特色。
+            </div>
+          </div>
+        </div>
+
+        <div class="ch">
+          <div class="ch-head"><h3><em class="civic">法</em> 法治、人權與正當程序</h3><small>法律基礎</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <div class="kv">
+              <div class="box civic"><b>法治 vs 人治</b> 法律優位、法律保留；憲法最高、違憲審查 (憲法法庭)。</div>
+              <div class="box"><b>人權</b> 自由權(消極)、受益權、參政權、社會權；兩公約。比例原則：目的正當→適當→必要→均衡。</div>
+            </div>
+            <table class="compare"><tr><th>法律領域</th><th>處理什麼</th><th>例子</th></tr>
+              <tr><td>憲法</td><td>國家體制/人民基本權</td><td>釋憲、修憲門檻高</td></tr>
+              <tr><td>民法</td><td>私人間權利</td><td>契約、親屬、繼承</td></tr>
+              <tr><td>刑法</td><td>犯罪與刑罰</td><td>罪刑法定、無罪推定</td></tr>
+              <tr><td>行政法</td><td>政府與人民</td><td>訴願、行政訴訟</td></tr>
+            </table>
+            <div class="box" style="margin-top:10px"><b>正當程序</b> 偵查→起訴→審判→執行；強制處分需令狀、緘默權、律師在場。學測會給情境判斷是否違法搜索。</div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--civic); margin-top:10px">
+              <b>⚖️ 白話：比例原則 & 民法/刑法 怎麼秒懂？</b>
+              • <b>比例原則4步：</b>政府要管你，必須 1.目的正當 2.方法有效(適當) 3.用最小侵害手段(必要) 4.利大於弊(均衡)。題目給「為防疫禁止所有人出門」→ 問是否違反比例？→ 通常違反「必要」（有更小的手段）。<br>
+              • <b>民法 vs 刑法：</b>欠錢不還、契約糾紛→民法（賠錢）；偷竊、殺人→刑法（國家罰）。所以「蔗農和糖廠簽契約」→ 民法。<br>
+              • <b>正當程序一句話：</b>警察要搜你家→一定要「搜索票」，要告你「你有保持緘默的權利」，否則抓到的證據不能用。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-c3" class="panel">
+      <div class="chapters">
+        <div class="ch open">
+          <div class="ch-head"><h3><em class="civic">經</em> 經濟與永續 (第3冊銜接)</h3><small>供需到全球化</small><span class="arrow">▼</span></div>
+          <div class="ch-body">
+            <table class="compare"><tr><th>概念</th><th>一句話</th><th>圖</th></tr>
+              <tr><td>供需</td><td>價格是供需交會，需求↑價格↑</td><td>需求線右移→均衡價量↑</td></tr>
+              <tr><td>市場失靈</td><td>外部性、公共財、資訊不對稱</td><td>政府介入 (課稅/補貼/管制)</td></tr>
+              <tr><td>總體</td><td>GDP、通膨、失業、貨幣政策</td><td>央行升息抗通膨</td></tr>
+            </table>
+            <div class="box"><b>永續與全球化</b> 永續=經濟+社會+環境三重底線；全球化帶來供應鏈分工，也帶來不平等與文化衝擊，需以國際組織與協定協調 (WTO、巴黎協定)。</div>
+            <div class="box" style="background:#fff; border-left:6px solid var(--civic); margin-top:10px">
+              <b>💰 白話：供需/市場失靈 超快懂</b>
+              • <b>供需：</b>大家都想買（需求↑）→ 價格↑。大家都想賣（供給↑）→ 價格↓。圖中線往右移=變多。<br>
+              • <b>市場失靈：</b>空氣污染（工廠排廢氣不付錢→外部性）、燈塔（蓋了大家都能用→公共財沒人想蓋）、買到假貨（資訊不對稱）→ 這時政府才要介入（課稅、補貼、管制）。<br>
+              <small style="color:#4B5563">學測看到「政府為何要課碳費？」→ 答：矯正外部性。</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION -->
+<section id="integration">
+  <div class="wrap">
+    <div class="eyebrow">CROSS-SUBJECT / 跨科整合 (學測趨勢)</div>
+    <h2 class="reveal"><span class="en">一題考三科，<br>用同一個故事。</span><span class="zh">歷史為題幹，地理與公民作延伸 — 3個示範題組</span></h2>
+    <div class="integ-grid reveal d2">
+      <div class="integ-card">
+        <h3>題組1：台灣糖業</h3>
+        <p><b>歷史：</b>為何清末到日治糖業興衰？<b>地理：</b>為何糖廠集中在嘉南平原？(沖積扇+日照+勞力+鐵路) <b>公民：</b>蔗農與糖廠的契約屬於哪一法律關係？政府補貼是矯正哪種市場失靈？</p>
+        <div class="ex">學測題感：給一張糖廠分布圖 + 一段契約，問三科。關鍵：先看圖的「分布」，再看契約的「權利義務」。</div>
+      </div>
+      <div class="integ-card">
+        <h3>題組2：移工與新住民</h3>
+        <p><b>歷史：</b>從唐山過台灣到東南亞華人，移動的推拉為何不同？<b>地理：</b>人口金字塔與勞動力缺口、新住民聚落分布。<b>公民：</b>移工的勞動權益適用哪一法？多元文化政策如何設計？</p>
+        <div class="ex">常錯：把「移工」與「新住民」混為一談；地理上注意「遷移」與「通勤」差異。</div>
+      </div>
+      <div class="integ-card">
+        <h3>題組3：氣候變遷與能源</h3>
+        <p><b>歷史：</b>工業革命以來能源轉型；<b>地理：</b>台灣能源配比、地形對再生能源限制、颱風與極端天氣；<b>公民：</b>碳費/碳稅的外部性處理、世代正義、國際協定。</p>
+        <div class="ex">素養題會給電價與排碳數據，要你判斷「哪個方案最符合比例原則與永續」。</div>
+      </div>
+    </div>
+    <p class="detail reveal" style="margin-top:14px">解題心法：<strong style="color:#fff">先用歷史定時代 → 用地理定空間 → 用公民定規則</strong>，三步驟就能拆任何跨科題。</p>
+  </div>
+</section>
+
+<!-- MYTHS -->
+<section id="myths">
+  <div class="wrap">
+    <div class="eyebrow myth">MYTHS / 常錯觀念專區</div>
+    <h2 class="reveal"><span class="en">這些地方，<br>每年都有人錯。</span><span class="zh">精選 48 條常錯觀念：歷史 16・地理 16・公民 16，含跨科陷阱</span></h2>
+    <p class="detail reveal d2">每條都是 <strong>「常錯 → 正確 → 為何錯 → 學測怎麼考」</strong> 四段式，可直接搜尋關鍵字 (如 輸入「颱風」「比例原則」「二二八」)。</p>
+    <div class="search reveal d2">
+      <input id="mythSearch" placeholder="搜尋常錯觀念… 試試：颱風 / 內閣制 / 沖積扇 / 二二八 / 季風">
+      <button onclick="document.getElementById('mythSearch').value='';filterMyths('')">清除</button>
+    </div>
+    <div class="tabs reveal d2" style="margin-top:12px">
+      <button class="tab myth active" data-filter="all">全部 48</button>
+      <button class="tab myth" data-filter="hist">歷史</button>
+      <button class="tab myth" data-filter="geo">地理</button>
+      <button class="tab myth" data-filter="civic">公民</button>
+      <button class="tab myth" data-filter="cross">跨科陷阱</button>
+    </div>
+    <div class="myth-grid reveal d3" id="mythGrid">
+      <!-- HIST 16 -->
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>1. 原住民＝單一族群？</h4><div class="wrong">❌ 常錯：把原住民族當成同一文化</div><div class="right">✅ 正確：至少16族，語言、社會組織、祭儀差異極大；平埔/高山是後來分類</div><div class="why">為何錯：課本常合稱。學測：給一段祭儀或語言材料，問屬於哪一文化區 → 要看細節不是用「原住民」統包。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>2. 開港通商＝割讓領土？</h4><div class="wrong">❌ 常錯：把南京條約「五口通商」當成割香港就好</div><div class="right">✅ 正確：通商是開港口貿易，割讓是主權轉移 (香港島)；兩者不同層次</div><div class="why">學測：問「哪個條約同時有開港+割地+賠款」要分項對照。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>3. 牡丹社事件＝日本統治台灣？</h4><div class="wrong">❌ 常錯：1874就以為日本統治</div><div class="right">✅ 正確：牡丹社事件→清治政策轉向 (開山撫番、建省)；1895下關條約才割台</div><div class="why">年代混淆是重災區，用「事件→政策→條約」三階記。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>4. 日治時期＝一成不變？</h4><div class="wrong">❌ 常錯：以為日治50年都一樣</div><div class="right">✅ 正確：前期武力鎮壓+專制，後期漸有地方自治與社會運動 (1920s)</div><div class="why">學測給1920年代報紙，問反映哪個階段 → 要看年份。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>5. 二二八＝單一事件？</h4><div class="wrong">❌ 常錯：只記1947/2/28一天</div><div class="right">✅ 正確：導火線 (緝菸) → 全島衝突 → 國府派兵鎮壓與清鄉，影響後續威權</div><div class="why">學測會把二二八與後續清鄉、白色恐怖連接，考「延續性」。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>6. 戒嚴＝只有禁止組黨？</h4><div class="wrong">❌ 常錯：忽略全面控制</div><div class="right">✅ 正確：戒嚴含報禁、黨禁、出入境、集會、言論全面管制</div><div class="why">考「威權體制特徵」需答完整。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>7. 土地改革＝只有三七五減租？</h4><div class="wrong">❌ 常錯：漏掉公地放領、耕者有其田</div><div class="right">✅ 正確：三階段連動，把地主資本導向工業</div><div class="why">學測問「哪個政策使工業有資金」→ 答耕者有其田的股票轉投資。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>8. 鎖國＝完全不對外？</h4><div class="wrong">❌ 常錯：以為日本鎖國就零貿易</div><div class="right">✅ 正確：江戶幕府透過長崎對中荷有限貿易，且管制嚴格</div><div class="why">與清海禁對比是常考對比表。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>9. 自強運動＝成功現代化？</h4><div class="wrong">❌ 常錯：以為船堅砲利就成功</div><div class="right">✅ 正確：中體西用、官僚體制未改，甲午戰敗證明局限</div><div class="why">對比日本明治維新「制度全改」才是關鍵差異。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>10. 經濟發展自動帶來民主？</h4><div class="wrong">❌ 常錯：以為有錢就會民主</div><div class="right">✅ 正確：經濟+教育+社會運動+國際壓力共同作用</div><div class="why">台灣民主化題必考的因果誤判。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>11. 朝貢＝平等貿易？</h4><div class="wrong">❌ 常錯：把朝貢當一般貿易</div><div class="right">✅ 正確：朝貢是政治秩序 (天朝/藩屬) 兼貿易，地位不平等</div><div class="why">與現代條約體系對比。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>12. 冷戰＝只有美蘇？</h4><div class="wrong">❌ 常錯：忽略東亞戰場</div><div class="right">✅ 正確：韓戰、越戰、中美關係都在東亞；台灣是冷戰前線</div><div class="why">學測愛把台灣放在冷戰脈絡問。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>13. 分類械鬥＝單純打架？</h4><div class="wrong">❌ 常錯：以為只是習俗不同</div><div class="right">✅ 正確：背後是土地、水源、族群資源競爭 + 官方治理缺位</div><div class="why">推拉與資源競爭模型可套用。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>14. 科舉＝公平但完全開放？</h4><div class="wrong">❌ 常錯：以為人人可考且完全流動</div><div class="right">✅ 正確：名義開放，實際受教育資源與地域限額影響，仍有結構限制</div><div class="why">對比公民的階層流動。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>15. 威權體制＝完全沒建設？</h4><div class="wrong">❌ 常錯：二分法評價</div><div class="right">✅ 正確：威權下仍有經濟建設 (十大建設) 與社會控制並存，評價需分層次</div><div class="why">學測要你「一分資料，說一分話」。</div></div>
+      <div class="myth-card" data-cat="hist"><span class="label label-hist">歷史</span><h4>16. 台灣史＝孤立島史？</h4><div class="wrong">❌ 常錯：只背島內</div><div class="right">✅ 正確：台灣史是東亞海域與世界貿易網的一部分，每段都與外部連動</div><div class="why">跨科題最愛此視角。</div></div>
+      <!-- GEO 16 -->
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>17. 等高線密＝山高？</h4><div class="wrong">❌ 常錯：把密集當海拔</div><div class="right">✅ 正確：密集=坡度陡，稀疏=緩；高度看數值標示</div><div class="why">看圖題第一步就錯的陷阱。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>18. 等高線凸向高處＝山脊？</h4><div class="wrong">❌ 錯，凸高是河谷</div><div class="right">✅ 正確：等高線向高處凸 → 河谷 (水往低流，切出谷)</div><div class="why">口訣「凸高是谷、凸低是脊」必背。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>19. 季風＝季風氣候？</h4><div class="wrong">❌ 常錯：有季風就有季風氣候</div><div class="right">✅ 正確：季風是風系，季風氣候是「夏雨冬乾」的氣候型；台灣是季風氣候，但季風現象全球多處有</div><div class="why">名詞定義精準度考。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>20. 暖流一定多雨？</h4><div class="wrong">❌ 常錯：以為暖流經過就降雨</div><div class="right">✅ 正確：暖流增溫增濕，但是否降雨還需抬升機制 (地形/鋒面)</div><div class="why">洋流題常與「西岸沙漠」對比 (寒流+副高)。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>21. 焚風是熱風吹來？</h4><div class="wrong">❌ 錯，是背風坡下沉增溫</div><div class="right">✅ 正確：氣流越山後下沉，每下降100m增溫約1°C，形成乾熱風 (台東)</div><div class="why">圖示題：迎風坡降水、背風坡焚風。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>22. 板塊交界＝褶曲？</h4><div class="wrong">❌ 混淆營力</div><div class="right">✅ 正確：板塊擠壓→褶曲/斷層/火山/地震；褶曲只是其中一種構造</div><div class="why">地形題要分「內營力 (板塊) vs 外營力 (河/風/冰)」。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>23. 沖積扇＝三角洲？</h4><div class="wrong">❌ 位置不同</div><div class="right">✅ 正確：沖積扇在山前 (河出山谷堆積)；三角洲在河口 (入海堆積)</div><div class="why">看地形圖位置判斷。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>24. 人口金字塔寬頂＝年輕？</h4><div class="wrong">❌ 相反</div><div class="right">✅ 正確：寬頂=高齡化 (罐形)；寬底=年輕 (金字塔)</div><div class="why">台灣已是罐形，扶養比是延伸考點。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>25. 都市化＝人口變多？</h4><div class="wrong">❌ 混淆</div><div class="right">✅ 正確：都市化是「都市人口比例」上升，不一定是總人口增加 (可能鄉村流失)</div><div class="why">數據題要看「比例」而非絕對數。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>26. 韋伯工業區位只看原料？</h4><div class="wrong">❌ 還有勞力、市場、集聚</div><div class="right">✅ 正確：原料指數>1近原料，<1近市場，還要考慮廉價勞力與群聚經濟</div><div class="why">竹科是「集聚」而非原料。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>27. 投影都保面積？</h4><div class="wrong">❌ 各有取捨</div><div class="right">✅ 正確：麥卡托保方向 (航海)、莫爾威保面積 (分布)、方位保距離</div><div class="why">地圖類型題必考。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>28. 時差只看經度？</h4><div class="wrong">❌ 還要看日界線與國界</div><div class="right">✅ 正確：經度每15°=1小時，但國家實際時區會為行政統一而調整</div><div class="why">計算題：先算經度差，再看是否需跨日。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>29. 柯本C=熱帶？</h4><div class="wrong">❌ C是溫帶</div><div class="right">✅ 正確：A熱 B乾 C溫 D冷 E極；台灣平地Cfb/Cfa，山地垂直變化</div><div class="why">代號題直接送分或送錯。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>30. 都市更新＝都更一定好？</h4><div class="wrong">❌ 忽略紳士化</div><div class="right">✅ 正確：更新改善環境，但可能推升房價、迫遷原居民</div><div class="why">公民+地理跨科最愛。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>31. 水循環只有降水？</h4><div class="wrong">❌ 漏蒸發/入滲/逕流</div><div class="right">✅ 正確：都市不透水鋪面→入滲↓→洪峰↑，這就是都市淹水成因之一</div><div class="why">與都市化連動考。</div></div>
+      <div class="myth-card" data-cat="geo"><span class="label label-geo">地理</span><h4>32. 世界體系核心＝永遠核心？</h4><div class="wrong">❌ 動態</div><div class="right">✅ 正確：核心/半邊陲/邊陲會流動，台灣從邊陲→半邊陲是典型</div><div class="why">歷史+地理跨科。</div></div>
+      <!-- CIVIC 16 -->
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>33. 憲法＝一般法律？</h4><div class="wrong">❌ 位階不同</div><div class="right">✅ 正確：憲法最高，法律/命令皆不得牴觸；修憲門檻極高</div><div class="why">違憲審查題基礎。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>34. 內閣制＝總統沒權？</h4><div class="wrong">❌ 過度簡化</div><div class="right">✅ 正確：虛位元首仍有任命、解散等象徵/調節權，只是行政實權在閣揆</div><div class="why">體制比較表必考。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>35. 比例原則＝只要目的好就行？</h4><div class="wrong">❌ 還需三階檢驗</div><div class="right">✅ 正確：適當性→必要性(最小侵害)→狹義比例(均衡) 四階段</div><div class="why">情境題給政策，要你逐階判斷。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>36. 民法＝國家罰你？</h4><div class="wrong">❌ 那是刑法</div><div class="right">✅ 正確：民法處理私人間權利 (賠償、契約)；刑法才有刑罰、罪刑法定</div><div class="why">給糾紛情境問適用哪一法。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>37. 罪刑法定＝法官可自創？</h4><div class="wrong">❌ 相反，必須有法律明文</div><div class="right">✅ 正確：無法律無犯罪，無法律無刑罰；溯及既往禁止</div><div class="why">正當程序題組。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>38. 媒體素養＝會上網就好？</h4><div class="wrong">❌ 只到近用</div><div class="right">✅ 正確：近用→識讀(辨真偽)→批判→創造，還要辨識假訊息與演算法同溫層</div><div class="why">公民+時事跨科。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>39. 公投＝直接等於民意？</h4><div class="wrong">❌ 需程序正當與資訊充足</div><div class="right">✅ 正確：公投是直接民主一環，但需審議、門檻、執行配套</div><div class="why">台灣公投題常見。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>40. 市場萬能？</h4><div class="wrong">❌ 忽略失靈</div><div class="right">✅ 正確：外部性、公共財、獨占、資訊不對稱皆需政府或制度介入</div><div class="why">經濟與公民交叉。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>41. 供需：價格上漲需求一定跌？</h4><div class="wrong">❌ 要分「需求量」vs「需求」</div><div class="right">✅ 正確：價格變動是「需求量」沿線移動；偏好/所得變是整條線位移</div><div class="why">圖形題最易混。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>42. 勞雇關係＝口頭不算？</h4><div class="wrong">❌ 口頭也成契約</div><div class="right">✅ 正確：契約以意思合致為準，但舉證困難，故書面與勞基法保障重要</div><div class="why">勞動權益題。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>43. 人權只含自由權？</h4><div class="wrong">❌ 還有社會權/參政權/受益權</div><div class="right">✅ 正確：生存照顧(社會權)與投票(參政)都是人權</div><div class="why">兩公約題。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>44. 正當程序＝有審就好？</h4><div class="wrong">❌ 還需令狀、律師、緘默</div><div class="right">✅ 正確：搜索需令狀、告權利、律師在場，否則取證不合法</div><div class="why">給警察搜索情境判斷違法與否。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>45. 永續＝只環保？</h4><div class="wrong">❌ 三重底線</div><div class="right">✅ 正確：經濟+社會+環境同顧，世代正義是核心</div><div class="why">公民第3冊銜接考。</div></div>
+      <div class="myth-card" data-cat="civic"><span class="label label-civic">公民</span><h4>46. 性別平等已完成？</h4><div class="wrong">❌ 結構仍存</div><div class="right">✅ 正確：法律平等後，仍有玻璃天花板、薪資落差、照顧負擔不均</div><div class="why">數據圖表題。</div></div>
+      <div class="myth-card" data-cat="cross"><span class="label label-cross">跨科陷阱</span><h4>47. 跨科：把「歷史因果」當「地理決定論」？</h4><div class="wrong">❌ 常錯：以為地形決定一切</div><div class="right">✅ 正確：地理是條件，制度與人為選擇才是關鍵 (如嘉南平原≠一定種糖，需政策+市場)</div><div class="why">跨科題最愛考「條件 vs 決策」。</div></div>
+      <div class="myth-card" data-cat="cross"><span class="label label-cross">跨科陷阱</span><h4>48. 跨科：把「相關」當「因果」？</h4><div class="wrong">❌ 見相關就推因果</div><div class="right">✅ 正確：需有機制與時序證據；如「糖廠多→人口多」可能是糖廠吸引人口，而非人口導致糖廠</div><div class="why">素養題核心：證據與推論的界限。</div></div>
+    </div>
+    <p class="detail" style="margin-top:14px;font-size:13px;opacity:.7">小提醒：本區已盡量列出高頻常錯，仍建議搭配本頁各章節「對比表」一起讀，效果最好。搜尋框可即時過濾。</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="eyebrow">SELF-CHECK / 自我檢測</div>
+    <h2 class="reveal"><span class="en">讀完馬上測，<br>錯的才會記得。</span><span class="zh">每科3題快測 + 混合題組，點選即回饋</span></h2>
+    <div class="quiz-wrap reveal d2">
+      <div style="display:grid;gap:12px">
+        <div class="q-card" data-answer="B">
+          <h4>歷史 Q1｜日治糖業集中在嘉南平原，主因？</h4>
+          <div class="opts">
+            <div class="opt" data-opt="A">A. 清代就有的糖業傳統，自然延續</div>
+            <div class="opt" data-opt="B">B. 沖積扇平坦+日照長+製糖會社與鐵路的政策布局</div>
+            <div class="opt" data-opt="C">C. 高山地形適合甘蔗</div>
+            <div class="opt" data-opt="D">D. 當地原住民擅種甘蔗</div>
+          </div>
+          <div class="why" style="display:none;margin-top:8px;font-size:12px;color:var(--muted)">解析：自然條件是基礎，但關鍵是「殖民政策+資本+交通」的制度選擇，這正是歷史與地理的交會。</div>
+        </div>
+        <div class="q-card" data-answer="C">
+          <h4>地理 Q2｜等高線向高處凸出，代表？</h4>
+          <div class="opts">
+            <div class="opt" data-opt="A">A. 山脊</div>
+            <div class="opt" data-opt="B">B. 斷層</div>
+            <div class="opt" data-opt="C">C. 河谷</div>
+            <div class="opt" data-opt="D">D. 海岸線</div>
+          </div>
+          <div class="why" style="display:none;margin-top:8px;font-size:12px;color:var(--muted)">解析：凸高是谷，水往低處切；凸低是脊。地圖題第一判斷不能錯。</div>
+        </div>
+        <div class="q-card" data-answer="C">
+          <h4>公民 Q3｜警察無令狀搜索，取得的證據？</h4>
+          <div class="opts">
+            <div class="opt" data-opt="A">A. 仍可使用，目的正當即可</div>
+            <div class="opt" data-opt="B">B. 由法官自由心證決定</div>
+            <div class="opt" data-opt="C">C. 違反正當程序，原則上不得作為證據</div>
+            <div class="opt" data-opt="D">D. 只要嫌犯同意就合法</div>
+          </div>
+          <div class="why" style="display:none;margin-top:8px;font-size:12px;color:var(--muted)">解析：正當程序要求令狀、告知權利；違法搜索→毒樹果實原則。</div>
+        </div>
+        <div class="q-card" data-answer="B">
+          <h4>混合 Q4｜給一段1920年代《台灣民報》社論，問反映哪個歷史階段？</h4>
+          <div class="opts">
+            <div class="opt" data-opt="A">A. 清領時期</div>
+            <div class="opt" data-opt="B">B. 日治時期台灣自覺意識興起、要求自治</div>
+            <div class="opt" data-opt="C">C. 戰後戒嚴</div>
+            <div class="opt" data-opt="D">D. 1990年代民主化</div>
+          </div>
+          <div class="why" style="display:none;margin-top:8px;font-size:12px;color:var(--muted)">解析：看年份與關鍵詞「議會設置請願」「文化協會」即定位1920s。</div>
+        </div>
+      </div>
+      <div class="quiz-score">
+        <div style="font-family:JetBrains Mono,monospace;font-size:11px;letter-spacing:.12em;opacity:.7">YOUR SCORE</div>
+        <b id="score">0 / 4</b>
+        <div style="margin-top:8px;font-size:13px;line-height:1.6;opacity:.85">點選選項立即看解析。全部做完後建議：<br>• 回到上方的「常錯卡」搜尋錯題關鍵字<br>• 把錯的卡片截圖存起來，考前只看錯的</div>
+        <div style="margin-top:14px;display:flex;gap:8px"><button onclick="resetQuiz()" style="flex:1;padding:10px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer">重做</button><a href="#myths" style="flex:1;text-align:center;padding:10px;border-radius:999px;background:#fff;color:var(--fg);text-decoration:none;font-weight:700">去刷常錯 →</a></div>
+        <div style="margin-top:14px;font-size:11px;opacity:.6">題庫為本頁重點濃縮示範，完整練習請搭配歷屆學測 (111-114) 計時寫回。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFS -->
+<section id="refs">
+  <div class="wrap">
+    <div class="eyebrow">REFERENCES / 資料與使用說明</div>
+    <h2 style="font-size:clamp(28px,5vw,44px)">讀懂比讀完重要。</h2>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h4>本頁已核對的依據 (108課綱 / 116學測)</h4>
+        <ul>
+          <li>大考中心《學科能力測驗考試說明》：社會科範圍為高一至高二必修歷史/地理/公民，110分鐘、占比相當</li>
+          <li>國家教育研究院 十二年國教課綱：普高歷史/地理/公民與社會課程綱要 (部定必修)</li>
+          <li>龍騰/翰林/南一 高中歷史1-2冊、地理1-2冊、公民1-2冊章節對照 (本頁採主題統整，非照單一版本)</li>
+          <li>補教與學科中心整理：學測社會科準備要點 (素養題、圖表、跨科整合趨勢)</li>
+        </ul>
+        <p class="mono" style="font-size:11px;color:var(--muted2);margin-top:8px">註：為聚焦你指定的 1-2 冊，本頁將第3冊設為「銜接卡」；完整應考仍需補足第3冊。時事與數據更新至 2026.08，公民時事請於考前自行補至2026.12。</p>
+      </div>
+      <div class="ref-card">
+        <h4>怎麼把這頁用到最好</h4>
+        <ul>
+          <li>手機：點章節卡展開，每章5分鐘，一天2章</li>
+          <li>電腦：右側圓點快速跳章，搜尋框找常錯</li>
+          <li>列印：按 Ctrl+P，章節會自動展開、背景優化</li>
+          <li>複習：考前一週只看「黃色口訣塊 + 紅色常錯卡 + 測驗錯題」</li>
+        </ul>
+        <div class="cta" style="margin-top:12px">
+          <a class="primary" href="#hero">回到頂部 ↑</a>
+          <a class="ghost" onclick="window.print()">列印 / 存成PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>© 116學測社會科學習站 — 以108課綱與大考中心為準，僅作教學整理使用。單檔 social-116.html 可離線開啟 · 手機支援 · 右下角可調字級</footer>
+<div id="fontControls" aria-label="字級調整">
+  <button id="fontPlus" title="放大 (更大)">A+</button>
+  <button id="fontMinus" title="縮小">A-</button>
+</div>
+<button id="toTop" aria-label="回到頂部">↑</button>
+<script>
+  // progress + dots + reveal
+  const progress = document.getElementById('progress');
+  const dots = document.querySelectorAll('#dots a');
+  const sections = [...document.querySelectorAll('section')].map(s=>s.id);
+  function onScroll(){
+    const h = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (scrollY / (h||1) * 100) + '%';
+    let cur = sections[0];
+    for(const id of sections){
+      const el = document.getElementById(id);
+      if(el && scrollY >= el.offsetTop - 120) cur = id;
+    }
+    dots.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+cur));
+  }
+  const toTop=document.getElementById('toTop');
+  function onScroll2(){
+    onScroll();
+    if(scrollY>500) toTop.classList.add('show'); else toTop.classList.remove('show');
+  }
+  addEventListener('scroll', onScroll2, {passive:true}); onScroll2();
+  toTop.addEventListener('click', ()=>scrollTo({top:0,behavior:'smooth'}));
+  const io = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting) e.target.classList.add('in')})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // tabs history/geo/civic
+  document.querySelectorAll('.tab[data-target]').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      const group = t.closest('section').querySelectorAll('.tab[data-target]');
+      group.forEach(x=>x.classList.remove('active')); t.classList.add('active');
+      const target = t.dataset.target;
+      // hide all panels in same section
+      t.closest('section').querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      const panel = document.getElementById('panel-'+target);
+      if(panel) panel.classList.add('active');
+    });
+  });
+  // chapters accordion
+  document.querySelectorAll('.ch-head').forEach(h=>{
+    h.addEventListener('click', ()=> h.parentElement.classList.toggle('open'));
+  });
+  // myths filter
+  const mythCards = [...document.querySelectorAll('.myth-card')];
+  function filterMyths(q){
+    const query = (q||document.getElementById('mythSearch').value||'').toLowerCase();
+    const active = document.querySelector('#myths .tab.myth.active')?.dataset.filter || 'all';
+    mythCards.forEach(c=>{
+      const cat = c.dataset.cat;
+      const text = c.innerText.toLowerCase();
+      const catMatch = active==='all' || cat===active;
+      const qMatch = !query || text.includes(query);
+      c.classList.toggle('hidden', !(catMatch && qMatch));
+    });
+  }
+  document.getElementById('mythSearch').addEventListener('input', ()=>filterMyths());
+  document.querySelectorAll('#myths .tab.myth').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('#myths .tab.myth').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active'); filterMyths();
+    });
+  });
+  // quiz
+  let score=0, answered=new Set();
+  document.querySelectorAll('.q-card').forEach(card=>{
+    const ans = card.dataset.answer;
+    card.querySelectorAll('.opt').forEach(opt=>{
+      opt.addEventListener('click', ()=>{
+        if(card.dataset.done) return;
+        const pick = opt.dataset.opt;
+        card.dataset.done=1; answered.add(card);
+        card.querySelectorAll('.opt').forEach(o=>{
+          if(o.dataset.opt===ans) o.classList.add('correct');
+          else if(o===opt && pick!==ans) o.classList.add('wrong');
+          o.style.pointerEvents='none';
+        });
+        card.querySelector('.why').style.display='block';
+        if(pick===ans) score++;
+        document.getElementById('score').textContent = score+' / 4';
+      });
+    });
+  });
+  function resetQuiz(){
+    score=0; answered.clear();
+    document.getElementById('score').textContent='0 / 4';
+    document.querySelectorAll('.q-card').forEach(c=>{
+      c.dataset.done=''; c.querySelectorAll('.opt').forEach(o=>{o.classList.remove('correct','wrong');o.style.pointerEvents='auto'});
+      c.querySelector('.why').style.display='none';
+    });
+  }
+  // 字級調整 (支援手機與眼睛不好) — 使用 zoom 確保 px 版面也能等比放大
+  let fontLevel = 0;
+  try { fontLevel = parseInt(localStorage.getItem('fontLevel')||'0'); } catch(e){ fontLevel=0; }
+  if(isNaN(fontLevel)) fontLevel=0;
+  function applyFont(){
+    const scale = 1 + fontLevel*0.10; // 每段 +10%
+    // Chrome/Edge 支援 zoom，可等比放大所有 px 版面
+    try { document.body.style.zoom = scale; } catch(e){}
+    // Firefox 等不支援 zoom 的備援：用 CSS 變數 + transform
+    document.documentElement.style.setProperty('--a11y-scale', scale);
+    if(!CSS.supports || !CSS.supports('zoom','1')){
+      document.body.style.transform = scale===1 ? '' : `scale(${scale})`;
+      document.body.style.transformOrigin = 'top left';
+      document.body.style.width = scale===1 ? '' : (100/scale)+'%';
+    }
+    try { localStorage.setItem('fontLevel', fontLevel); } catch(e){}
+    // 更新按鈕提示
+    const plus=document.getElementById('fontPlus');
+    const minus=document.getElementById('fontMinus');
+    if(plus) plus.title = `放大 (目前 ${fontLevel>0?'+':''}${fontLevel} 段)`;
+    if(minus) minus.title = `縮小 (目前 ${fontLevel>0?'+':''}${fontLevel} 段)`;
+  }
+  applyFont();
+  document.getElementById('fontPlus').addEventListener('click', ()=>{ if(fontLevel<5){ fontLevel++; applyFont(); }});
+  document.getElementById('fontMinus').addEventListener('click', ()=>{ if(fontLevel>-2){ fontLevel--; applyFont(); }});
+  // 也支援鍵盤 + / - 快速調整
+  addEventListener('keydown', e=>{
+    if(e.key==='+' || e.key==='='){ e.preventDefault(); if(fontLevel<5){ fontLevel++; applyFont(); }}
+    if(e.key==='-' || e.key==='_'){ e.preventDefault(); if(fontLevel>-2){ fontLevel--; applyFont(); }}
+  });
+  // 支援雙指以外的單手操作：表格可左右滑動提示
+  document.querySelectorAll('.compare').forEach(el=>{ el.setAttribute('tabindex','0'); el.setAttribute('aria-label','可左右滑動查看完整表格'); });
+  // keyboard hint: press ↓ to next section
+  addEventListener('keydown', e=>{
+    if(e.key==='ArrowDown' || e.key===' '){
+      const curIdx = sections.findIndex(id=> {
+        const el=document.getElementById(id);
+        return scrollY < el.offsetTop + el.offsetHeight - 80;
+      });
+      const next = sections[curIdx+1];
+      if(next){ e.preventDefault(); document.getElementById(next).scrollIntoView({behavior:'smooth'})}
+    }
+  });
+</script>
+</body>
+</html>
