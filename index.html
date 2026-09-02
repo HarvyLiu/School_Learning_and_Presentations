@@ -274,8 +274,15 @@
   .ref-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.85}
   .ref-card ul a{color:var(--fg);text-decoration:underline;text-underline-offset:3px;word-break:break-all}
   .tiny{margin-top:14px;font-size:11px;color:var(--muted2);font-family:JetBrains Mono, monospace}
+  /* CUSTOMIZATION — video embed */
+  #custom{background:var(--bg2);position:relative}
+  #custom .video-wrap{margin-top:26px;position:relative;aspect-ratio:16/9;background:#000;border-radius:20px;overflow:hidden;box-shadow:var(--shadow2);border:1px solid var(--line)}
+  #custom .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  #custom .custom-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:18px}
+  #custom .custom-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;font-size:14px;line-height:1.7;color:var(--muted)}
+  #custom .custom-card b{color:var(--fg)}
+  @media(max-width:900px){#custom .custom-grid{grid-template-columns:1fr}}
   @media(max-width:900px){.ref-grid{grid-template-columns:1fr}}
-  /* squish fix: prevent CJK + Latin crowding and allow wrapping */
   p, .detail, .stat .sub, .vs-card .t span, .why-card p, .law p, .law .example{overflow-wrap:break-word;word-break:normal;hyphens:auto}
   .detail strong{word-spacing:.04em}
   /* utilities */
@@ -296,6 +303,7 @@
   <a href="#whyworks" title="Why it works"></a>
   <a href="#france" title="France"></a>
   <a href="#germany" title="Germany"></a>
+  <a href="#custom" title="Customization"></a>
   <a href="#summary" title="Summary"></a>
   <a href="#refs" title="References"></a>
 </nav>
@@ -677,10 +685,33 @@
   </div>
 </section>
 
-<!-- S11 SUMMARY -->
+<!-- S11 CUSTOMIZATION -->
+<section id="custom">
+  <div class="wrap">
+    <div class="eyebrow">Slide 11 / 客製化 • Customization</div>
+    <h2 class="reveal">
+      <span class="en">Make it yours.</span>
+      <span class="zh">客製化 — 你的電腦，你作主</span>
+    </h2>
+    <p class="detail reveal d2">
+      Linux 最迷人的地方：<strong>從桌面到核心都能改</strong>。主題、快捷鍵、視窗管理、動畫 — 電腦配合你，不是你配合電腦。<br>
+      The best part of Linux: <strong>everything is customizable</strong> — theme, keybinds, window manager, animations. Your machine, your rules.
+    </p>
+    <div class="video-wrap reveal d3">
+      <iframe src="https://www.youtube.com/embed/TggHDm0_vBw" title="Linux Customization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <div class="custom-grid reveal d3">
+      <div class="custom-card">🎨 <b>桌布 / 主題 / 圖示</b> — 一鍵換整套外觀，連登入畫面都能改。<br><small>Wallpapers, themes, icons — even the login screen.</small></div>
+      <div class="custom-card">⌨️ <b>快捷鍵與視窗平鋪</b> — i3 / Sway / Hyprland 讓鍵盤就是滑鼠。<br><small>Keybinds & tiling WMs — keyboard is faster than mouse.</small></div>
+    </div>
+    <p class="detail reveal" style="margin-top:12px;font-size:13px;opacity:.6">小字：影片展示 Linux 桌面客製化範例，嵌入 YouTube 播放。 / Small: video shows Linux desktop customization examples, embedded from YouTube.</p>
+  </div>
+</section>
+
+<!-- S12 SUMMARY -->
 <section id="summary">
   <div class="wrap reveal">
-    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 11 / 總結</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 12 / 總結</div>
     <div class="big-ji">助人助己</div>
     <div class="big-en">Help Others,<br>Help Yourself</div>
     <div class="loop">
@@ -702,10 +733,10 @@
   </div>
 </section>
 
-<!-- S12 REFERENCES -->
+<!-- S13 REFERENCES -->
 <section id="refs">
   <div class="wrap">
-    <div class="eyebrow">Slide 12 / 參考資料 • References</div>
+    <div class="eyebrow">Slide 13 / 參考資料 • References</div>
     <h2 class="reveal">
       <span class="en" style="font-size:clamp(36px,6vw,64px)">Sources & Credits</span>
       <span class="zh">圖片與資料來源 — 教學使用，已標示出處</span>
