@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
-  <rect width="640" height="360" rx="14" fill="#18A303"/>
-  <rect x="20" y="20" width="600" height="220" rx="12" fill="#fff"/>
-  <rect x="40" y="50" width="560" height="14" rx="7" fill="#E5E7EB"/><rect x="40" y="74" width="480" height="10" rx="5" fill="#F3F4F6"/><rect x="40" y="92" width="520" height="10" rx="5" fill="#F3F4F6"/><rect x="40" y="110" width="500" height="10" rx="5" fill="#F3F4F6"/><rect x="40" y="128" width="540" height="10" rx="5" fill="#E0F2FE"/><rect x="40" y="146" width="460" height="10" rx="5" fill="#F3F4F6"/>
-  <circle cx="74" cy="175" r="22" fill="#18A303"/><text x="74" y="182" text-anchor="middle" font-family="Inter" font-size="16" font-weight="900" fill="#fff">L</text>
-  <text x="110" y="170" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#0F1115">LibreOffice</text><text x="110" y="188" font-family="JetBrains Mono, monospace" font-size="10" fill="#6B7280">The Document Foundation</text>
-  <text x="320" y="280" text-anchor="middle" font-family="Noto Sans TC, sans-serif" font-size="15" font-weight="700" fill="#fff">Schleswig-Holstein • 30,000 PCs</text>
-  <text x="320" y="300" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#fff" opacity="0.9">LibreOffice + Linux • ODF Standard</text>
-</svg>
