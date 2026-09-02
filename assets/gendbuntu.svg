@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="14" fill="#2D0A4A"/>
+  <rect x="20" y="20" width="600" height="220" rx="12" fill="#1A1A2E" stroke="#E95420" stroke-width="3"/>
+  <circle cx="48" cy="48" r="8" fill="#FF5F56"/><circle cx="70" cy="48" r="8" fill="#FFBD2E"/><circle cx="92" cy="48" r="8" fill="#27C93F"/>
+  <text x="320" y="110" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" font-weight="900" fill="#fff">GendBuntu 20.04</text>
+  <text x="320" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#E95420">Ubuntu — French Gendarmerie</text>
+  <text x="320" y="170" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#9CA3AF">103,164 workstations • 97% • 2024</text>
+  <rect x="120" y="200" width="400" height="6" rx="3" fill="#2ECC71" opacity="0.6"/>
+  <text x="320" y="280" text-anchor="middle" font-family="Noto Sans TC, sans-serif" font-size="15" font-weight="700" fill="#FFE033">法國憲兵 — GendBuntu</text>
+  <text x="320" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#D1D5DB">Gendarmerie Nationale • Since 2008</text>
+</svg>
