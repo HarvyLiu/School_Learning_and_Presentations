@@ -233,6 +233,25 @@
   .law .example{margin-top:12px;padding:12px 14px;background:rgba(34,197,94,.08);border:1px dashed rgba(34,197,94,.22);border-radius:12px;font-size:14px;line-height:1.7}
   .law.dark .example{background:rgba(255,224,51,.08);border-color:rgba(255,224,51,.22)}
   @media(max-width:900px){.laws{grid-template-columns:1fr}.law{transform:none!important}}
+  /* FRANCE & GERMANY — digital sovereignty */
+  #france{background:var(--bg);position:relative}
+  #france:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,85,164,.04) 0%, transparent 32%, transparent 68%, rgba(239,65,53,.04) 100%);pointer-events:none}
+  #germany{background:var(--bg2);position:relative}
+  #germany:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,0,0,.03) 0%, rgba(221,0,0,.04) 50%, rgba(255,206,0,.05) 100%);pointer-events:none}
+  .country-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+  .country-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.06);position:relative;overflow:hidden}
+  .country-card.accent-fr{border-color:rgba(0,85,164,.14)}
+  .country-card.accent-de{border-color:rgba(221,0,0,.14)}
+  .country-card h3{margin:0;font-size:19px;letter-spacing:-.02em;line-height:1.2;display:flex;align-items:center;gap:10px}
+  .country-card h3 span.flag{font-size:22px;line-height:1}
+  .country-card h3 small{font-family:JetBrains Mono, monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.5;margin-left:auto}
+  .country-card ul{margin:12px 0 0;padding-left:18px;color:var(--muted);font-size:14.5px;line-height:1.75}
+  .country-card ul b{color:var(--fg)}
+  .country-card .foot{margin-top:12px;padding:10px 12px;border-radius:12px;font-size:13px;line-height:1.65;border:1px dashed rgba(15,17,21,.12)}
+  .country-card.accent-fr .foot{background:rgba(0,85,164,.06);border-color:rgba(0,85,164,.14)}
+  .country-card.accent-de .foot{background:rgba(221,0,0,.06);border-color:rgba(221,0,0,.14)}
+  .pill-fr{display:inline-flex;align-items:center;gap:8px;background:var(--fg);color:#fff;padding:7px 12px;border-radius:999px;font-size:11px;letter-spacing:.08em;font-family:JetBrains Mono, monospace;margin-top:14px}
+  @media(max-width:900px){.country-grid{grid-template-columns:1fr}}
   /* SUMMARY */
   #summary{background:var(--fg);color:#fff;text-align:center;position:relative}
   #summary:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 500px at 50% 30%, rgba(255,224,51,.14), transparent 60%), radial-gradient(600px 600px at 80% 80%, rgba(34,197,94,.12), transparent 60%)}
@@ -274,6 +293,8 @@
   <a href="#why-open" title="Why Open"></a>
   <a href="#github" title="GitHub"></a>
   <a href="#whyworks" title="Why it works"></a>
+  <a href="#france" title="France"></a>
+  <a href="#germany" title="Germany"></a>
   <a href="#summary" title="Summary"></a>
   <a href="#refs" title="References"></a>
 </nav>
@@ -573,10 +594,88 @@
   </div>
 </section>
 
-<!-- S9 SUMMARY -->
+<!-- S9 FRANCE — Digital Sovereignty -->
+<section id="france">
+  <div class="wrap">
+    <div class="eyebrow">Slide 09 / 法國 — 數位主權 Souveraineté numérique</div>
+    <h2 class="reveal">
+      <span class="en">France already<br>runs on Linux.</span>
+      <span class="zh">法國：已經用 Linux 跑了 20 年</span>
+    </h2>
+    <p class="detail reveal d2">
+      這不是計畫，是<strong>已經驗證的現實</strong>。法國選擇開源不是為了跟風，而是為了<strong>數位主權</strong> — 不想把國家資料交給外國雲端。<br>
+      Not a plan — <strong>20 years of proof</strong>. France chose open source for <strong>digital sovereignty</strong> — to keep state data under French and European law, not foreign clouds.
+    </p>
+    <div class="country-grid">
+      <div class="country-card accent-fr reveal">
+        <h3><span class="flag">🇫🇷</span> How 法國怎麼做 <small>GendBuntu / DINUM</small></h3>
+        <ul>
+          <li><b>103,164 台 · 97%</b> — 2024 年 6 月，國家憲兵 Gendarmerie 已有 97% 工作站跑自製 Ubuntu 分支 <b>GendBuntu</b>，2024 年 12 月升至 24.04</li>
+          <li><b>2004 → 2008</b> — 先推 Firefox / OpenOffice，再因 Windows XP 終止支援而全面轉向 Ubuntu，省 <b>約 200 萬歐元/年</b>，TCO 降低 <b>40%</b></li>
+          <li><b>2024–2026</b> — 數位局 <b>DINUM</b> 推 <b>La Suite Numérique</b> 與 60 萬人使用的加密通訊 <b>Tchap</b>（Matrix），並以 GendBuntu 為範本規劃 250 萬公務員遷移</li>
+          <li><b>國會</b>全院採用 Ubuntu，巴黎、里昂等城市跟進</li>
+        </ul>
+        <div class="foot">關鍵心法：<strong>先換應用，再換系統</strong> — 讓使用者先熟悉開源工具，遷移阻力大降。這就是為何法國不重蹈慕尼黑失敗覆轍。<br><small>Key trick: apps first, OS second — build familiarity before touching the kernel.</small></div>
+      </div>
+      <div class="country-card accent-fr reveal d2">
+        <h3><span class="flag">🛡️</span> Why 為什麼 <small>souveraineté numérique</small></h3>
+        <ul>
+          <li><b>法律主權</b> — 避開美國 <b>CLOUD Act</b> 域外調取，資料留在法國主機、可審計、可修改</li>
+          <li><b>成本與自主</b> — 從授權費轉向歐洲支援（Canonical / Collabora），每年 <b>€300–500M</b> 級潛在節省，且維護可控</li>
+          <li><b>安全</b> — ANSSI 2024–2025 指出 Windows 漏洞激增，開源可直接審碼、快速修補</li>
+          <li><b>地緣</b> — 2025 美國 25% 科技關稅後，法國明確把 Linux 遷移定義為<strong>供應鏈去風險</strong></li>
+        </ul>
+        <div class="foot">一句話：<strong>Public money, public code — 公帑產生的程式碼，應該屬於公眾。</strong><br><small>France proves open source is not ideology; it's an engineering strategy for a G7 state.</small></div>
+      </div>
+    </div>
+    <div class="pill-fr reveal d3">🇫🇷 GendBuntu 2008 → 2024 · 103,164 workstations · 20 years validated → national model</div>
+  </div>
+</section>
+
+<!-- S10 GERMANY — Digitale Souveränität -->
+<section id="germany">
+  <div class="wrap">
+    <div class="eyebrow">Slide 10 / 德國 — 數位主權 Digitale Souveränität</div>
+    <h2 class="reveal">
+      <span class="en">Germany is moving<br>its state off Windows.</span>
+      <span class="zh">德國：把整個邦搬離 Windows</span>
+    </h2>
+    <p class="detail reveal d2">
+      最北的邦 <strong>Schleswig-Holstein</strong> 正在把 <strong>30,000 台公務電腦</strong>從 Windows / Microsoft 365 搬到 Linux + LibreOffice，目標 2026 完成 — 並非省錢而已，而是<strong>拿回主導權</strong>。<br>
+      Germany's northernmost state is migrating <strong>30,000 PCs</strong> from Windows / M365 to Linux + LibreOffice by 2026 — not just to save money, but to <strong>regain control</strong>.
+    </p>
+    <div class="country-grid">
+      <div class="country-card accent-de reveal">
+        <h3><span class="flag">🇩🇪</span> How 德國怎麼做 <small>Schleswig-Holstein</small></h3>
+        <ul>
+          <li><b>2024 年 4 月</b>內閣決議：<b>LibreOffice 為標準</b>，ODF 自 8 月成為官方格式；2025 年 10 月前 <b>70% 工作站</b>完成</li>
+          <li><b>六大工程：</b>LibreOffice、Linux、Nextcloud + Open-Xchange/Thunderbird 取代 M365、目錄服務取代 Active Directory、電話系統、Linux 兼容層</li>
+          <li><b>2026 年</b>推出自託管 AI <b>LLMoin</b>，以及 30,000 台 Linux 桌面全面鋪開；三層支援：Dataport + 社群 + 企業</li>
+          <li><b>2025 年 4 月</b>德國 IT Planning Council（聯邦 + 16 邦）決議：<b>2027 年前 ODF 為全國公務文件交換標準</b></li>
+        </ul>
+        <div class="foot">慕尼黑教訓：<b>LiMux 2006–2017</b> 飽受政治逆轉回到 Windows。Schleswig-Holstein 用<strong>分階段 + 法律標準</strong>避免重蹈覆轍。<br><small>Munich's reversal is why Germany now binds moves to law and formats, not just desktops.</small></div>
+      </div>
+      <div class="country-card accent-de reveal d2">
+        <h3><span class="flag">🔒</span> Why 為什麼 <small>digitale Souveränität</small></h3>
+        <ul>
+          <li><b>資料主權</b> — 歐盟資料保護官 EDPS 指 M365 違反 GDPR；<b>CLOUD Act</b> 使美方可調取境外資料，開源 + 自託管可避開</li>
+          <li><b>Public Money, Public Code</b> — 改進（如 LibreOffice 無障礙功能）回饋公眾，非單一廠商鎖死</li>
+          <li><b>經濟</b> — 2025 年丹麥、荷蘭、德國估算遷移後年省 <b>€15M</b> 起，長線擺脫壟斷授權與高價訂閱</li>
+          <li><b>安全與韌性</b> — 地方可審碼、離線運作、不依賴單一外國供應鏈</li>
+        </ul>
+        <div class="foot">Schrödter（邦數位部長）：<i>“We have no influence on the operating processes of such [proprietary] solutions.”</i> — 開源是<strong>能否隨時掌控政府 IT</strong> 的問題。<br><small>Quoted from State Chancellery, 2024–2025.</small></div>
+      </div>
+    </div>
+    <p class="detail reveal d3" style="margin-top:14px;font-size:13px;opacity:.6">
+      小字：奧地利軍方 2025 年亦完成 16,000 台遷至 LibreOffice；瑞士 $231M 自建雲端並立法要求政府碼開源。趨勢是全歐。<br><small>Small: Austrian Armed Forces (16k) finished in 2025; Switzerland committed $231M sovereign cloud + open-source-by-law. Trend is EU-wide.</small>
+    </p>
+  </div>
+</section>
+
+<!-- S11 SUMMARY -->
 <section id="summary">
   <div class="wrap reveal">
-    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 09 / 總結</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 11 / 總結</div>
     <div class="big-ji">助人助己</div>
     <div class="big-en">Help Others,<br>Help Yourself</div>
     <div class="loop">
@@ -598,10 +697,10 @@
   </div>
 </section>
 
-<!-- S10 REFERENCES -->
+<!-- S12 REFERENCES -->
 <section id="refs">
   <div class="wrap">
-    <div class="eyebrow">Slide 10 / 參考資料 • References</div>
+    <div class="eyebrow">Slide 12 / 參考資料 • References</div>
     <h2 class="reveal">
       <span class="en" style="font-size:clamp(36px,6vw,64px)">Sources & Credits</span>
       <span class="zh">圖片與資料來源 — 教學使用，已標示出處</span>
@@ -636,6 +735,16 @@
           <li>Linus's 1991 post — comp.os.minix, 25 Aug 1991 (archived)</li>
         </ul>
         <p class="tiny">若有來源需要補正，請告知 — 會立即更新。/ If any credit needs correction, let me know.</p>
+      </div>
+      <div class="ref-card" style="grid-column:1/-1">
+        <h4>France & Germany — Souveraineté / Souveränität</h4>
+        <ul>
+          <li>France Gendarmerie GendBuntu: 97% / 103,164 workstations June 2024, 40% TCO reduction, ~€2M/year saving — Wikipedia GendBuntu; OSOR Joinup; ZDNet 2013</li>
+          <li>DINUM & La Suite Numérique / Tchap (600k users, Matrix) — DINUM 2024; TechHQ & ZDNET April 2026 analysis</li>
+          <li>Germany Schleswig-Holstein: 30,000 PCs, cabinet decision 3 Apr 2024, LibreOffice standard + ODF 1 Aug 2024, 70% by Oct 2025 — schleswig-holstein.de official release; Document Foundation blog 2024-04-04 / 2025-03-13; Capgemini interview Dirk Schrödter</li>
+          <li>Germany IT Planning Council ODF by 2027 (Apr 2025), ODF as nationwide exchange standard — TDF Annual Report 2025</li>
+          <li>Munich LiMux 2006–2017 reversal & EDPS M365 GDPR violation, US CLOUD Act context</li>
+        </ul>
       </div>
     </div>
     <div class="ref-card reveal" style="margin-top:18px;text-align:center">
