@@ -164,7 +164,7 @@
   .why-card h3 span{font-family:Noto Sans TC;display:block;font-size:14px;color:var(--muted);font-weight:600;margin-top:6px;letter-spacing:.02em;line-height:1.4}
   .why-card p{margin:12px 0 0;color:var(--muted);font-size:15px;line-height:1.75}
   .why-foot{margin-top:16px;display:inline-flex;gap:10px;align-items:center;background:var(--fg);color:#fff;padding:10px 16px;border-radius:999px;font-size:13px;line-height:1.4;flex-wrap:wrap}
-  @media(max-width:900px){.why-grid{grid-template-columns:1fr}.why-card{transform:none!important}}
+  @media(max-width:900px){.why-top{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}.why-card{transform:none!important}}
   /* OPEN VS CLOSED */
   #openvs{background:var(--bg)}
   .duels{margin-top:24px;display:grid;gap:18px}
@@ -465,15 +465,38 @@
 <!-- S4 WHY ME -->
 <section id="why-me">
   <div class="wrap">
-    <div class="eyebrow">Slide 04 / 為什麼我用 Linux</div>
-    <h2 class="reveal">
-      <span class="en">Why I use Linux</span>
-      <span class="zh">不單純因為寫程式/學資訊相關內容 — 是拿回主控權</span>
-    </h2>
-      <p class="detail reveal d2">
-        不是信仰，是<strong>好用</strong>。更輕、更順、更自由。現場直接 demo，比投影片清楚。<br>
-        Not faith — just <strong>lighter, smoother, freer</strong>. Live demo beats slides.
-      </p>
+    <div class="why-top" style="display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start">
+      <div>
+        <div class="eyebrow">Slide 04 / 為什麼我用 Linux</div>
+        <h2 class="reveal">
+          <span class="en">Why I use Linux</span>
+          <span class="zh">不單純因為寫程式/學資訊相關內容 — 是拿回主控權</span>
+        </h2>
+        <p class="detail reveal d2">
+          不是信仰，是<strong>好用</strong>。更輕、更順、更自由。現場直接 demo，比投影片清楚。<br>
+          Not faith — just <strong>lighter, smoother, freer</strong>. Live demo beats slides.
+        </p>
+      </div>
+      <div class="reveal" style="margin-top:6px;display:flex;justify-content:center;align-items:start">
+        <figure style="margin:0;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06);max-width:380px;width:100%">
+          <div style="display:grid;grid-template-columns:1fr 1fr;text-align:center">
+            <div style="padding:14px 10px;border-right:1px solid var(--line);background:#FAFAFA">
+              <div style="font-weight:900;font-size:13px;line-height:1.1;letter-spacing:-.02em">Windows 11<br>Requirements</div>
+              <div style="margin:10px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:5px;max-width:110px">
+                <div style="background:#0078D4;height:36px"></div><div style="background:#0078D4;height:36px"></div><div style="background:#0078D4;height:36px"></div><div style="background:#0078D4;height:36px"></div>
+              </div>
+              <div style="margin-top:8px;font-size:5px;line-height:1.25;color:#6B7280;text-align:justify;max-height:44px;overflow:hidden">Processor 1GHz 2 cores, RAM 4GB, Storage 64GB, TPM 2.0, Secure Boot, UEFI, DirectX 12 ... If your device does not meet these requirements, you may not be able to install Windows 11.</div>
+            </div>
+            <div style="padding:14px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff">
+              <div style="font-weight:900;font-size:13px;line-height:1.1;letter-spacing:-.02em">Linux<br>requirements</div>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux — Linux" style="width:72px;height:auto;margin-top:10px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.12))" loading="lazy">
+              <div style="margin-top:10px;font-weight:800;font-size:11px;letter-spacing:-.01em">Electricity (Optional)</div>
+            </div>
+          </div>
+          <figcaption style="padding:8px 10px;background:#F9FAFB;border-top:1px solid var(--line);font-size:10px;color:var(--muted);text-align:center;font-family:JetBrains Mono, monospace">Lightweight in one meme</figcaption>
+        </figure>
+      </div>
+    </div>
     <div class="why-grid">
       <div class="why-card reveal" style="--r:-1deg">
         <div class="icon">&lt;/&gt;</div>
@@ -494,25 +517,6 @@
     <div class="reveal d3" style="margin-top:18px">
       <span class="why-foot">Bonus: 不會被 Windows 更新突襲、病毒與玄學錯誤少很多 <span style="opacity:.6">— no more “update and restart” sabotage</span></span>
       <p class="detail" style="margin-top:12px;font-size:15px">小字：有學習成本，但掌控感回不去。/ Small: learning curve, but control is worth it.</p>
-    </div>
-    <div class="reveal" style="margin-top:22px;display:flex;justify-content:center">
-      <figure style="margin:0;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06);max-width:560px;width:100%">
-        <div style="display:grid;grid-template-columns:1fr 1fr;text-align:center">
-          <div style="padding:18px 14px;border-right:1px solid var(--line);background:#FAFAFA">
-            <div style="font-weight:900;font-size:16px;line-height:1.1;letter-spacing:-.02em">Windows 11<br>Requirements</div>
-            <div style="margin:14px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:140px">
-              <div style="background:#0078D4;height:44px"></div><div style="background:#0078D4;height:44px"></div><div style="background:#0078D4;height:44px"></div><div style="background:#0078D4;height:44px"></div>
-            </div>
-            <div style="margin-top:10px;font-size:5.5px;line-height:1.3;color:#6B7280;text-align:justify;max-height:58px;overflow:hidden">Processor 1GHz 2 cores, RAM 4GB, Storage 64GB, TPM 2.0, Secure Boot, UEFI, DirectX 12, Display 720p &gt;9" ... If your device does not meet these requirements, you may not be able to install Windows 11. See full requirements for details. *Additional text intentionally tiny and long to show complexity.*</div>
-          </div>
-          <div style="padding:18px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff">
-            <div style="font-weight:900;font-size:16px;line-height:1.1;letter-spacing:-.02em">Linux<br>requirements</div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux — Linux" style="width:92px;height:auto;margin-top:14px;filter:drop-shadow(0 8px 16px rgba(0,0,0,.12))" loading="lazy">
-            <div style="margin-top:14px;font-weight:800;font-size:13px;letter-spacing:-.01em">Electricity (Optional)</div>
-          </div>
-        </div>
-        <figcaption style="padding:10px 14px;background:#F9FAFB;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center;font-family:JetBrains Mono, monospace">Meme: why Lightweight matters — meme for the talk, not a spec sheet.</figcaption>
-      </figure>
     </div>
   </div>
 </section>
