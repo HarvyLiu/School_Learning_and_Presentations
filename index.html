@@ -282,8 +282,8 @@
   .country-card.accent-de .foot{background:rgba(221,0,0,.06);border-color:rgba(221,0,0,.14)}
   .pill-fr{display:inline-flex;align-items:center;gap:8px;background:var(--fg);color:#fff;padding:7px 12px;border-radius:999px;font-size:11px;letter-spacing:.08em;font-family:JetBrains Mono, monospace;margin-top:14px}
   @media(max-width:900px){.country-grid{grid-template-columns:1fr}}
-  /* PROS CONS */
-  .proscons-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+  /* PROS CONS — each bullet as card */
+  .proscons-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
   .pc-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.06);position:relative}
   .pc-card.pros{border-color:rgba(34,197,94,.18);background:linear-gradient(180deg, #F0FDF4 0%, #fff 70%)}
   .pc-card.cons{border-color:rgba(239,68,68,.14);background:linear-gradient(180deg, #FEF2F2 0%, #fff 70%)}
@@ -293,7 +293,16 @@
   .pc-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.75}
   .pc-card ul li{margin-bottom:8px}
   .pc-card ul b{color:var(--fg)}
-  @media(max-width:900px){.proscons-grid{grid-template-columns:1fr}}
+  .bullet-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+  .bullet-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.05);display:flex;gap:14px;align-items:flex-start;position:relative}
+  .bullet-card.pros{border-color:rgba(34,197,94,.14);background:linear-gradient(180deg, #F0FDF4 0%, #fff 75%)}
+  .bullet-card.cons{border-color:rgba(239,68,68,.12);background:linear-gradient(180deg, #FEF2F2 0%, #fff 75%)}
+  .bullet-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:18px;flex:none;color:#fff}
+  .bullet-card.pros .bullet-icon{background:var(--accent)}
+  .bullet-card.cons .bullet-icon{background:#EF4444}
+  .bullet-card h4{margin:0;font-size:14px;letter-spacing:-.01em;line-height:1.3}
+  .bullet-card h4 span{font-weight:400;color:var(--muted);font-size:13px;display:block;margin-top:4px;line-height:1.6}
+  @media(max-width:900px){.proscons-grid{grid-template-columns:1fr}.bullet-grid{grid-template-columns:1fr}}
   /* SUMMARY */
   #summary{background:var(--fg);color:#fff;text-align:center;position:relative}
   #summary:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 500px at 50% 30%, rgba(255,224,51,.14), transparent 60%), radial-gradient(600px 600px at 80% 80%, rgba(34,197,94,.12), transparent 60%)}
@@ -540,25 +549,15 @@
       <span class="en">Linux Pros and Cons</span>
       <span class="zh">Linux 的好與壞</span>
     </h2>
-    <div class="proscons-grid">
-      <div class="pc-card pros reveal">
-        <h3>✓ Pros 優點</h3>
-        <ul>
-          <li><b>Free and Open-Source:</b> Most distributions (like Ubuntu, Fedora, or Linux Mint) cost nothing and let you view or modify the source code.</li>
-          <li><b>Resource Efficient:</b> Uses less RAM and storage, often booting or restarting twice as fast as Windows on identical hardware.</li>
-          <li><b>Better Security:</b> Features a stricter permission model and fewer targeted malware threats.</li>
-          <li><b>Hardware Longevity:</b> Breathes new life into older, underpowered computers.</li>
-        </ul>
-      </div>
-      <div class="pc-card cons reveal d2">
-        <h3>✗ Cons 缺點</h3>
-        <ul>
-          <li><b>Steeper Learning Curve:</b> Requires comfort with the command line or terminal for advanced troubleshooting.</li>
-          <li><b>Software Limitations:</b> Major suites like Adobe (Photoshop, Premiere) and Microsoft Office do not run natively.</li>
-          <li><b>Gaming Anti-Cheat Hurdles:</b> While Steam/Proton handles most games well, competitive titles using kernel-level anti-cheat (like Valorant or Fortnite) will not launch.</li>
-          <li><b>Variable Battery Life:</b> Out-of-the-box power management often lags behind Windows on laptops without specific tuning like TLP or auto-cpufreq.</li>
-        </ul>
-      </div>
+    <div class="bullet-grid">
+      <div class="bullet-card pros reveal"><div class="bullet-icon">&lt;/&gt;</div><h4>Free and Open-Source<span>Most distributions (like Ubuntu, Fedora, or Linux Mint) cost nothing and let you view or modify the source code.</span></h4></div>
+      <div class="bullet-card pros reveal d2"><div class="bullet-icon">⚡</div><h4>Resource Efficient<span>Uses less RAM and storage, often booting or restarting twice as fast as Windows on identical hardware.</span></h4></div>
+      <div class="bullet-card pros reveal"><div class="bullet-icon">🛡️</div><h4>Better Security<span>Features a stricter permission model and fewer targeted malware threats.</span></h4></div>
+      <div class="bullet-card pros reveal d2"><div class="bullet-icon">♻️</div><h4>Hardware Longevity<span>Breathes new life into older, underpowered computers.</span></h4></div>
+      <div class="bullet-card cons reveal"><div class="bullet-icon">›_</div><h4>Steeper Learning Curve<span>Requires comfort with the command line or terminal for advanced troubleshooting.</span></h4></div>
+      <div class="bullet-card cons reveal d2"><div class="bullet-icon">⊞</div><h4>Software Limitations<span>Major suites like Adobe (Photoshop, Premiere) and Microsoft Office do not run natively.</span></h4></div>
+      <div class="bullet-card cons reveal"><div class="bullet-icon">🎮</div><h4>Gaming Anti-Cheat Hurdles<span>While Steam/Proton handles most games well, competitive titles using kernel-level anti-cheat (like Valorant or Fortnite) will not launch.</span></h4></div>
+      <div class="bullet-card cons reveal d2"><div class="bullet-icon">🔋</div><h4>Variable Battery Life<span>Out-of-the-box power management often lags behind Windows on laptops without specific tuning like TLP or auto-cpufreq.</span></h4></div>
     </div>
   </div>
 </section>
@@ -571,24 +570,14 @@
       <span class="en">Windows Pros and Cons</span>
       <span class="zh">Windows 的好與壞</span>
     </h2>
-    <div class="proscons-grid">
-      <div class="pc-card pros reveal">
-        <h3>✓ Pros 優點</h3>
-        <ul>
-          <li><b>Extensive Compatibility:</b> Offers out-of-the-box support for almost all commercial hardware peripherals and proprietary software.</li>
-          <li><b>Superior Gaming Support:</b> Delivers day-1 driver updates and absolute compatibility for every major PC game.</li>
-          <li><b>Beginner-Friendly:</b> Provides an intuitive graphical interface that requires no manual configuration for basic tasks.</li>
-          <li><b>Enterprise Integration:</b> Standardized for corporate networks using tools like Active Directory.</li>
-        </ul>
-      </div>
-      <div class="pc-card cons reveal d2">
-        <h3>✗ Cons 缺點</h3>
-        <ul>
-          <li><b>Licensing Cost:</b> Requires paid licenses for professional or enterprise features.</li>
-          <li><b>Resource Heavy:</b> Demands more memory, background processing power, and storage space, which can slow performance down over time.</li>
-          <li><b>Privacy and Control:</b> Features forced system updates and telemetry tracking that you cannot easily disable.</li>
-        </ul>
-      </div>
+    <div class="bullet-grid">
+      <div class="bullet-card pros reveal"><div class="bullet-icon">🔌</div><h4>Extensive Compatibility<span>Offers out-of-the-box support for almost all commercial hardware peripherals and proprietary software.</span></h4></div>
+      <div class="bullet-card pros reveal d2"><div class="bullet-icon">🎮</div><h4>Superior Gaming Support<span>Delivers day-1 driver updates and absolute compatibility for every major PC game.</span></h4></div>
+      <div class="bullet-card pros reveal"><div class="bullet-icon">👤</div><h4>Beginner-Friendly<span>Provides an intuitive graphical interface that requires no manual configuration for basic tasks.</span></h4></div>
+      <div class="bullet-card pros reveal d2"><div class="bullet-icon">🏢</div><h4>Enterprise Integration<span>Standardized for corporate networks using tools like Active Directory.</span></h4></div>
+      <div class="bullet-card cons reveal"><div class="bullet-icon">💲</div><h4>Licensing Cost<span>Requires paid licenses for professional or enterprise features.</span></h4></div>
+      <div class="bullet-card cons reveal d2"><div class="bullet-icon">🐢</div><h4>Resource Heavy<span>Demands more memory, background processing power, and storage space, which can slow performance down over time.</span></h4></div>
+      <div class="bullet-card cons reveal"><div class="bullet-icon">👁️</div><h4>Privacy and Control<span>Features forced system updates and telemetry tracking that you cannot easily disable.</span></h4></div>
     </div>
   </div>
 </section>
