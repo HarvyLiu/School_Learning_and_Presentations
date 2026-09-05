@@ -282,6 +282,18 @@
   .country-card.accent-de .foot{background:rgba(221,0,0,.06);border-color:rgba(221,0,0,.14)}
   .pill-fr{display:inline-flex;align-items:center;gap:8px;background:var(--fg);color:#fff;padding:7px 12px;border-radius:999px;font-size:11px;letter-spacing:.08em;font-family:JetBrains Mono, monospace;margin-top:14px}
   @media(max-width:900px){.country-grid{grid-template-columns:1fr}}
+  /* PROS CONS */
+  .proscons-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+  .pc-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.06);position:relative}
+  .pc-card.pros{border-color:rgba(34,197,94,.18);background:linear-gradient(180deg, #F0FDF4 0%, #fff 70%)}
+  .pc-card.cons{border-color:rgba(239,68,68,.14);background:linear-gradient(180deg, #FEF2F2 0%, #fff 70%)}
+  .pc-card h3{margin:0 0 12px;font-size:16px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .pc-card.pros h3{color:#15803D}
+  .pc-card.cons h3{color:#B91C1C}
+  .pc-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px;line-height:1.75}
+  .pc-card ul li{margin-bottom:8px}
+  .pc-card ul b{color:var(--fg)}
+  @media(max-width:900px){.proscons-grid{grid-template-columns:1fr}}
   /* SUMMARY */
   #summary{background:var(--fg);color:#fff;text-align:center;position:relative}
   #summary:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 500px at 50% 30%, rgba(255,224,51,.14), transparent 60%), radial-gradient(600px 600px at 80% 80%, rgba(34,197,94,.12), transparent 60%)}
@@ -326,6 +338,8 @@
   <a href="#everywhere" title="Everywhere"></a>
   <a href="#origin" title="Origin"></a>
   <a href="#why-me" title="Why I use"></a>
+  <a href="#linux-pros" title="Linux Pros/Cons"></a>
+  <a href="#windows-pros" title="Windows Pros/Cons"></a>
   <a href="#custom" title="Customization"></a>
   <a href="#openvs" title="Open vs Closed"></a>
   <a href="#why-open" title="Why Open"></a>
@@ -473,8 +487,8 @@
           <span class="zh">不單純因為寫程式/學資訊相關內容 — 是拿回主控權</span>
         </h2>
         <p class="detail reveal d2">
-          不是信仰，是<strong>好用</strong>。更輕、更順、更自由。現場直接 demo，比投影片清楚。<br>
-          Not faith — just <strong>lighter, smoother, freer</strong>. Live demo beats slides.
+          <strong>好用</strong>。更輕量、更順、更自由。<br>
+          <strong>lighter, smoother, freer</strong>
         </p>
       </div>
       <div class="reveal" style="margin-top:6px;display:flex;justify-content:center;align-items:start">
@@ -485,14 +499,14 @@
           <div style="margin:0 14px;display:flex;gap:16px;align-items:center;border:1.5px solid #111;padding:14px 16px;background:#fff">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" alt="Windows" style="width:88px;height:auto;flex:none" loading="lazy">
             <div style="text-align:left;font-size:13.5px;line-height:1.6;color:#111">
-              64-bit CPU<br>4GB RAM<br>UEFI, Secure Boot, TPM<br>Internet, Microsoft Account<br>64GB storage<br>Valid license
+              64-bit CPU running at 1 GHz+ with 2+ cores<br>4GB RAM<br>UEFI, Secure Boot, TPM<br>Internet, Microsoft Account<br>64GB storage<br>Valid license ($139.00 USD)
             </div>
           </div>
           <div style="margin:12px 14px 14px;display:flex;gap:18px;align-items:center;border:1.5px solid #111;padding:16px;background:#fff">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux — Linux" style="width:88px;height:auto;flex:none;filter:drop-shadow(0 6px 12px rgba(0,0,0,.1))" loading="lazy">
-            <div style="font-size:18px;font-weight:500;color:#111">Electricity</div>
+            <div style="font-size:18px;font-weight:500;color:#111">Electricity (Optional)</div>
           </div>
-          <figcaption style="padding:8px 10px;background:#F9FAFB;border-top:1px solid #E5E7EB;font-size:10px;color:var(--muted);text-align:center;font-family:JetBrains Mono, monospace">Lightweight in one meme — bigger, readable</figcaption>
+          <figcaption style="padding:8px 10px;background:#F9FAFB;border-top:1px solid #E5E7EB;font-size:10px;color:var(--muted);text-align:center;font-family:JetBrains Mono, monospace">A common meme found in the community</figcaption>
         </figure>
       </div>
     </div>
@@ -515,15 +529,74 @@
     </div>
     <div class="reveal d3" style="margin-top:18px">
       <span class="why-foot">Bonus: 不會被 Windows 更新突襲、病毒與玄學錯誤少很多 <span style="opacity:.6">— no more “update and restart” sabotage</span></span>
-      <p class="detail" style="margin-top:12px;font-size:15px">小字：有學習成本，但掌控感回不去。/ Small: learning curve, but control is worth it.</p>
+  </div>
+</section>
+
+<!-- S5 LINUX PROS & CONS -->
+<section id="linux-pros">
+  <div class="wrap">
+    <div class="eyebrow">Slide 05 / Linux 優缺點</div>
+    <h2 class="reveal">
+      <span class="en">Linux Pros and Cons</span>
+      <span class="zh">Linux 的好與壞</span>
+    </h2>
+    <div class="proscons-grid">
+      <div class="pc-card pros reveal">
+        <h3>✓ Pros 優點</h3>
+        <ul>
+          <li><b>Free and Open-Source:</b> Most distributions (like Ubuntu, Fedora, or Linux Mint) cost nothing and let you view or modify the source code.</li>
+          <li><b>Resource Efficient:</b> Uses less RAM and storage, often booting or restarting twice as fast as Windows on identical hardware.</li>
+          <li><b>Better Security:</b> Features a stricter permission model and fewer targeted malware threats.</li>
+          <li><b>Hardware Longevity:</b> Breathes new life into older, underpowered computers.</li>
+        </ul>
+      </div>
+      <div class="pc-card cons reveal d2">
+        <h3>✗ Cons 缺點</h3>
+        <ul>
+          <li><b>Steeper Learning Curve:</b> Requires comfort with the command line or terminal for advanced troubleshooting.</li>
+          <li><b>Software Limitations:</b> Major suites like Adobe (Photoshop, Premiere) and Microsoft Office do not run natively.</li>
+          <li><b>Gaming Anti-Cheat Hurdles:</b> While Steam/Proton handles most games well, competitive titles using kernel-level anti-cheat (like Valorant or Fortnite) will not launch.</li>
+          <li><b>Variable Battery Life:</b> Out-of-the-box power management often lags behind Windows on laptops without specific tuning like TLP or auto-cpufreq.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- S5 CUSTOMIZATION -->
+<!-- S6 WINDOWS PROS & CONS -->
+<section id="windows-pros">
+  <div class="wrap">
+    <div class="eyebrow">Slide 06 / Windows 優缺點</div>
+    <h2 class="reveal">
+      <span class="en">Windows Pros and Cons</span>
+      <span class="zh">Windows 的好與壞</span>
+    </h2>
+    <div class="proscons-grid">
+      <div class="pc-card pros reveal">
+        <h3>✓ Pros 優點</h3>
+        <ul>
+          <li><b>Extensive Compatibility:</b> Offers out-of-the-box support for almost all commercial hardware peripherals and proprietary software.</li>
+          <li><b>Superior Gaming Support:</b> Delivers day-1 driver updates and absolute compatibility for every major PC game.</li>
+          <li><b>Beginner-Friendly:</b> Provides an intuitive graphical interface that requires no manual configuration for basic tasks.</li>
+          <li><b>Enterprise Integration:</b> Standardized for corporate networks using tools like Active Directory.</li>
+        </ul>
+      </div>
+      <div class="pc-card cons reveal d2">
+        <h3>✗ Cons 缺點</h3>
+        <ul>
+          <li><b>Licensing Cost:</b> Requires paid licenses for professional or enterprise features.</li>
+          <li><b>Resource Heavy:</b> Demands more memory, background processing power, and storage space, which can slow performance down over time.</li>
+          <li><b>Privacy and Control:</b> Features forced system updates and telemetry tracking that you cannot easily disable.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7 CUSTOMIZATION -->
 <section id="custom">
   <div class="wrap">
-    <div class="eyebrow">Slide 05 / 客製化 • Customization</div>
+    <div class="eyebrow">Slide 07 / 客製化 • Customization</div>
     <h2 class="reveal">
       <span class="en">Make it yours.</span>
       <span class="zh">客製化 — 你的電腦，你作主</span>
@@ -550,7 +623,7 @@
 <!-- S6 OPEN VS CLOSED -->
 <section id="openvs">
   <div class="wrap">
-    <div class="eyebrow">Slide 06 / 開源是什麼？</div>
+    <div class="eyebrow">Slide 08 / 開源是什麼？</div>
     <h2 class="reveal">
       <span class="en">Open vs Closed</span>
       <span class="zh">黑盒子 vs 透明盒子</span>
@@ -597,7 +670,7 @@
 <!-- S6 WHY OPEN -->
 <section id="why-open">
   <div class="wrap">
-    <div class="eyebrow">Slide 07 / 為什麼要開源？</div>
+    <div class="eyebrow">Slide 09 / 為什麼要開源？</div>
     <h2 class="reveal">
       <span class="en">Why do people<br>open source?</span>
       <span class="zh">八個理由，繞成一個圈</span>
@@ -645,7 +718,7 @@
 <!-- S8 LICENSES — 授權光譜 -->
 <section id="licenses">
   <div class="wrap">
-    <div class="eyebrow">Slide 08 / 授權 Licenses</div>
+    <div class="eyebrow">Slide 10 / 授權 Licenses</div>
     <h2 class="reveal">
       <span class="en">Licenses make<br>openness enforceable.</span>
 
@@ -716,7 +789,7 @@
 <!-- S9 WHY WORKS -->
 <section id="whyworks">
   <div class="wrap">
-    <div class="eyebrow">Slide 09 / 為什麼這個模式可行？</div>
+    <div class="eyebrow">Slide 11 / 為什麼這個模式可行？</div>
     <h2 class="reveal">
       <span class="en">Why this model<br><i>actually</i> works</span>
       <span class="zh">不是情懷，是工程學</span>
@@ -747,7 +820,7 @@
 <!-- S9 FRANCE — Digital Sovereignty -->
 <section id="france">
   <div class="wrap">
-    <div class="eyebrow">Slide 10 / 法國 — 數位主權 Souveraineté numérique</div>
+    <div class="eyebrow">Slide 12 / 法國 — 數位主權 Souveraineté numérique</div>
     <h2 class="reveal">
       <span class="en">France already<br>runs on Linux.</span>
       <span class="zh">法國：已經用 Linux 跑了 20 年</span>
@@ -787,7 +860,7 @@
 <!-- S10 GERMANY — Digitale Souveränität -->
 <section id="germany">
   <div class="wrap">
-    <div class="eyebrow">Slide 11 / 德國 — 數位主權 Digitale Souveränität</div>
+    <div class="eyebrow">Slide 13 / 德國 — 數位主權 Digitale Souveränität</div>
     <h2 class="reveal">
       <span class="en">Germany is moving<br>its state off Windows.</span>
       <span class="zh">德國：把整個邦搬離 Windows</span>
@@ -829,7 +902,7 @@
 <!-- S12 SUMMARY -->
 <section id="summary">
   <div class="wrap reveal">
-    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 12 / 總結</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 14 / 總結</div>
     <div class="big-ji">助人助己</div>
     <div class="big-en">Help Others,<br>Help Yourself</div>
     <div class="loop">
@@ -854,7 +927,7 @@
 <!-- S13 REFERENCES -->
 <section id="refs">
   <div class="wrap">
-    <div class="eyebrow">Slide 13 / 參考資料 • References</div>
+    <div class="eyebrow">Slide 15 / 參考資料 • References</div>
     <h2 class="reveal">
       <span class="en" style="font-size:clamp(36px,6vw,64px)">Sources & Credits</span>
       <span class="zh">圖片與資料來源 — 教學使用，已標示出處</span>
