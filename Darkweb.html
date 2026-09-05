@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>暗網 — Dark Web｜劉鎬維</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#011419;
+    --bg2:#001e25;
+    --binary:#00d8a8;
+    --bar: linear-gradient(90deg,#00ff88 0%,#00e7b8 55%,#22eaff 100%);
+    --red:#ff2b2b;
+    --red-bar: linear-gradient(90deg,#ff1900 0%,#ff6a00 45%,#ffe600 100%);
+    --red-bar2: linear-gradient(90deg,#ffe600 0%,#ff6a00 55%, #ff1900 100%);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:#fff;overflow:hidden}
+  body{font-family:"Noto Sans TC","PingFang TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  /* ===== FIXED FRAME — now behind slides so it never blocks text ===== */
+  .frame{
+    position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden;
+    transition:background .6s ease;
+  }
+  .marquee{
+    position:absolute;left:0;right:0;overflow:hidden;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:700;
+    font-size:clamp(15px,1.6vw,22px);letter-spacing:.05em;line-height:1;
+    color:var(--binary);opacity:.96;
+    transition:color .6s ease,opacity .6s ease;
+    height:28px;display:flex;align-items:center;
+  }
+  .marquee--top{top:22px;}
+  .marquee--bottom{bottom:62px;}
+  .track{
+    display:flex;align-items:center;gap:2.8rem;width:max-content;
+    will-change:transform;
+    animation:marquee 85s linear infinite;
+  }
+  .track--slow{animation-duration:95s}
+  .track--fast{animation-duration:80s}
+  .track span{flex:none;display:inline-block}
+  @keyframes marquee{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+  .bar{
+    position:absolute;left:28px;right:28px;height:16px;border-radius:999px;
+    background:var(--bar);box-shadow:0 8px 24px rgba(0,255,170,.18);
+    transition:background .6s ease,opacity .6s ease,transform .6s ease;
+  }
+  .bar--bottom{bottom:20px}
+  .bar--top{top:18px;opacity:0;transform:translateY(-8px);background:var(--red-bar)}
+  .corner{position:absolute;display:flex;align-items:center;gap:8px;transition:filter .6s ease,opacity .6s ease}
+  .corner--tl{left:28px;top:88px}
+  .corner--br{right:28px;bottom:98px}
+  .sq{border-radius:5px;transform:rotate(18deg);box-shadow:0 8px 22px rgba(0,0,0,.4)}
+  .corner--tl .sq:nth-child(1){width:92px;height:92px;background:linear-gradient(135deg,#15ffbf 0%,#0ad9c8 100%);opacity:.97}
+  .corner--tl .sq:nth-child(2){width:68px;height:68px;background:linear-gradient(135deg,#0fc7a8 0%,#0a9f8a 100%);opacity:.92;margin-left:-16px;margin-top:-16px}
+  .corner--tl .sq:nth-child(3){width:42px;height:42px;background:linear-gradient(135deg,#0aa68e 0%,#07695a 100%);opacity:.88;margin-left:-14px;margin-top:-26px}
+  .corner--br .sq:nth-child(1){width:42px;height:42px;background:linear-gradient(135deg,#07695a 0%,#0aa68e 100%);opacity:.88;margin-right:-14px;margin-bottom:-18px}
+  .corner--br .sq:nth-child(2){width:68px;height:68px;background:linear-gradient(135deg,#0a9f8a 0%,#0fc7a8 100%);opacity:.92;margin-right:-16px;margin-bottom:0}
+  .corner--br .sq:nth-child(3){width:92px;height:92px;background:linear-gradient(135deg,#15ffbf 0%,#0ad9c8 100%);opacity:.97;margin-top:-14px}
+  /* disclaimer mode */
+  body.disclaimer-mode{--binary:#ff2e2e}
+  body.disclaimer-mode .bar--bottom{background:var(--red-bar2);box-shadow:0 8px 24px rgba(255,60,0,.28)}
+  body.disclaimer-mode .bar--top{opacity:1;transform:translateY(0)}
+  body.disclaimer-mode .marquee{color:#ff2e2e;text-shadow:0 0 16px rgba(255,40,40,.35)}
+  body.disclaimer-mode .sq{filter:hue-rotate(-160deg) saturate(1.7) brightness(.98)}
+  body.disclaimer-mode .frame{background:radial-gradient(900px 600px at 50% 30%,rgba(255,30,30,.08),transparent 70%)}
+
+  /* ===== HORIZONTAL VIEWPORT — only middle scrolls ===== */
+  .h-viewport{
+    position:relative;z-index:5;
+    width:100vw;height:100vh;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .h-viewport::-webkit-scrollbar{display:none}
+  .h-track{display:flex;height:100vh;width:max-content}
+  .slide{
+    width:100vw;height:100vh;flex:0 0 100vw;
+    scroll-snap-align:center;scroll-snap-stop:always;
+    position:relative;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;
+    padding:96px 48px 96px;
+    overflow:hidden;
+    opacity:.18;filter:blur(6px);transform:scale(.96);
+    transition:opacity .7s cubic-bezier(.16,1,.3,1),filter .7s ease,transform .7s cubic-bezier(.16,1,.3,1);
+  }
+  .slide.is-active{opacity:1;filter:blur(0);transform:scale(1)}
+  .slide.is-near{opacity:.58;filter:blur(1px);transform:scale(.985)}
+  .slide-inner{
+    width:min(1180px,92vw);height:100%;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;z-index:6;
+  }
+  .slide-head{
+    position:absolute;top:64px;left:68px;z-index:10;
+    font-family:"Noto Sans TC",sans-serif;font-weight:900;
+    font-size:clamp(28px,4.2vw,56px);letter-spacing:-.02em;line-height:1;
+    color:#fff;text-align:left;
+    background:rgba(1,20,25,.88);padding:10px 18px 12px;border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);
+    box-shadow:0 8px 24px rgba(0,0,0,.35);
+    pointer-events:none;
+  }
+  /* large typography — no small text */
+  .zh-big{font-weight:900;font-size:clamp(44px,7vw,88px);line-height:.92;letter-spacing:-.03em}
+  .zh-med{font-weight:900;font-size:clamp(32px,5vw,64px);line-height:1.05}
+  .en-huge{font-family:"JetBrains Mono",monospace;font-weight:800;font-size:clamp(40px,6.5vw,84px);line-height:.95;letter-spacing:-.02em}
+  .en-big{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:clamp(28px,4vw,48px)}
+  .sub{margin-top:18px;font-size:clamp(18px,1.9vw,24px);line-height:1.65;color:#cfe8e2;max-width:900px;font-weight:500}
+  .sub strong{color:#fff}
+  /* COVER */
+  #s-cover .slide-inner{align-items:flex-start;text-align:left;justify-content:center}
+  #s-cover .cover-title{font-size:clamp(78px,14vw,160px);font-weight:900;line-height:.85;letter-spacing:-.04em;margin:0}
+  #s-cover .cover-sub{margin-top:18px;font-size:clamp(18px,2vw,24px);line-height:1.5;color:#bfe0da}
+  #s-cover .cover-sub b{color:#fff;font-weight:800}
+  /* DISCLAIMER */
+  #s-disclaimer .disclaimer-title{
+    font-family:"JetBrains Mono",monospace;font-weight:900;
+    font-size:clamp(56px,10vw,112px);letter-spacing:.02em;line-height:.9;color:#ff2b2b;
+  }
+  #s-disclaimer .disclaimer-text{
+    margin-top:28px;max-width:1060px;
+    font-family:"JetBrains Mono",monospace;font-weight:600;
+    font-size:clamp(18px,2.1vw,26px);line-height:1.7;color:#ff3535;
+    text-align:left;padding-left:56px;
+  }
+  @media(max-width:700px){#s-disclaimer .disclaimer-text{padding-left:0;font-size:18px}}
+  /* ICEBERG — exact image */
+  .iceberg-img-wrap{
+    width:min(860px,94vw);margin:18px auto 0;
+    border-radius:18px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.45);
+    border:1px solid rgba(255,255,255,.12);background:#0b2f2e;
+  }
+  .iceberg-img-wrap img{width:100%;height:auto;display:block}
+  .iceberg-fallback{
+    display:none;width:min(860px,94vw);margin:18px auto 0;
+    background:linear-gradient(180deg,#d6fff5 0%,#a8e8dc 22%,#6ecdc0 42%,#0a4a4a 62%,#001f1e 100%);
+    border-radius:18px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.45);
+    text-align:center;padding:0;color:#002222;
+  }
+  .ice-top{padding:22px 18px 10px;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0))}
+  .ice-top-label{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:14px;letter-spacing:.28em;opacity:.6}
+  .ice-top-title{font-weight:900;font-size:clamp(22px,3vw,34px);letter-spacing:-.02em;margin-top:4px}
+  .ice-body{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:10px;align-items:center;padding:14px 18px 0}
+  .ice-mountain{position:relative;height:220px;display:grid;place-items:center}
+  .ice-mountain::before{
+    content:"";position:absolute;inset:8px 18px 8px 18px;
+    background:linear-gradient(180deg,#fff 0%,#eafff8 38%,#c8f0e8 100%);
+    clip-path:polygon(50% 0,78% 22%,96% 54%,100% 100%,0 100%,10% 58%,28% 24%);
+  }
+  .ice-labels{position:relative;z-index:2;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center;height:100%;padding-top:6px}
+  .ice-labels .surf{font-weight:900;font-size:18px;line-height:1;color:#001a1a}
+  .ice-labels .deep{font-weight:900;font-size:16px;color:#0a3a38;margin-top:38px}
+  .ice-labels .dark{font-weight:900;font-size:14px;color:#dffcf6;opacity:.95;margin-top:10px}
+  .ice-right{font-family:"JetBrains Mono",monospace;text-align:right;display:flex;flex-direction:column;gap:18px;align-items:flex-end;font-size:11px;font-weight:600;line-height:1.4}
+  .ice-right span.pct{font-size:38px;font-weight:200;line-height:1}
+  .ice-row{margin-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 16px;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;border-top:1px solid rgba(255,255,255,.35)}
+  .ice-row.deep{background:#0b4d4a;color:#eafff8}
+  .ice-row.dark{background:#001414;color:#7fffe6}
+  .ice-row .pct{font-size:32px;font-weight:200}
+  @media(max-width:720px){
+    .ice-body{grid-template-columns:1fr;gap:6px}
+    .ice-mountain{height:200px;order:-1}
+  }
+  /* FLOW diagrams */
+  .flow{
+    display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;
+    font-family:"JetBrains Mono",monospace;font-weight:800;
+    font-size:clamp(22px,3vw,42px);margin-top:20px;
+  }
+  .flow .node{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+    padding:16px 24px;border-radius:18px;backdrop-filter:blur(8px);
+    min-width:140px;text-align:center;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+  }
+  .flow .arrow{font-size:38px;opacity:.55;font-weight:300}
+  /* Tor nodes — FIXED layout */
+  .tor-nodes{
+    width:min(980px,96vw);margin:18px auto 0;
+    font-family:"JetBrains Mono",monospace;
+    display:flex;flex-direction:column;gap:14px;align-items:center;
+  }
+  .nodes-top{
+    width:100%;display:flex;justify-content:space-between;gap:24px;
+    font-size:14px;font-weight:700;opacity:.95;
+    padding:0 8vw;
+  }
+  .nodes-center{
+    width:100%;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+    gap:12px;align-items:center;text-align:center;
+    margin-top:6px;
+  }
+  .nodes-center .big{font-size:clamp(28px,4.5vw,52px);font-weight:900;letter-spacing:-.02em}
+  .nodes-center .mid-label{
+    font-size:14px;font-weight:700;line-height:1.35;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+    padding:10px 14px;border-radius:14px;white-space:nowrap;
+  }
+  .nodes-center .arrow{font-size:32px;opacity:.55}
+  .nodes-bottom{
+    font-size:12px;opacity:.7;margin-top:4px;
+  }
+  @media(max-width:700px){
+    .nodes-top{padding:0 2vw;font-size:12px}
+    .nodes-center{grid-template-columns:1fr;gap:8px}
+    .nodes-center .arrow{display:none}
+  }
+  /* Tor logo — official */
+  .tor-logo{
+    display:flex;align-items:center;justify-content:center;
+    width:min(820px,92vw);margin:0 auto;
+  }
+  .tor-logo img{
+    width:100%;height:auto;max-width:720px;max-height:320px;object-fit:contain;
+    filter:drop-shadow(0 16px 30px rgba(0,0,0,.4));
+    background:#fff;padding:22px 28px;border-radius:16px;
+  }
+  /* Video — fixed embed */
+  .video-wrap{
+    width:min(860px,92vw);aspect-ratio:16/9;background:#000;border-radius:18px;overflow:hidden;
+    box-shadow:0 24px 70px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.12);
+    position:relative;margin-top:18px;
+  }
+  .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video-fallback{
+    position:absolute;inset:0;display:none;place-items:center;background:rgba(0,0,0,.88);color:#fff;text-align:center;padding:24px;
+  }
+  /* White detail card */
+  .white-card{
+    width:min(900px,92vw);background:#fff;color:#0b1e1c;border-radius:18px;
+    padding:28px 28px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);
+    text-align:left;line-height:1.7;font-size:clamp(16px,1.6vw,18px);
+  }
+  .white-card h3{margin:0 0 12px;font-size:clamp(18px,2vw,22px);font-weight:800}
+  .white-card ul{margin:12px 0 0;padding-left:20px}
+  .white-card li{margin:7px 0}
+  .white-card code{background:#eef2f1;padding:2px 8px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:.9em}
+  /* Nodes text — FIXED */
+  .nodes-text{
+    width:min(900px,92vw);text-align:left;
+    font-weight:900;line-height:1.45;
+    font-size:clamp(26px,3.6vw,42px);
+  }
+  .nodes-text p{margin:0 0 10px}
+  .nodes-text .en-line{
+    font-family:"JetBrains Mono",monospace;font-weight:700;
+    font-size:clamp(18px,2.2vw,28px);letter-spacing:.04em;margin-top:14px;
+  }
+  /* Icons */
+  .icon-circle{
+    width:min(220px,42vw);height:min(220px,42vw);border-radius:36px;
+    background:#fff;display:grid;place-items:center;margin-top:18px;
+    box-shadow:0 24px 60px rgba(0,0,0,.35);position:relative;overflow:hidden;
+    padding:22px;
+  }
+  .icon-circle img{width:100%;height:100%;object-fit:contain}
+  .tails-row{
+    display:flex;align-items:center;gap:22px;justify-content:center;
+    font-size:clamp(56px,9vw,108px);font-weight:900;letter-spacing:-.03em;margin-top:8px;
+  }
+  .tails-row img{height:clamp(56px,9vw,108px);width:auto;object-fit:contain}
+  /* controls */
+  .controls{
+    position:fixed;left:50%;bottom:22px;transform:translateX(-50%);
+    z-index:30;display:flex;align-items:center;gap:12px;
+    background:rgba(0,20,25,.72);backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.12);padding:8px 14px;border-radius:999px;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+  }
+  .controls button{
+    width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.08);color:#fff;display:grid;place-items:center;
+    cursor:pointer;font-size:18px;transition:.2s;
+  }
+  .controls button:hover{background:#fff;color:#011419;transform:scale(1.05)}
+  #dots{display:flex;gap:7px;align-items:center;padding:0 6px}
+  #dots a{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.32);display:block;transition:.3s}
+  #dots a.active{background:#fff;width:22px;border-radius:999px}
+  #counter{font-family:"JetBrains Mono",monospace;font-size:12px;opacity:.7;min-width:62px;text-align:center}
+  .hint{
+    position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+    background:rgba(0,0,0,.62);color:#fff;padding:10px 16px;border-radius:999px;
+    font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.08em;
+    z-index:25;pointer-events:none;opacity:0;transition:.4s;
+  }
+  .hint.show{opacity:1}
+  @media(max-width:900px){
+    .slide{padding:96px 22px 96px}
+    .slide-head{left:22px;top:52px;font-size:24px;padding:8px 14px}
+    .corner--tl{left:12px;top:52px}
+    .corner--br{right:12px;bottom:88px}
+    .corner--tl .sq:nth-child(1), .corner--br .sq:nth-child(3){width:64px;height:64px}
+    .corner--tl .sq:nth-child(2), .corner--br .sq:nth-child(2){width:46px;height:46px}
+    .corner--tl .sq:nth-child(3), .corner--br .sq:nth-child(1){width:28px;height:28px}
+    .marquee{font-size:13px}
+    .marquee--top{top:16px}
+    .marquee--bottom{bottom:54px}
+    .bar{left:16px;right:16px;height:12px}
+    .controls{bottom:18px;padding:6px 10px}
+    .tor-logo img{padding:16px 18px}
+  }
+</style>
+</head>
+<body>
+  <div class="frame" id="frame" aria-hidden="true">
+    <div class="marquee marquee--top"><div class="track track--fast" id="trackTop"></div></div>
+    <div class="marquee marquee--bottom"><div class="track track--slow" id="trackBottom"></div></div>
+    <div class="bar bar--top"></div>
+    <div class="bar bar--bottom"></div>
+    <div class="corner corner--tl"><div class="sq"></div><div class="sq"></div><div class="sq"></div></div>
+    <div class="corner corner--br"><div class="sq"></div><div class="sq"></div><div class="sq"></div></div>
+  </div>
+  <div class="hint" id="hint">← 左右滑動 / 滾輪橫向 →</div>
+  <div class="h-viewport" id="viewport">
+    <div class="h-track" id="hTrack">
+      <section class="slide" id="s-cover">
+        <div class="slide-inner">
+          <h1 class="cover-title">暗網</h1>
+          <p class="cover-sub">Introduced to you by<br><b>教學長/美宣: 劉鎬維</b></p>
+        </div>
+      </section>
+      <section class="slide" id="s-disclaimer">
+        <div class="slide-inner" style="align-items:flex-start;text-align:left">
+          <div class="disclaimer-title">DISCLAIMER</div>
+          <div class="disclaimer-text">
+            This presentation is strictly for educational purposes. The presenter (I, 劉鎬維) assumes no responsibility or liability for any actions taken by participants, or for any risks and consequences associated with navigating the dark web. All activities are undertaken at your own risk.
+          </div>
+        </div>
+      </section>
+      <section class="slide" id="s-what">
+        <div class="slide-head">甚麼是暗網</div>
+        <div class="slide-inner" style="margin-top:24px">
+          <div class="iceberg-img-wrap">
+            <img src="https://c7.alamy.com/comp/2K3WCA5/exploring-the-hidden-internet-iceberg-concept-is-3-elements-analyze-4-is-the-clearest-surface-web-90-is-deep-web-can-not-search-and-dark-web-is-6-2K3WCA5.jpg" alt="EXPLORING THE HIDDEN INTERNET iceberg — exact image from PDF: 4% Surface Web / 90% Deep Web / 6% Dark Web (Alamy 2K3WCA5 / Adobe Stock 523749678 by Whale Design)" loading="lazy" onerror="this.onerror=null;this.style.display='none';document.getElementById('iceberg-fallback').style.display='block'">
+          </div>
+          <div class="iceberg-fallback" id="iceberg-fallback">
+            <div class="ice-top"><div class="ice-top-label">EXPLORING</div><div class="ice-top-title">THE HIDDEN INTERNET</div></div>
+            <div class="ice-body"><div class="ice-labels"><div class="surf">SURFACE<br>WEB</div><div class="deep">DEEP<br>WEB</div><div class="dark">DARK<br>WEB</div></div></div>
+            <div class="ice-row deep"><span>LEGAL DOCUMENTS • GOVERNMENT RECORDS</span><span class="pct">90%</span></div>
+            <div class="ice-row dark"><span>DRUGS • TOR • ILLEGAL INFO</span><span class="pct">6%</span></div>
+          </div>
+          <div class="sub" style="font-size:13px;opacity:.6;margin-top:8px">Exact image: Alamy 2K3WCA5 / Adobe Stock 523749678 — Whale Design</div>
+        </div>
+      </section>
+      <section class="slide" id="s-find">
+        <div class="slide-head">可以找到甚麼</div>
+        <div class="slide-inner">
+          <div class="en-huge">Everything</div>
+          <div class="sub">從學術論文到非法交易，暗網上幾乎什麼都能找到 — 這就是它令人好奇也令人畏懼的原因。</div>
+        </div>
+      </section>
+      <section class="slide" id="s-purpose">
+        <div class="slide-head">用途</div>
+        <div class="slide-inner">
+          <div class="en-huge">Anything</div>
+          <div class="zh-med" style="margin-top:10px;letter-spacing:.18em">隱私　匿名</div>
+        </div>
+      </section>
+      <section class="slide" id="s-why">
+        <div class="slide-head">為甚麼想上</div>
+        <div class="slide-inner">
+          <div class="zh-big">隱私　匿名</div>
+        </div>
+      </section>
+      <section class="slide" id="s-tor">
+        <div class="slide-head">運作原理</div>
+        <div class="slide-inner">
+          <div class="tor-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Tor-logo-2011-flat.svg" alt="Tor Project official logo — purple Tor with onion" loading="lazy" onerror="this.style.background='#fff';this.style.padding='12px'">
+          </div>
+          <div class="sub" style="margin-top:12px">The Onion Router — Official</div>
+        </div>
+      </section>
+      <section class="slide" id="s-onion">
+        <div class="slide-head">運作原理</div>
+        <div class="slide-inner">
+          <div class="en-huge">Onion Routing</div>
+        </div>
+      </section>
+      <section class="slide" id="s-standard">
+        <div class="slide-head">運作原理</div>
+        <div class="slide-inner">
+          <div class="en-big" style="opacity:.9">Standard:</div>
+          <div class="flow">
+            <div class="node">Device</div><div class="arrow">→</div><div class="node">ISP</div><div class="arrow">→</div><div class="node">Server</div>
+          </div>
+          <div class="sub">一般上網：ISP 看得見你連去哪，Server 看得見你是誰</div>
+        </div>
+      </section>
+      <section class="slide" id="s-tnodes">
+        <div class="slide-head">運作原理</div>
+        <div class="slide-inner">
+          <div class="tor-nodes">
+            <div class="nodes-top">
+              <span>Node 1: The Guard Node</span>
+              <span>Node 3: The Exit Node</span>
+            </div>
+            <div class="nodes-center">
+              <div class="big">Device</div>
+              <div class="arrow">→</div>
+              <div class="mid-label">Node 2: The<br>Middle Node</div>
+              <div class="arrow">→</div>
+              <div class="big">Server</div>
+            </div>
+            <div class="sub" style="margin-top:10px">三個節點接力，沒人能同時知道「你是誰」與「你要去哪」</div>
+          </div>
+        </div>
+      </section>
+      <section class="slide" id="s-video">
+        <div class="slide-head">運作原理</div>
+        <div class="slide-inner">
+          <div class="video-wrap" id="videoWrap">
+            <iframe id="ytFrame" src="https://www.youtube-nocookie.com/embed/SlnxVO-I2ZQ?rel=0&modestbranding=1&playsinline=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <div class="video-fallback" id="videoFallback">
+              <div>
+                <div style="font-weight:800;font-size:20px">YouTube — Video blocked</div>
+                <p style="opacity:.8;margin:10px 0 16px">This video cannot be embedded. Please watch directly on YouTube.</p>
+                <a href="https://www.youtube.com/watch?v=SlnxVO-I2ZQ" target="_blank" rel="noopener" style="display:inline-block;background:#fff;color:#000;padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700">Watch on YouTube →</a>
+              </div>
+            </div>
+          </div>
+          <div class="sub" style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:13px;opacity:.7">Source: youtube.com/watch?v=SlnxVO-I2ZQ</div>
+        </div>
+      </section>
+      <section class="slide" id="s-multi">
+        <div class="slide-head">運作原理</div>
+        <div class="slide-inner">
+          <div class="white-card">
+            <h3>1. The Multi-Layered Encryption (Why it's called an "Onion")</h3>
+            <p>When your device sends the data, it doesn't just send it raw. Your device encrypts the data <b>three times</b> before it even leaves your computer.</p>
+            <ul>
+              <li>Your device wraps the data in Layer 3 (for Node 3), then Layer 2 (for Node 2), then Layer 1 (for Node 1).</li>
+              <li><b>Node 1</b> peels off Layer 1. It sees the instructions to send it to Node 2. It can't see anything else.</li>
+              <li><b>Node 2</b> peels off Layer 2. It sees the instructions to send it to Node 3.</li>
+              <li><b>Node 3</b> peels off Layer 3. It finally sees the raw destination request (e.g., "Go to BBC.com" or a <code>.onion</code> site) and forwards it to the target server.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="slide" id="s-nodes">
+        <div class="slide-head">Nodes</div>
+        <div class="slide-inner" style="align-items:center">
+          <div class="nodes-text">
+            <p>由多人建立起來的多個“伺服器”</p>
+            <p>像是轉運站的概念，目的是讓人<br>不好追蹤</p>
+            <p class="en-line">沒有 search engines</p>
+          </div>
+        </div>
+      </section>
+      <section class="slide" id="s-how">
+        <div class="slide-head">怎麼上</div>
+        <div class="slide-inner">
+          <div class="icon-circle">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/4b/Tor_Browser_icon.svg" alt="Tor Browser official icon" loading="lazy" onerror="this.onerror=null;this.src='https://www.torproject.org/static/images/tor-browser/logo.png';this.style.objectFit='contain'">
+          </div>
+          <div class="sub" style="margin-top:12px">Tor Browser — official</div>
+        </div>
+      </section>
+      <section class="slide" id="s-tails">
+        <div class="slide-head">補充</div>
+        <div class="slide-inner">
+          <div class="tails-row">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tails_logo.svg" alt="Tails OS official logo" loading="lazy" onerror="this.onerror=null;this.src='https://tails.net/lib/logo.svg'">
+            <span>Tails</span>
+          </div>
+        </div>
+      </section>
+      <section class="slide" id="s-onion2">
+        <div class="slide-inner">
+          <div class="zh-med" style="line-height:1.35;text-align:center">
+            .onion 比較安全　比較不會有<br>前面 exit node 的問題
+          </div>
+          <div class="sub">.onion 流量留在 Tor 網內，不經 Exit Node 大幅降低被監聽風險</div>
+        </div>
+      </section>
+      <section class="slide" id="s-honey">
+        <div class="slide-inner">
+          <div class="en-huge" style="font-size:clamp(32px,5vw,56px)">Honeypots:</div>
+          <div class="zh-med" style="margin-top:14px">政府 / 或白 / 灰帽駭客設計給罪犯的釣魚網站</div>
+        </div>
+      </section>
+      <section class="slide" id="s-refs">
+        <div class="slide-inner" style="align-items:flex-start;text-align:left;max-width:1000px">
+          <div class="zh-med" style="font-size:clamp(28px,4vw,44px)">圖片來源 / References</div>
+          <div style="margin-top:18px;width:100%;height:2px;background:linear-gradient(90deg,#00ff88,#22eaff);border-radius:999px;opacity:.9"></div>
+          <ul style="margin-top:18px;list-style:none;padding:0;font-family:'JetBrains Mono',monospace;font-size:clamp(11px,1.3vw,13px);line-height:1.7;color:#cfe8e2;text-align:left;word-break:break-all">
+            <li><b style="color:#fff">[1] Iceberg — EXPLORING THE HIDDEN INTERNET (4% Surface / 90% Deep / 6% Dark Web) — EXACT IMAGE FROM PDF</b><br>Whale Design — Alamy 2K3WCA5 / Adobe Stock #523749678 / iStock #1415193319 — “Exploring the Hidden Internet iceberg concept is 3 elements analyze 4% is the clearest surface web, 90% is deep web can not search and dark web is 6% encrypted TOR data network”<br><a href="https://www.alamy.com/exploring-the-hidden-internet-iceberg-concept-is-3-elements-analyze-4-is-the-clearest-surface-web-90-is-deep-web-can-not-search-and-dark-web-is-6-image484292765.html" target="_blank" rel="noopener" style="color:#7fffe6">alamy.com — 2K3WCA5</a> · <a href="https://stock.adobe.com/images/exploring-the-hidden-internet-iceberg-concept-is-3-elements-analyze-4-is-the-clearest-surface-web-90-is-deep-web-can-not-search-and-dark-web-is-6-encrypted-tor-data-network-anonymous-or-hidden/523749678" target="_blank" rel="noopener" style="color:#7fffe6">stock.adobe.com/523749678</a> · <a href="https://www.istockphoto.com/vector/exploring-the-hidden-internet-iceberg-concept-is-3-elements-analyze-4-is-the-gm1415193319-463652394" target="_blank" rel="noopener" style="color:#7fffe6">istockphoto.com/gm1415193319</a><br>Direct preview (used): <a href="https://c7.alamy.com/comp/2K3WCA5/exploring-the-hidden-internet-iceberg-concept-is-3-elements-analyze-4-is-the-clearest-surface-web-90-is-deep-web-can-not-search-and-dark-web-is-6-2K3WCA5.jpg" target="_blank" rel="noopener" style="color:#7fffe6">c7.alamy.com/comp/2K3WCA5/…2K3WCA5.jpg</a></li>
+            <li style="margin-top:10px"><b style="color:#fff">[2] Tor Project logo (official, “運作原理” slide)</b><br><a href="https://upload.wikimedia.org/wikipedia/commons/1/15/Tor-logo-2011-flat.svg" target="_blank" rel="noopener" style="color:#7fffe6">upload.wikimedia.org/wikipedia/commons/1/15/Tor-logo-2011-flat.svg</a> — Source: media.torproject.org — CC BY 3.0 US · <a href="https://styleguide.torproject.org/brand-assets/" target="_blank" rel="noopener" style="color:#7fffe6">styleguide.torproject.org/brand-assets/</a></li>
+            <li style="margin-top:10px"><b style="color:#fff">[3] Tor Browser icon (“怎麼上” slide)</b><br><a href="https://upload.wikimedia.org/wikipedia/commons/8/4b/Tor_Browser_icon.svg" target="_blank" rel="noopener" style="color:#7fffe6">upload.wikimedia.org/wikipedia/commons/8/4b/Tor_Browser_icon.svg</a> · <a href="https://www.torproject.org/static/images/tor-browser/" target="_blank" rel="noopener" style="color:#7fffe6">torproject.org/static/images/tor-browser/</a></li>
+            <li style="margin-top:10px"><b style="color:#fff">[4] Tails OS logo (“補充” Tails slide)</b><br><a href="https://upload.wikimedia.org/wikipedia/commons/a/af/Tails_logo.svg" target="_blank" rel="noopener" style="color:#7fffe6">upload.wikimedia.org/wikipedia/commons/a/af/Tails_logo.svg</a> — <a href="https://tails.net/contribute/how/promote/logo/" target="_blank" rel="noopener" style="color:#7fffe6">tails.net/contribute/how/promote/logo/</a> — GPL-3.0</li>
+            <li style="margin-top:10px"><b style="color:#fff">[5] Video — Mr Robot S01 E01 Hack Review</b><br><a href="https://www.youtube.com/watch?v=SlnxVO-I2ZQ" target="_blank" rel="noopener" style="color:#7fffe6">youtube.com/watch?v=SlnxVO-I2ZQ</a> — embed: youtube-nocookie.com/embed/SlnxVO-I2ZQ</li>
+            <li style="margin-top:10px"><b style="color:#fff">[6] Decorative binary / squares / bar</b><br>Original PDF palette — binary strings 11100110… / 11101000… from PDF</li>
+          </ul>
+          <div style="margin-top:12px;font-size:11px;opacity:.5;font-family:'JetBrains Mono',monospace">All third-party images/logos remain property of their respective owners, used for educational identification only.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <nav class="controls" aria-label="slides">
+    <button id="prev" aria-label="Previous">‹</button>
+    <div id="dots"></div>
+    <button id="next" aria-label="Next">›</button>
+    <span id="counter">01 / 18</span>
+  </nav>
+<script>
+const topStr = "11100110 10011101 10111110 11100101 10110001 10110001";
+const bottomStr = "11101000 10110011 10000111 11100111 10100000 10010100";
+function fill(id, str){
+  const el=document.getElementById(id);
+  const reps=14;
+  let html="";
+  for(let i=0;i<reps;i++) html+=`<span>${str}</span>`;
+  el.innerHTML = html + html;
+}
+fill('trackTop', topStr);
+fill('trackBottom', bottomStr);
+const viewport=document.getElementById('viewport');
+const slides=[...document.querySelectorAll('.slide')];
+const dots=document.getElementById('dots');
+const counter=document.getElementById('counter');
+const prevBtn=document.getElementById('prev');
+const nextBtn=document.getElementById('next');
+let cur=0;
+slides.forEach((_,i)=>{
+  const a=document.createElement('a');
+  a.href="#";
+  a.addEventListener('click',e=>{e.preventDefault();go(i)});
+  dots.appendChild(a);
+});
+const dotEls=[...dots.children];
+function updateActive(){
+  const vw=window.innerWidth;
+  const scroll=viewport.scrollLeft;
+  let best=0,bestDist=Infinity;
+  slides.forEach((s,i)=>{
+    const center=i*vw + vw/2;
+    const dist=Math.abs(scroll + vw/2 - center);
+    if(dist<bestDist){bestDist=dist;best=i}
+  });
+  cur=best;
+  slides.forEach((s,i)=>{
+    const dist=Math.abs(i-cur);
+    s.classList.toggle('is-active',i===cur);
+    s.classList.toggle('is-near',dist===1);
+  });
+  dotEls.forEach((d,i)=>d.classList.toggle('active',i===cur));
+  counter.textContent = String(cur+1).padStart(2,'0')+" / "+String(slides.length).padStart(2,'0');
+  document.body.classList.toggle('disclaimer-mode', slides[cur].id==='s-disclaimer');
+}
+function go(i){
+  i=Math.max(0,Math.min(slides.length-1,i));
+  viewport.scrollTo({left:i*window.innerWidth,behavior:'smooth'});
+}
+prevBtn.addEventListener('click',()=>go(cur-1));
+nextBtn.addEventListener('click',()=>go(cur+1));
+viewport.addEventListener('wheel',e=>{
+  if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+    e.preventDefault();
+    viewport.scrollLeft += e.deltaY;
+  }
+},{passive:false});
+let ticking=false;
+viewport.addEventListener('scroll',()=>{
+  if(ticking) return;
+  ticking=true;
+  requestAnimationFrame(()=>{updateActive();ticking=false;});
+});
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();go(cur+1)}
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}
+});
+window.addEventListener('resize',()=>{viewport.scrollLeft=cur*window.innerWidth;});
+let hint=document.getElementById('hint');
+setTimeout(()=>{hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),2200);},600);
+updateActive();
+document.body.addEventListener('wheel',e=>{
+  if(viewport.scrollWidth > viewport.clientWidth) e.preventDefault();
+},{passive:false});
+// youtube fallback check
+setTimeout(()=>{
+  const fr=document.getElementById('ytFrame');
+  if(!fr) return;
+  // if iframe fails to load, will show fallback via onerror not available, so check after 3s if still error image
+  fr.addEventListener('error',()=>{
+    document.getElementById('videoFallback').style.display='grid';
+  });
+},500);
+</script>
+</body>
+</html>
