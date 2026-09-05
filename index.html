@@ -282,6 +282,20 @@
   .country-card.accent-de .foot{background:rgba(221,0,0,.06);border-color:rgba(221,0,0,.14)}
   .pill-fr{display:inline-flex;align-items:center;gap:8px;background:var(--fg);color:#fff;padding:7px 12px;border-radius:999px;font-size:11px;letter-spacing:.08em;font-family:JetBrains Mono, monospace;margin-top:14px}
   @media(max-width:900px){.country-grid{grid-template-columns:1fr}}
+  /* MONETIZE — open source can make money */
+  #monetize{background:var(--bg);position:relative}
+  #monetize:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 80% 20%, rgba(124,58,237,.06), transparent 60%), radial-gradient(500px 400px at 10% 90%, rgba(34,197,94,.06), transparent 60%);pointer-events:none}
+  .money-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px}
+  .money-card{display:block;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.06);text-decoration:none;color:inherit;transition:.2s}
+  .money-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(15,17,21,.12)}
+  .money-card .money-head{display:flex;gap:14px;align-items:center}
+  .money-card img{width:48px;height:48px;object-fit:contain;border-radius:10px;background:#fff;border:1px solid var(--line);padding:6px;flex:none}
+  .money-card h3{margin:0;font-size:16px;letter-spacing:-.01em}
+  .money-card h3 small{display:block;font-size:11px;color:var(--muted);font-weight:400;font-family:JetBrains Mono, monospace;margin-top:2px}
+  .money-card p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.65}
+  .money-card .tag{margin-top:10px;display:inline-flex;gap:6px;flex-wrap:wrap}
+  .money-card .tag span{font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--bg2);border:1px solid var(--line);padding:3px 7px;border-radius:999px;font-family:JetBrains Mono, monospace}
+  @media(max-width:900px){.money-grid{grid-template-columns:1fr}}
   /* PROS CONS — each bullet as card */
   .proscons-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
   .pc-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.06);position:relative}
@@ -357,6 +371,7 @@
   <a href="#whyworks" title="Why it works"></a>
   <a href="#france" title="France"></a>
   <a href="#germany" title="Germany"></a>
+  <a href="#monetize" title="Monetize"></a>
   <a href="#summary" title="Summary"></a>
   <a href="#refs" title="References"></a>
 </nav>
@@ -822,10 +837,6 @@
       <span class="en">France already<br>runs on Linux.</span>
       <span class="zh">法國：已經用 Linux 跑了 20 年</span>
     </h2>
-      <p class="detail reveal d2">
-        不是計畫，是<strong>跑了 20 年的事實</strong>。法國為<strong>數位主權</strong>選開源 — 國家資料留在自己手上。<br>
-        Not a plan — <strong>20 years running</strong>. France picked open source for <strong>sovereignty</strong>.
-      </p>
     <div class="country-grid">
       <div class="country-card accent-fr reveal">
         <img class="card-img" src="https://flagcdn.com/w320/fr.png" alt="France flag — GendBuntu" loading="lazy" style="object-fit:cover">
@@ -864,7 +875,6 @@
     </h2>
       <p class="detail reveal d2">
         最北的邦 <strong>Schleswig-Holstein</strong> 把 <strong>30,000 台公務電腦</strong>搬離 Windows / M365，2026 完成 — 不只省錢，為了<strong>拿回主導權</strong>。<br>
-        Germany's north is moving <strong>30,000 PCs</strong> off Windows/M365 by 2026 — not saving, <strong>regaining control</strong>.
       </p>
     <div class="country-grid">
       <div class="country-card accent-de reveal">
@@ -896,10 +906,60 @@
   </div>
 </section>
 
-<!-- S12 SUMMARY -->
+<!-- S14 MONETIZE — Open Source Can Make Money -->
+<section id="monetize">
+  <div class="wrap">
+    <div class="eyebrow">Slide 14 / 開源也能賺錢 • Monetize Open Source</div>
+    <h2 class="reveal">
+      <span class="en">Open source can<br>still make money.</span>
+      <span class="zh">開源，一樣能賺錢</span>
+    </h2>
+    <p class="detail reveal d2">
+      開源不是做慈善。<strong>免費的是程式碼，付費的是服務、託管與省下的時間。</strong><br>
+      Open source isn't charity. <strong>Code is free — service, hosting, and time saved is not.</strong>
+    </p>
+    <div class="money-grid">
+      <a class="money-card reveal" href="https://n8n.io" target="_blank" rel="noopener noreferrer">
+        <div class="money-head">
+          <img src="https://avatars.githubusercontent.com/u/45487711?s=200&v=4" alt="n8n logo" loading="lazy">
+          <h3>n8n <small>Workflow automation • fair-code</small></h3>
+        </div>
+        <p>開源工作流自動化，企業付費買託管與支援。GitHub 100k+ stars，估值破億仍開源核心。</p>
+        <div class="tag"><span>Self-host</span><span>Cloud</span><span>Enterprise</span></div>
+      </a>
+      <a class="money-card reveal d2" href="https://github.com/moeru-ai/airi" target="_blank" rel="noopener noreferrer">
+        <div class="money-head">
+          <img src="https://avatars.githubusercontent.com/u/184623735?s=200&v=4" alt="Project AIRI logo" loading="lazy">
+          <h3>Project AIRI <small>AI companion • GPL-3.0</small></h3>
+        </div>
+        <p>開源 AI 夥伴，靠社群贊助與周邊服務變現。證明小團隊也能靠開源養活自己。</p>
+        <div class="tag"><span>GPL-3.0</span><span>Community</span><span>Sponsor</span></div>
+      </a>
+      <a class="money-card reveal" href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">
+        <div class="money-head">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg" alt="Firefox logo" loading="lazy">
+          <h3>Firefox <small>Mozilla • MPL-2.0</small></h3>
+        </div>
+        <p>開源瀏覽器，靠搜尋分潤一年數億美金。開源 + 商業可以並存。</p>
+        <div class="tag"><span>MPL-2.0</span><span>Search deal</span><span>Non-profit</span></div>
+      </a>
+      <a class="money-card reveal d2" href="https://www.blender.org" target="_blank" rel="noopener noreferrer">
+        <div class="money-head">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg" alt="Blender logo" loading="lazy">
+          <h3>Blender <small>3D creation • GPL</small></h3>
+        </div>
+        <p>完全開源的 3D 巨頭，靠基金會捐款、雲端與企業支援，年收千萬美金。</p>
+        <div class="tag"><span>GPL</span><span>Donation</span><span>Studio</span></div>
+      </a>
+    </div>
+    <p class="detail reveal d3" style="margin-top:16px;font-size:13px;opacity:.6">小字：四種常見模式 — 託管、雙授權、搜尋分潤、捐款。程式碼免費，價值在服務。<br><small>Small: hosted, dual-license, search deals, donations — code is free, value is service.</small></p>
+  </div>
+</section>
+
+<!-- S15 SUMMARY -->
 <section id="summary">
   <div class="wrap reveal">
-    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 14 / 總結</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.6);justify-content:center">Slide 15 / 總結</div>
     <div class="big-ji">助人助己</div>
     <div class="big-en">Help Others,<br>Help Yourself</div>
     <div class="loop">
@@ -924,7 +984,7 @@
 <!-- S13 REFERENCES -->
 <section id="refs">
   <div class="wrap">
-    <div class="eyebrow">Slide 15 / 參考資料 • References</div>
+    <div class="eyebrow">Slide 16 / 參考資料 • References</div>
     <h2 class="reveal">
       <span class="en" style="font-size:clamp(36px,6vw,64px)">Sources & Credits</span>
       <span class="zh">圖片與資料來源 — 教學使用，已標示出處</span>
