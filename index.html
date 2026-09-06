@@ -346,6 +346,11 @@
   #custom .custom-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;font-size:14px;line-height:1.7;color:var(--muted)}
   #custom .custom-card b{color:var(--fg)}
   @media(max-width:900px){#custom .custom-grid{grid-template-columns:1fr}}
+  #supposedly{background:linear-gradient(90deg, #2563EB 0%, #3B82F6 38%, #EF4444 62%, #DC2626 100%);color:#fff;position:relative;overflow:hidden}
+  #supposedly:before{content:"AI";position:absolute;left:-2%;top:50%;transform:translateY(-50%) rotate(-6deg);font-size:clamp(140px,22vw,280px);font-weight:900;letter-spacing:-.06em;color:rgba(255,255,255,.08);line-height:1;pointer-events:none;user-select:none}
+  #supposedly:after{content:"";position:absolute;right:4%;top:50%;transform:translateY(-50%);width:clamp(120px,18vw,220px);height:clamp(120px,18vw,220px);background:rgba(255,255,255,.07);mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5" fill="white"/></svg>') center/contain no-repeat;-webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5" fill="white"/></svg>') center/contain no-repeat;pointer-events:none}
+  #supposedly .sup-big{font-size:clamp(36px,6.2vw,72px);font-weight:900;letter-spacing:-.05em;line-height:.92;text-align:center;max-width:900px;margin:0 auto;text-shadow:0 8px 32px rgba(0,0,0,.18)}
+  #supposedly .sup-sub{margin-top:14px;text-align:center;font-family:JetBrains Mono, monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
   @media(max-width:900px){.ref-grid{grid-template-columns:1fr}}
   p, .detail, .stat .sub, .vs-card .t span, .why-card p, .law p, .law .example{overflow-wrap:break-word;word-break:normal;hyphens:auto}
   .detail strong{word-spacing:.04em}
@@ -373,6 +378,7 @@
   <a href="#france" title="France"></a>
   <a href="#germany" title="Germany"></a>
   <a href="#summary" title="Summary"></a>
+  <a href="#supposedly" title="Supposedly"></a>
   <a href="#refs" title="References"></a>
 </nav>
 
@@ -395,6 +401,20 @@
     <div class="hero-tux reveal d2">
       <div class="blob"></div>
       <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux the Linux penguin" loading="eager" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg'">
+      <div style="position:absolute;left:-8px;top:14%;pointer-events:none;transform:rotate(-2deg)">
+        <svg width="72" height="56" viewBox="0 0 72 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 44 C 12 16, 36 6, 58 18" stroke="#0F1115" stroke-width="1.9" stroke-linecap="round" fill="none"/>
+          <path d="M52 10 L58 18 L48 26" stroke="#0F1115" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span style="position:absolute;left:-10px;top:-8px;background:#fff;border:1px solid var(--line);padding:3px 8px;border-radius:999px;font-family:JetBrains Mono, monospace;font-size:10px;letter-spacing:.1em;font-weight:700;transform:rotate(-4deg);box-shadow:0 4px 12px rgba(0,0,0,.08)">TUX →</span>
+      </div>
+      <div style="position:absolute;right:6px;bottom:10%;pointer-events:none;transform:rotate(3deg)">
+        <svg width="64" height="48" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M56 12 C 52 32, 30 38, 10 28" stroke="#0F1115" stroke-width="1.9" stroke-linecap="round" fill="none"/>
+          <path d="M16 36 L10 28 L18 20" stroke="#0F1115" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span style="position:absolute;right:-6px;bottom:-6px;background:var(--accent2);border:1px solid #0F1115;padding:2px 7px;border-radius:999px;font-family:JetBrains Mono, monospace;font-size:9px;letter-spacing:.08em;font-weight:800">the penguin</span>
+      </div>
     </div>
   </div>
   <div class="scroll-hint"><span></span>scroll</div>
@@ -972,10 +992,18 @@
   </div>
 </section>
 
-<!-- S13 REFERENCES -->
+<!-- SUPPOSEDLY — blue→red AI / lock -->
+<section id="supposedly">
+  <div class="wrap">
+    <div class="sup-big reveal">I supposedly wanted to talk about ...</div>
+    <div class="sup-sub reveal d2">AI &nbsp;·&nbsp; Security &nbsp;·&nbsp; The talk that almost was</div>
+  </div>
+</section>
+
+<!-- S17 REFERENCES -->
 <section id="refs">
   <div class="wrap">
-    <div class="eyebrow">Slide 16 / 參考資料 • References</div>
+    <div class="eyebrow">Slide 17 / 參考資料 • References</div>
     <h2 class="reveal">
       <span class="en" style="font-size:clamp(36px,6vw,64px)">Sources & Credits</span>
       <span class="zh">圖片與資料來源 — 教學使用，已標示出處</span>
@@ -1031,6 +1059,10 @@
       <div style="font-weight:900;letter-spacing:-.03em;font-size:18px">Linux → Community → Open Source → GitHub</div>
       <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px">Built for class • Hosted on GitHub Pages • Bilingual • 15 min</div>
       <div class="tiny">Tip: 按 <span style="background:var(--fg);color:#fff;padding:2px 6px;border-radius:6px">↑ ↓</span> 或滑動切換投影片 • Use arrow keys or scroll • <a href="#hero">Back to top ↑</a></div>
+      <div style="margin-top:14px;display:flex;justify-content:center">
+        <a href="proccess.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0F1115;color:#fff;padding:10px 18px;border-radius:999px;font-weight:800;text-decoration:none;font-size:13px;letter-spacing:-.01em;box-shadow:0 10px 24px rgba(0,0,0,.12)">View proccess.html — full transcript →</a>
+      </div>
+      <div class="tiny" style="margin-top:6px">完整對話紀錄 / Full session transcript — opencode desktop design</div>
     </div>
   </div>
 </section>
