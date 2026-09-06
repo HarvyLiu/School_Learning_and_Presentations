@@ -8,6 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0F0F0F;--panel:#18181B;--card:#212121;--line:#2A2A2E;--muted:#9CA3AF;--fg:#E8E8E8;--accent:#7C3AED;--green:#22C55E;--blue:#3B82F6;--yellow:#EAB308}
+  html[data-theme="light"]{--bg:#FCFCF7;--panel:#FFFFFF;--card:#FFFFFF;--line:#E5E7EB;--muted:#6B7280;--fg:#0F1115}
+  html[data-theme="light"] .sidebar{background:#F9FAFB;border-color:var(--line)}
+  html[data-theme="light"] .topbar{background:rgba(252,252,247,.86)}
+  html[data-theme="light"] .turn{background:var(--panel)}
+  html[data-theme="light"] .turn-head{background:#F3F4F6}
+  html[data-theme="light"] .tool-body{background:#FCFCF7}
+  html[data-theme="light"] .tool-head{background:#F3F4F6}
+  html[data-theme="light"] .hero{background:linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%)}
   *{box-sizing:border-box}html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;display:flex;min-height:100vh}
   a{color:#8B5CF6}
@@ -69,7 +77,8 @@
     <span class="badge plan">PLAN</span><span class="badge build">BUILD</span>
     <span class="model">muse-spark-1.2-contributor-free</span>
     <span class="pill">Sun Sep 06 2026 · Asia/Taipei</span>
-    <span class="small" style="margin-left:auto">JUST SEE IT — no hover needed. Plan/Build, model & time always visible per turn.</span>
+    <button id="themeToggle" style="margin-left:auto;font-family:JetBrains Mono,monospace;font-size:11px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--fg);cursor:pointer;display:flex;align-items:center;gap:6px">☀ Light</button>
+    <span class="small" style="display:none">JUST SEE IT — no hover needed. Plan/Build, model & time always visible per turn.</span>
   </div>
 
   <div class="wrap">
@@ -519,6 +528,14 @@ and another one for germany, also do some research before hand, i remember its s
 </div>
 
 <script>
+// theme toggle — light mode
+const root=document.documentElement, btn=document.getElementById('themeToggle');
+const saved=localStorage.getItem('proccess-theme');
+if(saved) root.setAttribute('data-theme',saved);
+else if(window.matchMedia('(prefers-color-scheme: light)').matches) root.setAttribute('data-theme','light');
+function syncBtn(){ const isLight=root.getAttribute('data-theme')==='light'; btn.textContent=isLight?'◐ Dark':'☀ Light'; }
+syncBtn();
+btn.addEventListener('click',()=>{ const isLight=root.getAttribute('data-theme')==='light'; const next=isLight?'dark':'light'; if(next==='dark') root.removeAttribute('data-theme'); else root.setAttribute('data-theme',next); localStorage.setItem('proccess-theme',next); syncBtn(); });
 // reveal on scroll for this transcript page itself
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
