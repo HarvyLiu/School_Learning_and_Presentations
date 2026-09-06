@@ -10,12 +10,30 @@
   :root{--bg:#0F0F0F;--panel:#18181B;--card:#212121;--line:#2A2A2E;--muted:#9CA3AF;--fg:#E8E8E8;--accent:#7C3AED;--green:#22C55E;--blue:#3B82F6;--yellow:#EAB308}
   html[data-theme="light"]{--bg:#FCFCF7;--panel:#FFFFFF;--card:#FFFFFF;--line:#E5E7EB;--muted:#6B7280;--fg:#0F1115}
   html[data-theme="light"] .sidebar{background:#F9FAFB;border-color:var(--line)}
-  html[data-theme="light"] .topbar{background:rgba(252,252,247,.86)}
+  html[data-theme="light"] .topbar{background:rgba(252,252,247,.92);backdrop-filter:blur(10px)}
   html[data-theme="light"] .turn{background:var(--panel)}
-  html[data-theme="light"] .turn-head{background:#F3F4F6}
-  html[data-theme="light"] .tool-body{background:#FCFCF7}
-  html[data-theme="light"] .tool-head{background:#F3F4F6}
-  html[data-theme="light"] .hero{background:linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%)}
+  html[data-theme="light"] .turn-head{background:#F3F4F6;border-color:var(--line)}
+  html[data-theme="light"] .tool{border-color:var(--line)}
+  html[data-theme="light"] .tool-head{background:#F3F4F6;color:#4B5563;border-color:var(--line)}
+  html[data-theme="light"] .tool-body{background:#FFFFFF;color:#1F2937;border-color:var(--line)}
+  html[data-theme="light"] .hero{background:linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);border-color:var(--line)}
+  html[data-theme="light"] .file{color:#4B5563}
+  html[data-theme="light"] .file.active{background:#FFFFFF;color:var(--fg);border-color:var(--line)}
+  html[data-theme="light"] .badge{border-color:var(--line);background:#FFFFFF}
+  html[data-theme="light"] .badge.plan{color:#92400E;border-color:rgba(245,158,11,.3);background:rgba(254,243,199,.9)}
+  html[data-theme="light"] .badge.build{color:#065F46;border-color:rgba(16,185,129,.3);background:rgba(209,250,229,.9)}
+  html[data-theme="light"] .pill{background:#F3F4F6;border-color:var(--line);color:#374151}
+  html[data-theme="light"] .model{color:#6B7280}
+  html[data-theme="light"] a{color:#6D28D9}
+  /* user/assistant highlighted — always visible, no hover */
+  .turn:has(.role.user){background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.22)}
+  .turn:has(.role.assistant){background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.22)}
+  html[data-theme="light"] .turn:has(.role.user){background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.22)}
+  html[data-theme="light"] .turn:has(.role.assistant){background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.18)}
+  html[data-theme="light"] .turn:has(.role.user) .turn-head{background:rgba(219,234,254,.7)}
+  html[data-theme="light"] .turn:has(.role.assistant) .turn-head{background:rgba(220,252,231,.7)}
+  .turn:has(.role.user) .turn-head{background:rgba(30,58,138,.18)}
+  .turn:has(.role.assistant) .turn-head{background:rgba(20,83,45,.14)}
   *{box-sizing:border-box}html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;display:flex;min-height:100vh}
   a{color:#8B5CF6}
